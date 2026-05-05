@@ -8,7 +8,7 @@ public enum RestaurantType {
     SUSHI,
     HOT_DOG,
     FINE_DINING,
-    COFFEE_CAFE,
+    CAFE,
     ICE_CREAM_SHOP,
     JUICE_BAR,
     BBQ

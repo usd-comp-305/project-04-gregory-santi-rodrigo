@@ -4,7 +4,7 @@ public enum JuiceBarMenuItem implements MenuItem {
     ORANGE_JUICE("Orange Juice", 4.99),
     STRAWBERRY_SMOOTHIE("Strawberry Smoothie", 7.99),
     ACAI_BOWL("Acai Bowl", 12.99),
-    BEET_JUICE("Beet Juice", 5.99);
+    BEET_JUICE("Ginger Shot", 3.99);
 
     private final String name;
     private final double basePrice;
