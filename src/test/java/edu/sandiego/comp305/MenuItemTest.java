@@ -24,4 +24,11 @@ public class MenuItemTest {
         assertEquals(12.99, JuiceBarMenuItem.ACAI_BOWL.getBasePrice(), 0.001);
         assertEquals(3.99, JuiceBarMenuItem.GINGER_SHOT.getBasePrice(), 0.001);
     }
+
+    @ParameterizedTest
+    @EnumSource(JuiceBarMenuItem.class)
+    public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
+        assertTrue(item.getBasePrice() > 0,
+                item.getName() + " should have a positive base price.");
+    }
 }
