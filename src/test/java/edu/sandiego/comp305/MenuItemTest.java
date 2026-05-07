@@ -15,4 +15,9 @@ public class MenuItemTest {
         assertEquals("Acai Bowl", JuiceBarMenuItem.ACAI_BOWL.getName());
         assertEquals("Ginger Shot", JuiceBarMenuItem.GINGER_SHOT.getName());
     }
+
+    @Test
+    public void testJuiceBarReturnsCorrectPrice(){
+
+    }
 }
