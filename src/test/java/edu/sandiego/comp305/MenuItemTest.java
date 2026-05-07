@@ -290,4 +290,10 @@ public class MenuItemTest {
     public void testSushiItemsHaveNonEmptyName(SushiMenuItem item){
         assertFalse(item.getName().isBlank());
     }
+
+    @ParameterizedTest
+    @EnumSource(TacoMenuItem.class)
+    public void testTacoItemsHavePositivePrice(TacoMenuItem item){
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
+    }
 }
