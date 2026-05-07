@@ -76,7 +76,7 @@ public class MenuItemTest {
     @Test
     public void testHotDogReturnsCorrectName(){
         assertEquals("Plain Hot Dog", HotDogMenuItem.PLAIN_HOT_DOG.getName(),
-                "Plain should return its display name.");
+                "Plain Hot Dog should return its display name.");
         assertEquals("Chili Dog", HotDogMenuItem.CHILI_DOG.getName());
         assertEquals("Condiment Hot Dog", HotDogMenuItem.CONDIMENT_HOT_DOG.getName());
     }
@@ -87,6 +87,10 @@ public class MenuItemTest {
 
     @Test
     public void testIceCreamReturnsCorrectName(){
+        assertEquals("Cone", IceCreamMenuItem.CONE.getName(),
+                "Cone should return its display name.");
+        assertEquals("Sundae", IceCreamMenuItem.SUNDAE.getName());
+        assertEquals("Shake", IceCreamMenuItem.SHAKE.getName());
     }
 
     @Test
@@ -113,6 +117,13 @@ public class MenuItemTest {
 
     @Test
     public void testPizzaReturnsCorrectName(){
+        assertEquals("Pepperoni Slice", PizzaMenuItem.PEPPERONI_SLICE.getName(),
+                "Pepperoni Slice should return its display name.");
+        assertEquals("Pepperoni Whole", PizzaMenuItem.PEPPERONI_WHOLE.getName());
+        assertEquals("Margherita Slice", PizzaMenuItem.MARGHERITA_SLICE.getName());
+        assertEquals("Margherita Whole", PizzaMenuItem.MARGHERITA_WHOLE.getName());
+        assertEquals("Cheese Slice", PizzaMenuItem.CHEESE_SLICE.getName());
+        assertEquals("Cheese Whole", PizzaMenuItem.CHEESE_WHOLE.getName());
     }
 
     @Test
