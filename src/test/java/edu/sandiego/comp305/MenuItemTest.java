@@ -60,7 +60,7 @@ public class MenuItemTest {
     @Test
     public void testFineDiningReturnsCorrectName(){
         assertEquals("Steak", FineDiningMenuItem.STEAK.getName(),
-                "Steak should return its display name.");
+                "STEAK should return its display name.");
         assertEquals("Pasta", FineDiningMenuItem.PASTA.getName());
         assertEquals("Caviar", FineDiningMenuItem.CAVIAR.getName());
     }
@@ -68,7 +68,7 @@ public class MenuItemTest {
     @Test
     public void testFineDiningReturnsCorrectPrice(){
         assertEquals(45.99, FineDiningMenuItem.STEAK.getBasePrice(), THOUSANDTH_DECIMAL,
-                "COFFEE should return its base price.");
+                "STEAK should return its base price.");
         assertEquals(24.99, FineDiningMenuItem.PASTA.getBasePrice(), THOUSANDTH_DECIMAL);
         assertEquals(89.99, FineDiningMenuItem.CAVIAR.getBasePrice(), THOUSANDTH_DECIMAL);
     }
@@ -76,25 +76,33 @@ public class MenuItemTest {
     @Test
     public void testHotDogReturnsCorrectName(){
         assertEquals("Plain Hot Dog", HotDogMenuItem.PLAIN_HOT_DOG.getName(),
-                "Plain Hot Dog should return its display name.");
+                "PLAIN_HOT_DOG should return its display name.");
         assertEquals("Chili Dog", HotDogMenuItem.CHILI_DOG.getName());
         assertEquals("Condiment Hot Dog", HotDogMenuItem.CONDIMENT_HOT_DOG.getName());
     }
 
     @Test
     public void testHotDogReturnsCorrectPrice(){
+        assertEquals(3.99, HotDogMenuItem.PLAIN_HOT_DOG.getBasePrice(), THOUSANDTH_DECIMAL,
+                "PLAIN_HOT_DOG should return its base price.");
+        assertEquals(5.99, HotDogMenuItem.CHILI_DOG.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(4.99, HotDogMenuItem.CONDIMENT_HOT_DOG.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
     public void testIceCreamReturnsCorrectName(){
         assertEquals("Cone", IceCreamMenuItem.CONE.getName(),
-                "Cone should return its display name.");
+                "CONE should return its display name.");
         assertEquals("Sundae", IceCreamMenuItem.SUNDAE.getName());
         assertEquals("Shake", IceCreamMenuItem.SHAKE.getName());
     }
 
     @Test
     public void testIceCreamReturnsCorrectPrice(){
+        assertEquals(3.99, IceCreamMenuItem.CONE.getBasePrice(), THOUSANDTH_DECIMAL,
+                "CONE should return its base price.");
+        assertEquals(6.99, IceCreamMenuItem.SUNDAE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(7.99, IceCreamMenuItem.SHAKE.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -118,7 +126,7 @@ public class MenuItemTest {
     @Test
     public void testPizzaReturnsCorrectName(){
         assertEquals("Pepperoni Slice", PizzaMenuItem.PEPPERONI_SLICE.getName(),
-                "Pepperoni Slice should return its display name.");
+                "PEPPERONI_SLICE should return its display name.");
         assertEquals("Pepperoni Whole", PizzaMenuItem.PEPPERONI_WHOLE.getName());
         assertEquals("Margherita Slice", PizzaMenuItem.MARGHERITA_SLICE.getName());
         assertEquals("Margherita Whole", PizzaMenuItem.MARGHERITA_WHOLE.getName());
@@ -133,7 +141,7 @@ public class MenuItemTest {
     @Test
     public void testSushiReturnsCorrectName(){
         assertEquals("Salmon Roll", SushiMenuItem.SALMON_ROLL.getName(),
-                "Salmon Roll should return its display name.");
+                "SALMON_ROLL should return its display name.");
         assertEquals("Tuna Roll", SushiMenuItem.TUNA_ROLL.getName());
         assertEquals("Chef's Nigiri Platter", SushiMenuItem.CHEFS_NIGIRI_PLATTER.getName());
         assertEquals("Hamachi Roll", SushiMenuItem.HAMACHI_ROLL.getName());
@@ -146,7 +154,7 @@ public class MenuItemTest {
     @Test
     public void testTacoReturnsCorrectName(){
         assertEquals("Steak Taco", TacoMenuItem.STEAK_TACO.getName(),
-                "Steak Taco should return its display name.");
+                "STEAK_TACO should return its display name.");
         assertEquals("Chicken Taco", TacoMenuItem.CHICKEN_TACO.getName());
         assertEquals("Chicken Burrito", TacoMenuItem.CHICKEN_BURRITO.getName());
         assertEquals("Steak Burrito", TacoMenuItem.STEAK_BURRITO.getName());
