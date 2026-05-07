@@ -281,6 +281,12 @@ public class MenuItemTest {
 
     @ParameterizedTest
     @EnumSource(SushiMenuItem.class)
+    public void testSushiItemsHavePositivePrice(SushiMenuItem item){
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
+    }
+
+    @ParameterizedTest
+    @EnumSource(SushiMenuItem.class)
     public void testSushiItemsHaveNonEmptyName(SushiMenuItem item){
         assertFalse(item.getName().isBlank());
     }
