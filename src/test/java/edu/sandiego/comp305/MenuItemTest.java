@@ -24,6 +24,22 @@ public class MenuItemTest {
     }
 
     @Test
+    public void testBurgerReturnsCorrectName(){
+        assertEquals("Cheeseburger", BurgerMenuItem.CHEESEBURGER.getName(),
+                "CHEESEBURGER should return its display name.");
+        assertEquals("Double Cheeseburger", BurgerMenuItem.DOUBLE_CHEESEBURGER.getName());
+        assertEquals("Triple Cheeseburger", BurgerMenuItem.TRIPLE_CHEESEBURGER.getName());
+    }
+
+    @Test
+    public void testBurgerReturnsCorrectPrice(){
+        assertEquals(8.99, BurgerMenuItem.CHEESEBURGER.getBasePrice(), 0.001,
+                "CHEESEBURGER should return its base price.");
+        assertEquals(11.99, BurgerMenuItem.DOUBLE_CHEESEBURGER.getBasePrice(), 0.001);
+        assertEquals(14.99, BurgerMenuItem.TRIPLE_CHEESEBURGER.getBasePrice(), 0.001);
+    }
+
+    @Test
     public void testJuiceBarReturnsCorrectName(){
         assertEquals("Orange Juice", JuiceBarMenuItem.ORANGE_JUICE.getName(),
                 "ORANGE_JUICE should return its display name.");
