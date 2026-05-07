@@ -156,6 +156,11 @@ public class MenuItemTest {
 
     @Test
     public void testSushiReturnsCorrectPrice(){
+        assertEquals(12.99, SushiMenuItem.SALMON_ROLL.getBasePrice(), THOUSANDTH_DECIMAL,
+                "SALMON_ROLL should return its base price.");
+        assertEquals(13.99, SushiMenuItem.TUNA_ROLL.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(24.99, SushiMenuItem.CHEFS_NIGIRI_PLATTER.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(14.99, SushiMenuItem.HAMACHI_ROLL.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
