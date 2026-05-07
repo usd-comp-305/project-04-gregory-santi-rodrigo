@@ -272,4 +272,10 @@ public class MenuItemTest {
     public void testPizzaItemsHavePositivePrice(PizzaMenuItem item){
         assertTrue(item.getBasePrice() > POSITIVE_PRICE);
     }
+
+    @ParameterizedTest
+    @EnumSource(PizzaMenuItem.class)
+    public void testPizzaItemsHaveNonEmptyName(PizzaMenuItem item){
+        assertFalse(item.getName().isBlank());
+    }
 }
