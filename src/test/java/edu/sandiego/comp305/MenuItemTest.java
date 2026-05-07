@@ -266,4 +266,10 @@ public class MenuItemTest {
     public void testJuiceBarItemsHaveNonEmptyName(JuiceBarMenuItem item){
         assertFalse(item.getName().isBlank());
     }
+
+    @ParameterizedTest
+    @EnumSource(PizzaMenuItem.class)
+    public void testPizzaItemsHavePositivePrice(PizzaMenuItem item){
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
+    }
 }
