@@ -220,6 +220,18 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
+    @EnumSource(FineDiningMenuItem.class)
+    public void testFineDiningItemsHavePositivePrice(FineDiningMenuItem item){
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
+    }
+
+    @ParameterizedTest
+    @EnumSource(FineDiningMenuItem.class)
+    public void testFineDiningItemsHaveNonEmptyName(FineDiningMenuItem item){
+        assertFalse(item.getName().isBlank());
+    }
+
+    @ParameterizedTest
     @EnumSource(JuiceBarMenuItem.class)
     public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
         assertTrue(item.getBasePrice() > POSITIVE_PRICE);
