@@ -75,6 +75,10 @@ public class MenuItemTest {
 
     @Test
     public void testHotDogReturnsCorrectName(){
+        assertEquals("Plain Hot Dog", HotDogMenuItem.PLAIN_HOT_DOG.getName(),
+                "Plain should return its display name.");
+        assertEquals("Chili Dog", HotDogMenuItem.CHILI_DOG.getName());
+        assertEquals("Condiment Hot Dog", HotDogMenuItem.CONDIMENT_HOT_DOG.getName());
     }
 
     @Test
