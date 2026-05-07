@@ -132,6 +132,11 @@ public class MenuItemTest {
 
     @Test
     public void testSushiReturnsCorrectName(){
+        assertEquals("Salmon Roll", SushiMenuItem.SALMON_ROLL.getName(),
+                "Salmon Roll should return its display name.");
+        assertEquals("Tuna Roll", SushiMenuItem.TUNA_ROLL.getName());
+        assertEquals("Chef's Nigiri Platter", SushiMenuItem.CHEFS_NIGIRI_PLATTER.getName());
+        assertEquals("Hamachi Roll", SushiMenuItem.HAMACHI_ROLL.getName());
     }
 
     @Test
@@ -140,6 +145,11 @@ public class MenuItemTest {
 
     @Test
     public void testTacoReturnsCorrectName(){
+        assertEquals("Steak Taco", TacoMenuItem.STEAK_TACO.getName(),
+                "Steak Taco should return its display name.");
+        assertEquals("Chicken Taco", TacoMenuItem.CHICKEN_TACO.getName());
+        assertEquals("Chicken Burrito", TacoMenuItem.CHICKEN_BURRITO.getName());
+        assertEquals("Steak Burrito", TacoMenuItem.STEAK_BURRITO.getName());
     }
 
     @Test
