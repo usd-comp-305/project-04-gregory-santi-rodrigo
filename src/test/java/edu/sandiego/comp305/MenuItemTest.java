@@ -99,6 +99,10 @@ public class MenuItemTest {
         assertEquals(3.99, JuiceBarMenuItem.GINGER_SHOT.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
+    @Test
+    public void testPizzaReturnsCorrectName(){
+    }
+
     @ParameterizedTest
     @EnumSource(BBQMenuItem.class)
     public void testBBQItemsHavePositivePrice(BBQMenuItem item){
