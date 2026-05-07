@@ -18,6 +18,10 @@ public class MenuItemTest {
 
     @Test
     public void testJuiceBarReturnsCorrectPrice(){
-
+        assertEquals(4.99, JuiceBarMenuItem.ORANGE_JUICE.getBasePrice(), 0.001,
+                "ORANGE_JUICE should return its base price.");
+        assertEquals(7.99, JuiceBarMenuItem.STRAWBERRY_SMOOTHIE.getBasePrice(), 0.001);
+        assertEquals(12.99, JuiceBarMenuItem.ACAI_BOWL.getBasePrice(), 0.001);
+        assertEquals(3.99, JuiceBarMenuItem.GINGER_SHOT.getBasePrice(), 0.001);
     }
 }
