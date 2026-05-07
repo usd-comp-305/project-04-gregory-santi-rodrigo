@@ -238,6 +238,12 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
+    @EnumSource(HotDogMenuItem.class)
+    public void testHotDogItemsHaveNonEmptyName(HotDogMenuItem item){
+        assertFalse(item.getName().isBlank());
+    }
+
+    @ParameterizedTest
     @EnumSource(JuiceBarMenuItem.class)
     public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
         assertTrue(item.getBasePrice() > POSITIVE_PRICE);
