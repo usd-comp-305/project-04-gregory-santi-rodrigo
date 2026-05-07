@@ -107,6 +107,10 @@ public class MenuItemTest {
     public void testPizzaReturnsCorrectPrice(){
     }
 
+    @Test
+    public void testSushiReturnsCorrectName(){
+    }
+
     @ParameterizedTest
     @EnumSource(BBQMenuItem.class)
     public void testBBQItemsHavePositivePrice(BBQMenuItem item){
