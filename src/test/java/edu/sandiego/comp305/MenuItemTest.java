@@ -42,16 +42,28 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
-    @EnumSource(JuiceBarMenuItem.class)
-    public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
+    @EnumSource(BBQMenuItem.class)
+    public void testBBQItemsHavePositivePrice(BBQMenuItem item){
         assertTrue(item.getBasePrice() > 0,
                 item.getName() + " should have a positive base price.");
     }
 
     @ParameterizedTest
-    @EnumSource(JuiceBarMenuItem.class)
-    public void testJuiceBarItemsHaveNonEmptyName(JuiceBarMenuItem item){
+    @EnumSource(BBQMenuItem.class)
+    public void testBBQItemsHaveNonEmptyName(BBQMenuItem item){
         assertFalse(item.getName().isBlank(),
                 "Every menu item should have a non-empty display name.");
+    }
+
+    @ParameterizedTest
+    @EnumSource(JuiceBarMenuItem.class)
+    public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
+        assertTrue(item.getBasePrice() > 0);
+    }
+
+    @ParameterizedTest
+    @EnumSource(JuiceBarMenuItem.class)
+    public void testJuiceBarItemsHaveNonEmptyName(JuiceBarMenuItem item){
+        assertFalse(item.getName().isBlank());
     }
 }
