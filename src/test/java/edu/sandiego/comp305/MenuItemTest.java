@@ -59,6 +59,10 @@ public class MenuItemTest {
 
     @Test
     public void testFineDiningReturnsCorrectName(){
+        assertEquals("Steak", FineDiningMenuItem.STEAK.getName(),
+                "Steak should return its display name.");
+        assertEquals("Pasta", FineDiningMenuItem.PASTA.getName());
+        assertEquals("Caviar", FineDiningMenuItem.CAVIAR.getName());
     }
 
     @Test
