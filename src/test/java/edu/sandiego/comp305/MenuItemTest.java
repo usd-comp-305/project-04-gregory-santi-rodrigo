@@ -54,7 +54,7 @@ public class MenuItemTest {
         assertEquals(3.99, CafeMenuItem.COFFEE.getBasePrice(), THOUSANDTH_DECIMAL,
                 "COFFEE should return its base price.");
         assertEquals(5.99, CafeMenuItem.LATTE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(4.49, CafeMenuItem.LATTE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(4.49, CafeMenuItem.PASTRY.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -98,6 +98,18 @@ public class MenuItemTest {
     @ParameterizedTest
     @EnumSource(BurgerMenuItem.class)
     public void testBurgerItemsHaveNonEmptyName(BurgerMenuItem item){
+        assertFalse(item.getName().isBlank());
+    }
+
+    @ParameterizedTest
+    @EnumSource(CafeMenuItem.class)
+    public void testCafeItemsHavePositivePrice(CafeMenuItem item){
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
+    }
+
+    @ParameterizedTest
+    @EnumSource(CafeMenuItem.class)
+    public void testCafeItemsHaveNonEmptyName(CafeMenuItem item){
         assertFalse(item.getName().isBlank());
     }
 
