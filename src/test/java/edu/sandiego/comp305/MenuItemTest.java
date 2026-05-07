@@ -278,4 +278,10 @@ public class MenuItemTest {
     public void testPizzaItemsHaveNonEmptyName(PizzaMenuItem item){
         assertFalse(item.getName().isBlank());
     }
+
+    @ParameterizedTest
+    @EnumSource(SushiMenuItem.class)
+    public void testSushiItemsHaveNonEmptyName(SushiMenuItem item){
+        assertFalse(item.getName().isBlank());
+    }
 }
