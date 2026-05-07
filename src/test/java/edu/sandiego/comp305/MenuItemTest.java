@@ -250,6 +250,12 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
+    @EnumSource(IceCreamMenuItem.class)
+    public void testIceCreamItemsHaveNonEmptyName(IceCreamMenuItem item){
+        assertFalse(item.getName().isBlank());
+    }
+
+    @ParameterizedTest
     @EnumSource(JuiceBarMenuItem.class)
     public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
         assertTrue(item.getBasePrice() > POSITIVE_PRICE);
