@@ -19,10 +19,14 @@ public class MenuItemTest {
 
     @Test
     public void testBBQReturnsCorrectPrice(){
-        assertEquals(22.99, BBQMenuItem.RIBS.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double RIBS_PRICE = 22.99;
+        final double BRISKET_PRICE = 18.99;
+        final double PULLED_PORK_PRICE = 16.99;
+
+        assertEquals(RIBS_PRICE, BBQMenuItem.RIBS.getBasePrice(), THOUSANDTH_DECIMAL,
                 "RIBS should return its base price.");
-        assertEquals(18.99, BBQMenuItem.BRISKET.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(16.99, BBQMenuItem.PULLED_PORK.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(BRISKET_PRICE, BBQMenuItem.BRISKET.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(PULLED_PORK_PRICE, BBQMenuItem.PULLED_PORK.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -35,10 +39,14 @@ public class MenuItemTest {
 
     @Test
     public void testBurgerReturnsCorrectPrice(){
-        assertEquals(8.99, BurgerMenuItem.CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double CHEESEBURGER_PRICE = 8.99;
+        final double DOUBLE_BURGER_PRICE = 11.99;
+        final double TRIPLE_BURGER_PRICE = 14.99;
+
+        assertEquals(CHEESEBURGER_PRICE, BurgerMenuItem.CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL,
                 "CHEESEBURGER should return its base price.");
-        assertEquals(11.99, BurgerMenuItem.DOUBLE_CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(14.99, BurgerMenuItem.TRIPLE_CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(DOUBLE_BURGER_PRICE, BurgerMenuItem.DOUBLE_CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(TRIPLE_BURGER_PRICE, BurgerMenuItem.TRIPLE_CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -51,10 +59,14 @@ public class MenuItemTest {
 
     @Test
     public void testCafeReturnsCorrectPrice(){
-        assertEquals(3.99, CafeMenuItem.COFFEE.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double COFFEE_PRICE = 3.99;
+        final double LATTE_PRICE = 5.99;
+        final double PASTRY_PRICE = 4.49;
+
+        assertEquals(COFFEE_PRICE, CafeMenuItem.COFFEE.getBasePrice(), THOUSANDTH_DECIMAL,
                 "COFFEE should return its base price.");
-        assertEquals(5.99, CafeMenuItem.LATTE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(4.49, CafeMenuItem.PASTRY.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(LATTE_PRICE, CafeMenuItem.LATTE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(PASTRY_PRICE, CafeMenuItem.PASTRY.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -67,10 +79,14 @@ public class MenuItemTest {
 
     @Test
     public void testFineDiningReturnsCorrectPrice(){
-        assertEquals(45.99, FineDiningMenuItem.STEAK.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double STEAK_PRICE = 45.99;
+        final double PASTA_PRICE = 24.99;
+        final double CAVIAR_PRICE = 89.99;
+
+        assertEquals(STEAK_PRICE, FineDiningMenuItem.STEAK.getBasePrice(), THOUSANDTH_DECIMAL,
                 "STEAK should return its base price.");
-        assertEquals(24.99, FineDiningMenuItem.PASTA.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(89.99, FineDiningMenuItem.CAVIAR.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(PASTA_PRICE, FineDiningMenuItem.PASTA.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CAVIAR_PRICE, FineDiningMenuItem.CAVIAR.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -83,10 +99,14 @@ public class MenuItemTest {
 
     @Test
     public void testHotDogReturnsCorrectPrice(){
-        assertEquals(3.99, HotDogMenuItem.PLAIN_HOT_DOG.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double HOT_DOG_PRICE = 3.99;
+        final double CHILI_DOG_PRICE = 5.99;
+        final double CONDIMENT_DOG_PRICE = 4.99;
+
+        assertEquals(HOT_DOG_PRICE, HotDogMenuItem.PLAIN_HOT_DOG.getBasePrice(), THOUSANDTH_DECIMAL,
                 "PLAIN_HOT_DOG should return its base price.");
-        assertEquals(5.99, HotDogMenuItem.CHILI_DOG.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(4.99, HotDogMenuItem.CONDIMENT_HOT_DOG.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CHILI_DOG_PRICE, HotDogMenuItem.CHILI_DOG.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CONDIMENT_DOG_PRICE, HotDogMenuItem.CONDIMENT_HOT_DOG.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -99,10 +119,14 @@ public class MenuItemTest {
 
     @Test
     public void testIceCreamReturnsCorrectPrice(){
-        assertEquals(3.99, IceCreamMenuItem.CONE.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double CONE_PRICE = 3.99;
+        final double SUNDAE_PRICE = 6.99;
+        final double SHAKE_PRICE = 7.99;
+
+        assertEquals(CONE_PRICE, IceCreamMenuItem.CONE.getBasePrice(), THOUSANDTH_DECIMAL,
                 "CONE should return its base price.");
-        assertEquals(6.99, IceCreamMenuItem.SUNDAE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(7.99, IceCreamMenuItem.SHAKE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(SUNDAE_PRICE, IceCreamMenuItem.SUNDAE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(SHAKE_PRICE, IceCreamMenuItem.SHAKE.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -116,11 +140,16 @@ public class MenuItemTest {
 
     @Test
     public void testJuiceBarReturnsCorrectPrice(){
-        assertEquals(4.99, JuiceBarMenuItem.ORANGE_JUICE.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double OJ_PRICE = 4.99;
+        final double STRAWBERRY_SMOOTHIE_PRICE = 7.99;
+        final double ACAI_BOWL_PRICE = 12.99;
+        final double GINGER_SHOT_PRICE = 3.99;
+
+        assertEquals(OJ_PRICE, JuiceBarMenuItem.ORANGE_JUICE.getBasePrice(), THOUSANDTH_DECIMAL,
                 "ORANGE_JUICE should return its base price.");
-        assertEquals(7.99, JuiceBarMenuItem.STRAWBERRY_SMOOTHIE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(12.99, JuiceBarMenuItem.ACAI_BOWL.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(3.99, JuiceBarMenuItem.GINGER_SHOT.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(STRAWBERRY_SMOOTHIE_PRICE, JuiceBarMenuItem.STRAWBERRY_SMOOTHIE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(ACAI_BOWL_PRICE, JuiceBarMenuItem.ACAI_BOWL.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(GINGER_SHOT_PRICE, JuiceBarMenuItem.GINGER_SHOT.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -136,13 +165,20 @@ public class MenuItemTest {
 
     @Test
     public void testPizzaReturnsCorrectPrice(){
-        assertEquals(3.99, PizzaMenuItem.PEPPERONI_SLICE.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double PEPPERONI_SLICE_PRICE = 3.99;
+        final double PEPPERONI_WHOLE_PRICE = 18.99;
+        final double MARGHERITA_SLICE_PRICE = 3.49;
+        final double MARGHERITA_WHOLE_PRICE = 16.99;
+        final double CHEESE_SLICE_PRICE = 2.99;
+        final double CHEESE_WHOLE_PRICE = 14.99;
+
+        assertEquals(PEPPERONI_SLICE_PRICE, PizzaMenuItem.PEPPERONI_SLICE.getBasePrice(), THOUSANDTH_DECIMAL,
                 "PEPPERONI_SLICE should return its base price.");
-        assertEquals(18.99, PizzaMenuItem.PEPPERONI_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(3.49, PizzaMenuItem.MARGHERITA_SLICE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(16.99, PizzaMenuItem.MARGHERITA_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(2.99, PizzaMenuItem.CHEESE_SLICE.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(14.99, PizzaMenuItem.CHEESE_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(PEPPERONI_WHOLE_PRICE, PizzaMenuItem.PEPPERONI_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(MARGHERITA_SLICE_PRICE, PizzaMenuItem.MARGHERITA_SLICE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(MARGHERITA_WHOLE_PRICE, PizzaMenuItem.MARGHERITA_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CHEESE_SLICE_PRICE, PizzaMenuItem.CHEESE_SLICE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CHEESE_WHOLE_PRICE, PizzaMenuItem.CHEESE_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -156,11 +192,16 @@ public class MenuItemTest {
 
     @Test
     public void testSushiReturnsCorrectPrice(){
-        assertEquals(12.99, SushiMenuItem.SALMON_ROLL.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double SALMON_ROLL_PRICE = 12.99;
+        final double TUNA_ROLL_PRICE = 13.99;
+        final double CHEFS_NIGIRI_PRICE = 24.99;
+        final double HAMACHI_ROLL_PRICE = 14.99;
+
+        assertEquals(SALMON_ROLL_PRICE, SushiMenuItem.SALMON_ROLL.getBasePrice(), THOUSANDTH_DECIMAL,
                 "SALMON_ROLL should return its base price.");
-        assertEquals(13.99, SushiMenuItem.TUNA_ROLL.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(24.99, SushiMenuItem.CHEFS_NIGIRI_PLATTER.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(14.99, SushiMenuItem.HAMACHI_ROLL.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(TUNA_ROLL_PRICE, SushiMenuItem.TUNA_ROLL.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CHEFS_NIGIRI_PRICE, SushiMenuItem.CHEFS_NIGIRI_PLATTER.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(HAMACHI_ROLL_PRICE, SushiMenuItem.HAMACHI_ROLL.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -174,11 +215,16 @@ public class MenuItemTest {
 
     @Test
     public void testTacoReturnsCorrectPrice(){
-        assertEquals(4.99, TacoMenuItem.STEAK_TACO.getBasePrice(), THOUSANDTH_DECIMAL,
+        final double STEAK_TACO_PRICE = 4.99;
+        final double CHICKEN_TACO = 3.99;
+        final double CHICKEN_BURRITO_PRICE = 9.99;
+        final double STEAK_BURRITO_PRICE = 11.99;
+
+        assertEquals(STEAK_TACO_PRICE, TacoMenuItem.STEAK_TACO.getBasePrice(), THOUSANDTH_DECIMAL,
                 "STEAK_TACO should return its base price.");
-        assertEquals(3.99, TacoMenuItem.CHICKEN_TACO.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(9.99, TacoMenuItem.CHICKEN_BURRITO.getBasePrice(), THOUSANDTH_DECIMAL);
-        assertEquals(11.99, TacoMenuItem.STEAK_BURRITO.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CHICKEN_TACO, TacoMenuItem.CHICKEN_TACO.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(CHICKEN_BURRITO_PRICE, TacoMenuItem.CHICKEN_BURRITO.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(STEAK_BURRITO_PRICE, TacoMenuItem.STEAK_BURRITO.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @ParameterizedTest
