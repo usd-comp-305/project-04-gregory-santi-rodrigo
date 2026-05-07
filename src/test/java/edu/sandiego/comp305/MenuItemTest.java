@@ -58,6 +58,10 @@ public class MenuItemTest {
     }
 
     @Test
+    public void testFineDiningReturnsCorrectName(){
+    }
+
+    @Test
     public void testJuiceBarReturnsCorrectName(){
         assertEquals("Orange Juice", JuiceBarMenuItem.ORANGE_JUICE.getName(),
                 "ORANGE_JUICE should return its display name.");
