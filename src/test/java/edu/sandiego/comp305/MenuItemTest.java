@@ -6,6 +6,8 @@ import org.junit.jupiter.params.provider.EnumSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MenuItemTest {
+    final static int POSITIVE_PRICE = 0;
+    final static double THOUSANDTH_DECIMAL = 0.001;
 
     @Test
     public void testBBQReturnsCorrectName(){
@@ -17,10 +19,10 @@ public class MenuItemTest {
 
     @Test
     public void testBBQReturnsCorrectPrice(){
-        assertEquals(22.99, BBQMenuItem.RIBS.getBasePrice(), 0.001,
+        assertEquals(22.99, BBQMenuItem.RIBS.getBasePrice(), THOUSANDTH_DECIMAL,
                 "RIBS should return its base price.");
-        assertEquals(18.99, BBQMenuItem.BRISKET.getBasePrice(), 0.001);
-        assertEquals(16.99, BBQMenuItem.PULLED_PORK.getBasePrice(), 0.001);
+        assertEquals(18.99, BBQMenuItem.BRISKET.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(16.99, BBQMenuItem.PULLED_PORK.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -33,10 +35,10 @@ public class MenuItemTest {
 
     @Test
     public void testBurgerReturnsCorrectPrice(){
-        assertEquals(8.99, BurgerMenuItem.CHEESEBURGER.getBasePrice(), 0.001,
+        assertEquals(8.99, BurgerMenuItem.CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL,
                 "CHEESEBURGER should return its base price.");
-        assertEquals(11.99, BurgerMenuItem.DOUBLE_CHEESEBURGER.getBasePrice(), 0.001);
-        assertEquals(14.99, BurgerMenuItem.TRIPLE_CHEESEBURGER.getBasePrice(), 0.001);
+        assertEquals(11.99, BurgerMenuItem.DOUBLE_CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(14.99, BurgerMenuItem.TRIPLE_CHEESEBURGER.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
@@ -50,17 +52,17 @@ public class MenuItemTest {
 
     @Test
     public void testJuiceBarReturnsCorrectPrice(){
-        assertEquals(4.99, JuiceBarMenuItem.ORANGE_JUICE.getBasePrice(), 0.001,
+        assertEquals(4.99, JuiceBarMenuItem.ORANGE_JUICE.getBasePrice(), THOUSANDTH_DECIMAL,
                 "ORANGE_JUICE should return its base price.");
-        assertEquals(7.99, JuiceBarMenuItem.STRAWBERRY_SMOOTHIE.getBasePrice(), 0.001);
-        assertEquals(12.99, JuiceBarMenuItem.ACAI_BOWL.getBasePrice(), 0.001);
-        assertEquals(3.99, JuiceBarMenuItem.GINGER_SHOT.getBasePrice(), 0.001);
+        assertEquals(7.99, JuiceBarMenuItem.STRAWBERRY_SMOOTHIE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(12.99, JuiceBarMenuItem.ACAI_BOWL.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(3.99, JuiceBarMenuItem.GINGER_SHOT.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @ParameterizedTest
     @EnumSource(BBQMenuItem.class)
     public void testBBQItemsHavePositivePrice(BBQMenuItem item){
-        assertTrue(item.getBasePrice() > 0,
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE,
                 item.getName() + " should have a positive base price.");
     }
 
@@ -72,9 +74,21 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
+    @EnumSource(BurgerMenuItem.class)
+    public void testBurgerItemsHavePositivePrice(BurgerMenuItem item){
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
+    }
+
+    @ParameterizedTest
+    @EnumSource(BurgerMenuItem.class)
+    public void testBurgerItemsHaveNonEmptyName(BurgerMenuItem item){
+        assertFalse(item.getName().isBlank());
+    }
+
+    @ParameterizedTest
     @EnumSource(JuiceBarMenuItem.class)
     public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
-        assertTrue(item.getBasePrice() > 0);
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
     }
 
     @ParameterizedTest
