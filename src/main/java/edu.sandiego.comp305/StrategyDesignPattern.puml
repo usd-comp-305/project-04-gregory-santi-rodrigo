@@ -1,0 +1,39 @@
+
+
+@startuml
+
+' Interfaces
+interface Restaurant
+interface PricingStrategy {
+    +calculatePrice(order): double
+}
+
+' Abstract class
+abstract class AbstractRestaurant {
+    -regularPricing: PricingStrategy
+    -discountPricing: PricingStrategy
+    +processOrder(order): double
+}
+
+' Concrete restaurant
+class PizzaRestaurant
+
+' Strategy implementations
+class RegularPricingStrategy {
+    +calculatePrice(order): double
+}
+
+class DiscountPricingStrategy {
+    +calculatePrice(order): double
+}
+
+' Relationships
+Restaurant <|.. AbstractRestaurant
+AbstractRestaurant <|-- PizzaRestaurant
+
+PricingStrategy <|.. RegularPricingStrategy
+PricingStrategy <|.. DiscountPricingStrategy
+
+AbstractRestaurant --> PricingStrategy : uses
+
+@enduml

@@ -5,6 +5,9 @@ public abstract class AbstractRestaurant implements Restaurant{
     private static final double HAPPY_HOUR_DISCOUNT_RATE = 0.20;
     private static final int UPGRADE_ORDER_INCREASE = 25;
 
+    private final PricingStrategy regularPricing = new RegularPricingStrategy();
+    private final PricingStrategy discountPricing = new DiscountPricingStrategy();
+
     private final String name;
     private final RestaurantType type;
     private final int openHour;
@@ -28,6 +31,7 @@ public abstract class AbstractRestaurant implements Restaurant{
         this.upgraded = false;
         this.dailyRevenue = 0;
         this.happyHourRevenue = 0;
+
     }
 
     // general methods which all subclasses of AbstractRestaurant will inherit and need
@@ -84,11 +88,12 @@ public abstract class AbstractRestaurant implements Restaurant{
      * Happy hour applies a discount, reducing revenue but tracked separately.
      */
     protected double processOrderBase(Order order) {
-        MenuItem item = order.getItem();
         boolean duringHappyHour = isHappyHour(order.getHour());
-        double revenue = duringHappyHour
-                ? item.getBasePrice() * (1 - HAPPY_HOUR_DISCOUNT_RATE)
-                : item.getBasePrice();
+        PricingStrategy strategy = duringHappyHour
+                ? discountPricing
+                : regularPricing;
+        double revenue = strategy.calculatePrice(order);
+
         recordRevenue(revenue, duringHappyHour);
         return revenue;
     }
