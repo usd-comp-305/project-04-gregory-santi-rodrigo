@@ -42,6 +42,22 @@ public class MenuItemTest {
     }
 
     @Test
+    public void testCafeReturnsCorrectName(){
+        assertEquals("Coffee", CafeMenuItem.COFFEE.getName(),
+                "COFFEE should return its display name.");
+        assertEquals("Latte", CafeMenuItem.LATTE.getName());
+        assertEquals("Pastry", CafeMenuItem.PASTRY.getName());
+    }
+
+    @Test
+    public void testCafeReturnsCorrectPrice(){
+        assertEquals(3.99, CafeMenuItem.COFFEE.getBasePrice(), THOUSANDTH_DECIMAL,
+                "COFFEE should return its base price.");
+        assertEquals(5.99, CafeMenuItem.LATTE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(4.49, CafeMenuItem.LATTE.getBasePrice(), THOUSANDTH_DECIMAL);
+    }
+
+    @Test
     public void testJuiceBarReturnsCorrectName(){
         assertEquals("Orange Juice", JuiceBarMenuItem.ORANGE_JUICE.getName(),
                 "ORANGE_JUICE should return its display name.");
