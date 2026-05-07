@@ -67,6 +67,10 @@ public class MenuItemTest {
 
     @Test
     public void testFineDiningReturnsCorrectPrice(){
+        assertEquals(45.99, FineDiningMenuItem.STEAK.getBasePrice(), THOUSANDTH_DECIMAL,
+                "COFFEE should return its base price.");
+        assertEquals(24.99, FineDiningMenuItem.PASTA.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(89.99, FineDiningMenuItem.CAVIAR.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
