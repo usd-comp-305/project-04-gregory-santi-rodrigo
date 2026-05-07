@@ -8,6 +8,22 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MenuItemTest {
 
     @Test
+    public void testBBQReturnsCorrectName(){
+        assertEquals("Ribs", BBQMenuItem.RIBS.getName(),
+                "RIBS should return its display name.");
+        assertEquals("Brisket", BBQMenuItem.BRISKET.getName());
+        assertEquals("Pulled Pork", BBQMenuItem.PULLED_PORK.getName());
+    }
+
+    @Test
+    public void testBBQReturnsCorrectPrice(){
+        assertEquals(22.99, BBQMenuItem.RIBS.getBasePrice(), 0.001,
+                "RIBS should return its base price.");
+        assertEquals(18.99, BBQMenuItem.BRISKET.getBasePrice(), 0.001);
+        assertEquals(16.99, BBQMenuItem.PULLED_PORK.getBasePrice(), 0.001);
+    }
+
+    @Test
     public void testJuiceBarReturnsCorrectName(){
         assertEquals("Orange Juice", JuiceBarMenuItem.ORANGE_JUICE.getName(),
                 "ORANGE_JUICE should return its display name.");
