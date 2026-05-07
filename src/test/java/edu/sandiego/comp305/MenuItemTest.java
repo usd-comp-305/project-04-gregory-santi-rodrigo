@@ -244,6 +244,12 @@ public class MenuItemTest {
     }
 
     @ParameterizedTest
+    @EnumSource(IceCreamMenuItem.class)
+    public void testIceCreamItemsHavePositivePrice(IceCreamMenuItem item){
+        assertTrue(item.getBasePrice() > POSITIVE_PRICE);
+    }
+
+    @ParameterizedTest
     @EnumSource(JuiceBarMenuItem.class)
     public void testJuiceBarItemsHavePositivePrice(JuiceBarMenuItem item){
         assertTrue(item.getBasePrice() > POSITIVE_PRICE);
