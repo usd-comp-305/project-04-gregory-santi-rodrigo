@@ -136,6 +136,13 @@ public class MenuItemTest {
 
     @Test
     public void testPizzaReturnsCorrectPrice(){
+        assertEquals(3.99, PizzaMenuItem.PEPPERONI_SLICE.getBasePrice(), THOUSANDTH_DECIMAL,
+                "PEPPERONI_SLICE should return its base price.");
+        assertEquals(18.99, PizzaMenuItem.PEPPERONI_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(3.49, PizzaMenuItem.MARGHERITA_SLICE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(16.99, PizzaMenuItem.MARGHERITA_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(2.99, PizzaMenuItem.CHEESE_SLICE.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(14.99, PizzaMenuItem.CHEESE_WHOLE.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @Test
