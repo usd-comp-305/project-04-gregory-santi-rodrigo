@@ -174,6 +174,11 @@ public class MenuItemTest {
 
     @Test
     public void testTacoReturnsCorrectPrice(){
+        assertEquals(4.99, TacoMenuItem.STEAK_TACO.getBasePrice(), THOUSANDTH_DECIMAL,
+                "STEAK_TACO should return its base price.");
+        assertEquals(3.99, TacoMenuItem.CHICKEN_TACO.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(9.99, TacoMenuItem.CHICKEN_BURRITO.getBasePrice(), THOUSANDTH_DECIMAL);
+        assertEquals(11.99, TacoMenuItem.STEAK_BURRITO.getBasePrice(), THOUSANDTH_DECIMAL);
     }
 
     @ParameterizedTest
