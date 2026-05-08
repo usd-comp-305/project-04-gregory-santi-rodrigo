@@ -18,4 +18,9 @@ public class SimulatorTest {
     public void testRunDayResetsRevenueBeforeOrderGen(){
 
     }
+
+    @Test
+    public void testRunDayDoesNotExceedRestaurantMaxOrders(){
+
+    }
 }
