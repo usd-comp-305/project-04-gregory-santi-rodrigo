@@ -8,4 +8,9 @@ public class SimulatorTest {
     public void testRunDayReturnsNonNullReport(){
 
     }
+
+    @Test
+    public void testRunDayIncreasesCurrentDay(){
+
+    }
 }
