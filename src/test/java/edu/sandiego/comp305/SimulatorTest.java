@@ -23,4 +23,9 @@ public class SimulatorTest {
     public void testRunDayDoesNotExceedRestaurantMaxOrders(){
 
     }
+
+    @Test
+    public void testRunDayReportContainsOnePerRestaurant(){
+
+    }
 }
