@@ -13,4 +13,9 @@ public class SimulatorTest {
     public void testRunDayIncreasesCurrentDay(){
 
     }
+
+    @Test
+    public void testRunDayResetsRevenueBeforeOrderGen(){
+
+    }
 }
