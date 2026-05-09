@@ -25,7 +25,15 @@ public class SimulatorTest {
 
     @Test
     public void testRunDayResetsRevenueBeforeOrderGen(){
+        final int FROM_ZERO = 0;
+        DailyReport dayOneReport = testSim.runDay();
+        double dayOneTotal = dayOneReport.getRestaurantReports().get(FROM_ZERO).getTotalRevenue();
 
+        DailyReport dayTwoReport = testSim.runDay();
+        double dayTwoTotal = dayTwoReport.getRestaurantReports().get(FROM_ZERO).getTotalRevenue();
+
+        assertTrue(dayTwoTotal < dayOneTotal * 2,
+                "Day 2 revenue should not include day 1 revenue.");
     }
 
     @Test
@@ -93,6 +101,7 @@ public class SimulatorTest {
 
     @Test
     public void testCurrentDayNumberAppearsInReport(){
+        testSim.runDay();
 
     }
 }
