@@ -11,6 +11,7 @@ public class SimulatorTest {
     private Simulator testSim;
 
     final static int RANDOM_VALUE = 42;
+    final static int FROM_ZERO = 0;
 
     @BeforeEach
     public void setUp(){
@@ -25,14 +26,14 @@ public class SimulatorTest {
 
     @Test
     public void testRunDayResetsRevenueBeforeOrderGen(){
-        final int FROM_ZERO = 0;
+        final int DOUBLED = 2;
         DailyReport dayOneReport = testSim.runDay();
         double dayOneTotal = dayOneReport.getRestaurantReports().get(FROM_ZERO).getTotalRevenue();
 
         DailyReport dayTwoReport = testSim.runDay();
         double dayTwoTotal = dayTwoReport.getRestaurantReports().get(FROM_ZERO).getTotalRevenue();
 
-        assertTrue(dayTwoTotal < dayOneTotal * 2,
+        assertTrue(dayTwoTotal < dayOneTotal * DOUBLED,
                 "Day 2 revenue should not include day 1 revenue.");
     }
 
@@ -91,7 +92,9 @@ public class SimulatorTest {
 
     @Test
     public void testRevenueIsPositiveAfterOrdersAreProcessed(){
-
+        DailyReport testReport = testSim.runDay();
+        double total = testReport.getRestaurantReports().get(FROM_ZERO).getTotalRevenue();
+        assertTrue(total > 0, "A restaurant that received orders should have positive revenue.");
     }
 
     @Test
