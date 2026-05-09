@@ -21,4 +21,9 @@ public class RestaurantReportTest {
     public void testGetRestaurantNameReturnsCorrectName(){
 
     }
+
+    @Test
+    public void testGetRegularRevenueReturnsCorrectValue(){
+
+    }
 }
