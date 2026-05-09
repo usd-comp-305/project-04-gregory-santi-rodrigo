@@ -11,6 +11,8 @@ public class RestaurantReportTest {
 
     private static final double HAPPY_REVENUE = 40.00;
 
+    private static final double ZERO_REVENUE = 0.0;
+
     private static final int PEAK_HOUR = 14;
 
     private static final double THOUSANDTH_DECIMAL = 0.001;
@@ -45,7 +47,9 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetTotalRevenueWithZeroHappyHour(){
-
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, ZERO_REVENUE, PEAK_HOUR);
+        assertEquals(REGULAR_REVENUE, report.getTotalRevenue(), THOUSANDTH_DECIMAL,
+                "getTotalRevenue() should equal regular revenue when happy hour is zero.");
     }
 
     @Test
