@@ -43,4 +43,9 @@ public class RestaurantReportTest {
     public void testGetTotalRevenueWithZeroHappyHour(){
 
     }
+
+    @Test
+    public void testGetTotalRevenueWithZeroRegular() {
+
+    }
 }
