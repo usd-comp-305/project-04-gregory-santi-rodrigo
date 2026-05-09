@@ -58,4 +58,9 @@ public class RestaurantReportTest {
     public void testGetTotalRevenueIsNegativeWhenRevenueIsNegative(){
 
     }
+
+    @Test
+    public void testGetPeakHourReturnsCorrectHour(){
+
+    }
 }
