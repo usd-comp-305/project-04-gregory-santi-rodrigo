@@ -33,4 +33,9 @@ public class DailyReportTest {
     public void testGetRestaurantReportsIsEmptyWithNoRestaurants(){
 
     }
+
+    @Test
+    public void testGetRestaurantReportsContainsCorrectNames(){
+
+    }
 }
