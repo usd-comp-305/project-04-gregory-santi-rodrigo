@@ -28,4 +28,9 @@ public class DailyReportTest {
     public void testGetRestaurantReportsReturnsCorrectSize(){
 
     }
+
+    @Test
+    public void testGetRestaurantReportsIsEmptyWithNoRestaurants(){
+
+    }
 }
