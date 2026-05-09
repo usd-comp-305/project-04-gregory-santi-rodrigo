@@ -54,7 +54,9 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetTotalRevenueWithZeroRegular(){
-
+        RestaurantReport report = new RestaurantReport(TEST_NAME, ZERO_REVENUE, HAPPY_REVENUE, PEAK_HOUR);
+        assertEquals(HAPPY_REVENUE, report.getTotalRevenue(), THOUSANDTH_DECIMAL,
+                "getTotalRevenue() should equal happy hour revenue when regular is zero.");
     }
 
     @Test
