@@ -39,7 +39,8 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetTotalRevenueIsRegularPlusHappyHour(){
-
+        assertEquals(REGULAR_REVENUE + HAPPY_REVENUE, buildReport().getTotalRevenue(), THOUSANDTH_DECIMAL,
+                "getTotalRevenue() should equal regular + happy hour revenue.");
     }
 
     @Test
