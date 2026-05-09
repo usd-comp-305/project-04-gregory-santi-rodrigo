@@ -2,11 +2,17 @@ package edu.sandiego.comp305;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+import java.util.Random;
 
 public class SimulatorTest {
+    final static int RANDOM_VALUE = 42;
+
     @Test
     public void testRunDayReturnsNonNullReport(){
-
+        List<Restaurant> testRestaurants = List.of(new BBQRestaurant());
+        Simulator testSim = new Simulator(testRestaurants, new OrderGenerator(new Random(RANDOM_VALUE)));
+        assertNotNull(testSim.runDay(), "runDay() should never return null.");
     }
 
     @Test
