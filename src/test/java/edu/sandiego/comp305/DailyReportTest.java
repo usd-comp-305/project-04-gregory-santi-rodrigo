@@ -80,7 +80,9 @@ public class DailyReportTest {
 
     @Test
     public void testGetTotalNetChangeIsZeroWithNoRestaurants(){
-
+        DailyReport report = new DailyReport(DAY_NUMBER, List.of());
+        assertEquals(ZERO_REVENUE, report.getTotalNetChange(), THOUSANDTH_DECIMAL,
+                "getTotalNetChange() should be zero when there are no restaurants.");
     }
 
     @Test
