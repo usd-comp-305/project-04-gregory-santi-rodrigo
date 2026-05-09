@@ -61,7 +61,8 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetPeakHourReturnsCorrectHour(){
-
+        assertEquals(PEAK_HOUR, buildReport().getPeakHour(),
+                "getPeakHour() should return the peak hour passed to the constructor.");
     }
 
     @Test
