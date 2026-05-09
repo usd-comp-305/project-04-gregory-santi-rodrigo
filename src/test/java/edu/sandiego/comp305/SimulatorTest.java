@@ -55,7 +55,14 @@ public class SimulatorTest {
 
     @Test
     public void testRunDayWithNoRestaurantsReturnsEmptyReport(){
-
+        final double NO_NET_CHANGE = 0.0;
+        Simulator emptySim = new Simulator(List.of(), new OrderGenerator(new Random(RANDOM_VALUE)));
+        DailyReport testReport = emptySim.runDay();
+        assertNotNull(testReport, "runDay() should not return null even with no restaurants.");
+        assertTrue(testReport.getRestaurantReports().isEmpty(),
+                "Report should contain no restaurant reports when there are no restaurants.");
+        assertEquals(NO_NET_CHANGE, testReport.getTotalNetChange(), THOUSANDTH_POWER,
+                "Total net change should be zero when there are no restaurants.");
     }
 
     @Test
