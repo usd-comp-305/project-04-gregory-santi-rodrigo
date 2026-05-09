@@ -78,4 +78,9 @@ public class SimulatorTest {
     public void testEachDayProducesIndependentRevenue(){
 
     }
+
+    @Test
+    public void testCurrentDayNumberAppearsInReport(){
+
+    }
 }
