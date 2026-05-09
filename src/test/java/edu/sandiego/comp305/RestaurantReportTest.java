@@ -21,7 +21,8 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetRestaurantNameReturnsCorrectName(){
-
+        assertEquals(TEST_NAME, buildReport().getRestaurantName(),
+                "getRestaurantName() should return the name passed to the constructor.");
     }
 
     @Test
