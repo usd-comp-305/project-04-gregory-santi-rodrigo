@@ -38,4 +38,9 @@ public class SimulatorTest {
     public void testRunDayWithNoRestaurantsReturnsEmptyReport(){
 
     }
+
+    @Test
+    public void testCurrentDayStartsAtOne(){
+
+    }
 }
