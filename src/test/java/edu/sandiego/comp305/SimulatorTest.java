@@ -58,4 +58,9 @@ public class SimulatorTest {
     public void testPeakHourReflectsHighestOrderVolume(){
 
     }
+
+    @Test
+    public void testDayReportTotalMatchesSumOfRestaurantTotals(){
+
+    }
 }
