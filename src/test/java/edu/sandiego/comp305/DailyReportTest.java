@@ -45,7 +45,9 @@ public class DailyReportTest {
 
     @Test
     public void testGetRestaurantReportsIsEmptyWithNoRestaurants(){
-
+        DailyReport report = new DailyReport(DAY_NUMBER, List.of());
+        assertTrue(report.getRestaurantReports().isEmpty(),
+                "getRestaurantReports() should be empty when no restaurants are passed in.");
     }
 
     @Test
