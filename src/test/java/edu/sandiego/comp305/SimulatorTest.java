@@ -86,8 +86,15 @@ public class SimulatorTest {
     }
 
     @Test
-    public void testHappyHourRevenueIsLowerThanRegularForSameItem(){
-
+    public void testHappyHourRevenueIsLowerThanRegular(){
+        final int GREATER_THAN_ZERO = 0;
+        DailyReport testReport = testSim.runDay();
+        RestaurantReport restaurantReport = testReport.getRestaurantReports().get(FROM_ZERO);
+        if (restaurantReport.getHappyHourRevenue() > GREATER_THAN_ZERO &&
+            restaurantReport.getRegularRevenue() > GREATER_THAN_ZERO){
+            assertTrue(restaurantReport.getHappyHourRevenue() <
+                    restaurantReport.getRegularRevenue());
+        }
     }
 
     @Test
