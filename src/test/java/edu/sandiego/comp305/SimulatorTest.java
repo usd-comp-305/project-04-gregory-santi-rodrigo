@@ -33,4 +33,9 @@ public class SimulatorTest {
     public void testRunDayOnlyGeneratesOrdersDuringOpenHours(){
 
     }
+
+    @Test
+    public void testRunDayWithNoRestaurantsReturnsEmptyReport(){
+
+    }
 }
