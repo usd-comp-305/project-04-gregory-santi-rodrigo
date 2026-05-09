@@ -13,6 +13,10 @@ public class DailyReportTest {
 
     private static final double HAPPY_REVENUE = 40.00;
 
+    private static final double ZERO_REVENUE = 0.0;
+
+    private static final double THOUSANDTH_DECIMAL = 0.001;
+
     private static final int PEAK_HOUR = 14;
 
     private RestaurantReport buildRestaurantReport(String name) {
@@ -56,6 +60,15 @@ public class DailyReportTest {
 
     @Test
     public void testGetTotalNetChangeWithMixedProfitAndLoss(){
-
+        final double POS_REVENUE = 500.0;
+        final double NEG_REVENUE = -200.0;
+        final double PROFIT = 300.0;
+        List<RestaurantReport> reports = List.of(
+                new RestaurantReport("BBQ Shack",    POS_REVENUE, ZERO_REVENUE, PEAK_HOUR),
+                new RestaurantReport("Pizza Place", NEG_REVENUE, ZERO_REVENUE, PEAK_HOUR)
+        );
+        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        assertEquals(PROFIT, dailyReport.getTotalNetChange(), THOUSANDTH_DECIMAL,
+                "getTotalNetChange() should correctly net a profit and a loss.");
     }
 }
