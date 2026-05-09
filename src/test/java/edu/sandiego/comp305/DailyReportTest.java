@@ -43,4 +43,9 @@ public class DailyReportTest {
     public void testGetTotalNetChangeEqualsSumOfAllRestaurantTotals(){
 
     }
+
+    @Test
+    public void testGetTotalNetChangeIsZeroWithNoRestaurants(){
+
+    }
 }
