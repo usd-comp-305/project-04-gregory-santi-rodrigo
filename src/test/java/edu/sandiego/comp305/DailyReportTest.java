@@ -53,4 +53,9 @@ public class DailyReportTest {
     public void testGetTotalNetChangeIsNegativeWhenRestaurantsLoseMoney(){
 
     }
+
+    @Test
+    public void testGetTotalNetChangeWithMixedProfitAndLoss(){
+
+    }
 }
