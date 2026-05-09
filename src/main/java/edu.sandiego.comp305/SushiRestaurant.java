@@ -1,5 +1,7 @@
 package edu.sandiego.comp305;
 
+import java.util.List;
+
 public class SushiRestaurant extends AbstractRestaurant{
 
     private static final int OPEN_HOUR = 11;
@@ -12,7 +14,8 @@ public class SushiRestaurant extends AbstractRestaurant{
 
     public SushiRestaurant(){
         super("Sushi Bar", RestaurantType.SUSHI,
-                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS);
+                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS,
+                List.of(SushiMenuItem.values()));
     }
 
     @Override

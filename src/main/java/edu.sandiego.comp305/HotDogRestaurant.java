@@ -1,5 +1,7 @@
 package edu.sandiego.comp305;
 
+import java.util.List;
+
 public class HotDogRestaurant extends AbstractRestaurant{
 
     private static final int OPEN_HOUR = 20;
@@ -12,7 +14,8 @@ public class HotDogRestaurant extends AbstractRestaurant{
 
     public HotDogRestaurant(){
         super("Hot Dog Stand", RestaurantType.HOT_DOG,
-                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS);
+                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS,
+                List.of(HotDogMenuItem.values()));
     }
 
     @Override

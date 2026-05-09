@@ -1,5 +1,7 @@
 package edu.sandiego.comp305;
 
+import java.util.List;
+
 public class PizzaRestaurant extends AbstractRestaurant{
 
     private static final int OPEN_HOUR = 10;
@@ -12,7 +14,8 @@ public class PizzaRestaurant extends AbstractRestaurant{
 
     public PizzaRestaurant(){
         super("Pizza Place", RestaurantType.PIZZA,
-                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS);
+                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS,
+                List.of(PizzaMenuItem.values()));
     }
 
     @Override
