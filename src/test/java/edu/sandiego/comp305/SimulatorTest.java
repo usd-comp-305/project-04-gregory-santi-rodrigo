@@ -24,11 +24,6 @@ public class SimulatorTest {
     }
 
     @Test
-    public void testRunDayIncreasesCurrentDay(){
-
-    }
-
-    @Test
     public void testRunDayResetsRevenueBeforeOrderGen(){
 
     }
