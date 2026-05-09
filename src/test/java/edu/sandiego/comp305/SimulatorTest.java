@@ -65,5 +65,12 @@ public class SimulatorTest {
     }
 
     @Test
-    public void testHappyHourRevenueIsLowerThanRegularForSameItem()
+    public void testHappyHourRevenueIsLowerThanRegularForSameItem(){
+
+    }
+
+    @Test
+    public void testRevenueIsPositiveAfterOrdersAreProcessed(){
+
+    }
 }
