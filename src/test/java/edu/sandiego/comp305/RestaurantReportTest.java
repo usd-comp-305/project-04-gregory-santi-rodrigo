@@ -45,7 +45,12 @@ public class RestaurantReportTest {
     }
 
     @Test
-    public void testGetTotalRevenueWithZeroRegular() {
+    public void testGetTotalRevenueWithZeroRegular(){
+
+    }
+
+    @Test
+    public void testGetTotalRevenueWithBothZero(){
 
     }
 }
