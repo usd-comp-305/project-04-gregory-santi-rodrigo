@@ -43,7 +43,7 @@ public class Simulator {
         return dailyReport;
     }
 
-    private int computePeakHour(List<Order> orders) {
+    int computePeakHour(List<Order> orders) {
         int[] hourCounts = new int[24];
         for (Order order : orders) {
             hourCounts[order.getHour()]++;
