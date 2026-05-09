@@ -52,7 +52,16 @@ public class DailyReportTest {
 
     @Test
     public void testGetRestaurantReportsContainsCorrectNames(){
+        final int FROM_ZERO = 0;
+        final int FROM_ONE = 1;
 
+        List<RestaurantReport> reports = List.of(
+                buildRestaurantReport("BBQ Shack"),
+                buildRestaurantReport("Pizza Place")
+        );
+        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        assertEquals("BBQ Shack", dailyReport.getRestaurantReports().get(FROM_ZERO).getRestaurantName());
+        assertEquals("Pizza Place", dailyReport.getRestaurantReports().get(FROM_ONE).getRestaurantName());
     }
 
     @Test
