@@ -68,7 +68,18 @@ public class SimulatorTest {
 
     @Test
     public void testRunDayOnlyGeneratesOrdersDuringOpenHours(){
+        BBQRestaurant testRestaurant = new BBQRestaurant();
+        Simulator singleSim = new Simulator(
+                List.of(testRestaurant),
+                new OrderGenerator(new Random(RANDOM_VALUE))
+        );
+        singleSim.runDay();
 
+        for (Order testOrder: singleSim.getLastGeneratedOrders()){
+            assertTrue(testRestaurant.isOpen(testOrder.getHour()),
+                    "Order at hour " + testOrder.getHour()
+                            + " was generated outside operating hours.");
+        }
     }
 
     @Test
