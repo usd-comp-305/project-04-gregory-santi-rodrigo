@@ -61,7 +61,9 @@ public class SimulatorTest {
 
     @Test
     public void testCurrentDayIncrementsAfterEachRunDay(){
-
+        final int DAY_TWO = 2;
+        testSim.runDay();
+        assertEquals(DAY_TWO, testSim.getCurrentDay());
     }
 
     @Test
