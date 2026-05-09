@@ -12,6 +12,7 @@ public class SimulatorTest {
 
     final static int RANDOM_VALUE = 42;
     final static int FROM_ZERO = 0;
+    final static double THOUSANDTH_POWER = 0.001;
 
     @BeforeEach
     public void setUp(){
@@ -82,7 +83,15 @@ public class SimulatorTest {
 
     @Test
     public void testDayReportTotalMatchesSumOfRestaurantTotals(){
+        List<Restaurant> twoRestaurants = List.of(new BBQRestaurant(), new PizzaRestaurant());
+        Simulator multiSim = new Simulator(twoRestaurants, new OrderGenerator(new Random(RANDOM_VALUE)));
 
+        DailyReport testReport = multiSim.runDay();
+        double sumOfRestaurants = testReport.getRestaurantReports().stream()
+                .mapToDouble(RestaurantReport::getTotalRevenue)
+                .sum();
+        assertEquals(sumOfRestaurants, testReport.getTotalNetChange(), THOUSANDTH_POWER,
+                "DailyReport total should equal the sum of all restaurant totals.");
     }
 
     @Test
