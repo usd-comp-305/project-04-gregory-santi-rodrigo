@@ -38,4 +38,9 @@ public class DailyReportTest {
     public void testGetRestaurantReportsContainsCorrectNames(){
 
     }
+
+    @Test
+    public void testGetTotalNetChangeEqualsSumOfAllRestaurantTotals(){
+
+    }
 }
