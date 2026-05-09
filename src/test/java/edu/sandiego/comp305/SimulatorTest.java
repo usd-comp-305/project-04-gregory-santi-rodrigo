@@ -48,4 +48,9 @@ public class SimulatorTest {
     public void testCurrentDayIncrementsAfterEachRunDay(){
 
     }
+
+    @Test
+    public void testPeakHourIsWithinOperatingHours(){
+
+    }
 }
