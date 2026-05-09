@@ -28,4 +28,9 @@ public class SimulatorTest {
     public void testRunDayReportContainsOnePerRestaurant(){
 
     }
+
+    @Test
+    public void testRunDayOnlyGeneratesOrdersDuringOpenHours(){
+
+    }
 }
