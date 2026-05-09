@@ -48,4 +48,9 @@ public class DailyReportTest {
     public void testGetTotalNetChangeIsZeroWithNoRestaurants(){
 
     }
+
+    @Test
+    public void testGetTotalNetChangeIsNegativeWhenRestaurantsLoseMoney(){
+
+    }
 }
