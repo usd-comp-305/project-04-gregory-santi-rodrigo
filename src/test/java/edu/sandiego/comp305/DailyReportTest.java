@@ -87,7 +87,17 @@ public class DailyReportTest {
 
     @Test
     public void testGetTotalNetChangeIsNegativeWhenRestaurantsLoseMoney(){
+        final double NEGATIVE_REVENUE = -200.0;
+        final double SECOND_NEGATIVE_REVENUE = -150.0;
+        final int GREATER_THAN_ZERO = 0;
 
+        List<RestaurantReport> reports = List.of(
+                new RestaurantReport("BBQ Shack", NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR),
+                new RestaurantReport("Pizza Place", SECOND_NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR)
+        );
+        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        assertTrue(dailyReport.getTotalNetChange() < GREATER_THAN_ZERO,
+                "getTotalNetChange() should be negative when all restaurants lost money.");
     }
 
     @Test
