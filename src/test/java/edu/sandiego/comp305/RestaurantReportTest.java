@@ -63,4 +63,9 @@ public class RestaurantReportTest {
     public void testGetPeakHourReturnsCorrectHour(){
 
     }
+
+    @Test
+    public void testToStringIsNotEmpty(){
+
+    }
 }
