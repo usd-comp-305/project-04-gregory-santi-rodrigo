@@ -13,6 +13,8 @@ public class RestaurantReportTest {
 
     private static final double ZERO_REVENUE = 0.0;
 
+    private static final double NEGATIVE_REVENUE = -50.0;
+
     private static final int PEAK_HOUR = 14;
 
     private static final double THOUSANDTH_DECIMAL = 0.001;
@@ -68,7 +70,9 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetTotalRevenueIsNegativeWhenRevenueIsNegative(){
-
+        RestaurantReport report = new RestaurantReport(TEST_NAME, NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR);
+        assertTrue(report.getTotalRevenue() < 0,
+                "getTotalRevenue() should be negative when the restaurant lost money.");
     }
 
     @Test
