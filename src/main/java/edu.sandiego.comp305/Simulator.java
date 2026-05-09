@@ -30,8 +30,8 @@ public class Simulator {
             List<Order> orders = orderGenerator.generateDailyOrders(restaurant);
             int allowedOrders = Math.min(orders.size(), restaurant.getMaxOrdersPerDay());
 
-            for (int i = 0; i < allowedOrders; i++) {
-                restaurant.processOrder(orders.get(i));
+            for (int orderCount = 0; orderCount < allowedOrders; orderCount++) {
+                restaurant.processOrder(orders.get(orderCount));
             }
 
             int peakHour = computePeakHour(orders.subList(0, allowedOrders));
