@@ -42,7 +42,12 @@ public class SimulatorTest {
 
     @Test
     public void testRunDayDoesNotExceedRestaurantMaxOrders(){
-
+        DailyReport report = testSim.runDay();
+        RestaurantReport restaurantReport = report.getRestaurantReports().get(FROM_ZERO);
+        double maxPossibleRevenue = new BBQRestaurant().getMaxOrdersPerDay()
+                * BBQMenuItem.RIBS.getBasePrice();
+        assertTrue(restaurantReport.getTotalRevenue() <= maxPossibleRevenue,
+                "Total revenue should not exceed what max orders could generate.");
     }
 
     @Test
