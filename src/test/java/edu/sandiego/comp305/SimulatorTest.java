@@ -52,7 +52,18 @@ public class SimulatorTest {
 
     @Test
     public void testRunDayReportContainsOnePerRestaurant(){
+        List<Restaurant> threeRestaurants = List.of(
+                new BBQRestaurant(),
+                new PizzaRestaurant(),
+                new BurgerRestaurant()
+        );
+        Simulator multiSim = new Simulator(threeRestaurants,
+                new OrderGenerator(new Random(RANDOM_VALUE)));
 
+        DailyReport report = multiSim.runDay();
+
+        assertEquals(threeRestaurants.size(), report.getRestaurantReports().size(),
+                "Report should contain exactly one entry per restaurant.");
     }
 
     @Test
