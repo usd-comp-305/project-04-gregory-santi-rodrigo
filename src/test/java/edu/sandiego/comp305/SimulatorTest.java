@@ -63,4 +63,7 @@ public class SimulatorTest {
     public void testDayReportTotalMatchesSumOfRestaurantTotals(){
 
     }
+
+    @Test
+    public void testHappyHourRevenueIsLowerThanRegularForSameItem()
 }
