@@ -53,4 +53,9 @@ public class RestaurantReportTest {
     public void testGetTotalRevenueWithBothZero(){
 
     }
+
+    @Test
+    public void testGetTotalRevenueIsNegativeWhenRevenueIsNegative(){
+
+    }
 }
