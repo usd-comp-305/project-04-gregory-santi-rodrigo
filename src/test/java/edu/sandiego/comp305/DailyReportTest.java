@@ -23,4 +23,9 @@ public class DailyReportTest {
     public void testGetDayNumberReturnsCorrectDay(){
 
     }
+
+    @Test
+    public void testGetRestaurantReportsReturnsCorrectSize(){
+
+    }
 }
