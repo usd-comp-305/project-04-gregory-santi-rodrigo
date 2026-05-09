@@ -27,7 +27,8 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetRegularRevenueReturnsCorrectValue(){
-
+        assertEquals(REGULAR_REVENUE, buildReport().getRegularRevenue(), THOUSANDTH_DECIMAL,
+                "getRegularRevenue() should return the regular revenue passed in.");
     }
 
     @Test
