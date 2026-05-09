@@ -80,7 +80,10 @@ public class SimulatorTest {
 
     @Test
     public void testPeakHourIsWithinOperatingHours(){
-
+        DailyReport testReport = testSim.runDay();
+        int peakHour = testReport.getRestaurantReports().get(FROM_ZERO).getPeakHour();
+        assertTrue(new BBQRestaurant().isOpen(peakHour),
+                "Peak hour should fall within the restaurant's operating hours.");
     }
 
     @Test
