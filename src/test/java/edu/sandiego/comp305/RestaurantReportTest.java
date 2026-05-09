@@ -33,7 +33,8 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetHappyHourRevenueReturnsCorrectValue(){
-
+        assertEquals(HAPPY_REVENUE, buildReport().getHappyHourRevenue(), THOUSANDTH_DECIMAL,
+                "getHappyHourRevenue() should return the happy hour revenue passed in.");
     }
 
     @Test
