@@ -55,7 +55,8 @@ public class SimulatorTest {
 
     @Test
     public void testCurrentDayStartsAtOne(){
-
+        final int DAY_ONE = 1;
+        assertEquals(DAY_ONE, testSim.getCurrentDay());
     }
 
     @Test
