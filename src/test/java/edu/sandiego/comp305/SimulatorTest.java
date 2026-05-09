@@ -53,4 +53,9 @@ public class SimulatorTest {
     public void testPeakHourIsWithinOperatingHours(){
 
     }
+
+    @Test
+    public void testPeakHourReflectsHighestOrderVolume(){
+
+    }
 }
