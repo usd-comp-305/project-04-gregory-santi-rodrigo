@@ -8,17 +8,20 @@ public class Simulator {
     private final List<Restaurant> restaurants;
     private final OrderGenerator orderGenerator;
     private int currentDay;
+    private List<Order> lastGeneratedOrders;
 
     public Simulator(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
         this.orderGenerator = new OrderGenerator();
         this.currentDay = 1;
+        this.lastGeneratedOrders = new ArrayList<>();
     }
 
     public Simulator(List<Restaurant> restaurants, OrderGenerator orderGenerator){
         this.restaurants = restaurants;
         this.orderGenerator = orderGenerator;
         this.currentDay = 1;
+        this.lastGeneratedOrders = new ArrayList<>();
     }
 
     public DailyReport runDay() {
@@ -27,6 +30,7 @@ public class Simulator {
         for (Restaurant restaurant : restaurants) {
             restaurant.resetDay();
 
+            lastGeneratedOrders = orderGenerator.generateDailyOrders(restaurant);
             List<Order> orders = orderGenerator.generateDailyOrders(restaurant);
             int allowedOrders = Math.min(orders.size(), restaurant.getMaxOrdersPerDay());
 
@@ -57,6 +61,10 @@ public class Simulator {
         }
 
         return peakHour;
+    }
+
+    List<Order> getLastGeneratedOrders(){
+        return lastGeneratedOrders;
     }
 
     public int getCurrentDay() { return currentDay; }
