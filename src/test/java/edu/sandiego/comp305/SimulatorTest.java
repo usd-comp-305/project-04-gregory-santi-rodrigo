@@ -3,6 +3,8 @@ package edu.sandiego.comp305;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -88,7 +90,27 @@ public class SimulatorTest {
 
     @Test
     public void testPeakHourReflectsHighestOrderVolume(){
+        final int NO_ORDERS = 0;
+        final int MINIMUM_ORDERS = 1;
+        final int MEDIAN_ORDERS = 3;
+        final int MAXIMUM_ORDERS = 10;
 
+        final int OPERATING_HOUR = 12;
+        final int PEAK_HOUR = 14;
+        final int ANOTHER_OPERATING_HOUR = 17;
+
+        List<Order> testOrders = new ArrayList<>();
+        MenuItem testItem = BBQMenuItem.RIBS;
+
+        for (int orders = NO_ORDERS; orders < MAXIMUM_ORDERS; orders++)
+            testOrders.add(new Order(testItem, PEAK_HOUR, RestaurantType.BBQ));
+        for (int orders = NO_ORDERS; orders < MEDIAN_ORDERS; orders++)
+            testOrders.add(new Order(testItem, OPERATING_HOUR, RestaurantType.BBQ));
+        for (int orders = NO_ORDERS; orders < MINIMUM_ORDERS; orders++)
+            testOrders.add(new Order(testItem, ANOTHER_OPERATING_HOUR, RestaurantType.BBQ));
+
+        assertEquals(PEAK_HOUR, testSim.computePeakHour(testOrders),
+                "Peak hour should be the hour with the most orders.");
     }
 
     @Test
