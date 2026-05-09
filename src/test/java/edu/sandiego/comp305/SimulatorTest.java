@@ -43,4 +43,9 @@ public class SimulatorTest {
     public void testCurrentDayStartsAtOne(){
 
     }
+
+    @Test
+    public void testCurrentDayIncrementsAfterEachRunDay(){
+
+    }
 }
