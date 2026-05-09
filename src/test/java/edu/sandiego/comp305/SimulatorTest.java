@@ -174,7 +174,19 @@ public class SimulatorTest {
 
     @Test
     public void testEachDayProducesIndependentRevenue(){
+        DailyReport dayOneReport = testSim.runDay();
+        DailyReport dayTwoReport = testSim.runDay();
 
+        double dayOneTotal = dayOneReport.getRestaurantReports().get(FROM_ZERO).getTotalRevenue();
+        double dayTwoTotal = dayTwoReport.getRestaurantReports().get(FROM_ZERO).getTotalRevenue();
+
+        double maxSingleDayRevenue = new BBQRestaurant().getMaxOrdersPerDay()
+                * BBQMenuItem.RIBS.getBasePrice();
+
+        assertTrue(dayOneTotal <= maxSingleDayRevenue,
+                "Day 1 revenue should not exceed one day's maximum possible revenue.");
+        assertTrue(dayTwoTotal <= maxSingleDayRevenue,
+                "Day 2 revenue should not exceed one day's maximum possible revenue.");
     }
 
     @Test
