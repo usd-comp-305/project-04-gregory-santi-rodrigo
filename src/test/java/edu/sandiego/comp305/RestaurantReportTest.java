@@ -61,7 +61,9 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetTotalRevenueWithBothZero(){
-
+        RestaurantReport report = new RestaurantReport(TEST_NAME, ZERO_REVENUE, ZERO_REVENUE, PEAK_HOUR);
+        assertEquals(ZERO_REVENUE, report.getTotalRevenue(), THOUSANDTH_DECIMAL,
+                "getTotalRevenue() should be zero when both revenues are zero.");
     }
 
     @Test
