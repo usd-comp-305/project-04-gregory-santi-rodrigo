@@ -191,7 +191,14 @@ public class SimulatorTest {
 
     @Test
     public void testCurrentDayNumberAppearsInReport(){
-        testSim.runDay();
+        final int DAY_ONE = 1;
+        final int DAY_TWO = 2;
+        DailyReport dayOneReport = testSim.runDay();
+        assertEquals(DAY_ONE, dayOneReport.getDayNumber(),
+                "First report should be labeled day 1.");
 
+        DailyReport dayTwoReport = testSim.runDay();
+        assertEquals(DAY_TWO, dayTwoReport.getDayNumber(),
+                "Second report should be labeled day 2.");
     }
 }
