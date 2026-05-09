@@ -25,7 +25,9 @@ public class DailyReportTest {
 
     @Test
     public void testGetDayNumberReturnsCorrectDay(){
-
+        DailyReport report = new DailyReport(DAY_NUMBER, List.of(buildRestaurantReport("BBQ Shack")));
+        assertEquals(DAY_NUMBER, report.getDayNumber(),
+                "getDayNumber() should return the day number passed to the constructor.");
     }
 
     @Test
