@@ -13,6 +13,8 @@ public class RestaurantReportTest {
 
     private static final int PEAK_HOUR = 14;
 
+    private static final double THOUSANDTH_DECIMAL = 0.001;
+
     private RestaurantReport buildReport(){
         return new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR);
     }
@@ -24,6 +26,11 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetRegularRevenueReturnsCorrectValue(){
+
+    }
+
+    @Test
+    public void testGetHappyHourRevenueReturnsCorrectValue(){
 
     }
 }
