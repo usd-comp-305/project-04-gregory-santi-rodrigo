@@ -1,7 +1,7 @@
 package edu.sandiego.comp305;
 
+import java.util.List;
 
-// Restaurant interface which AbstractRestaurant will implement
 public interface Restaurant {
     String getName();
     RestaurantType getType();
@@ -9,6 +9,8 @@ public interface Restaurant {
     boolean isOpen(int hour);
     int getOpenHour();
     int getCloseHour();
+
+    List<MenuItem> getMenu();
 
     double processOrder(Order order);
     boolean isHappyHour(int hour);
@@ -24,6 +26,6 @@ public interface Restaurant {
     double getHappyHourRevenue();
     double getTotalRevenue();
 
-    RestaurantReport generateReport();
+    RestaurantReport generateReport(int peakHour);
 
 }
