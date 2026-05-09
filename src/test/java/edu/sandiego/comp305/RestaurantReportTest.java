@@ -66,6 +66,7 @@ public class RestaurantReportTest {
 
     @Test
     public void testToStringIsNotEmpty(){
-
+        assertFalse(buildReport().toString().isEmpty(),
+                "toString() should return a non-empty string once implemented.");
     }
 }
