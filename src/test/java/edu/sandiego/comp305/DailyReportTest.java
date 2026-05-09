@@ -32,7 +32,15 @@ public class DailyReportTest {
 
     @Test
     public void testGetRestaurantReportsReturnsCorrectSize(){
+        final int RESTAURANT_COUNT = 2;
 
+        List<RestaurantReport> reports = List.of(
+                buildRestaurantReport("BBQ Shack"),
+                buildRestaurantReport("Pizza Place")
+        );
+        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        assertEquals(RESTAURANT_COUNT, dailyReport.getRestaurantReports().size(),
+                "getRestaurantReports() should return all restaurant reports.");
     }
 
     @Test
