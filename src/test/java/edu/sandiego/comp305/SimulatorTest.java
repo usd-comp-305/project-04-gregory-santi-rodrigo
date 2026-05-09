@@ -73,4 +73,9 @@ public class SimulatorTest {
     public void testRevenueIsPositiveAfterOrdersAreProcessed(){
 
     }
+
+    @Test
+    public void testEachDayProducesIndependentRevenue(){
+
+    }
 }
