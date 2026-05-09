@@ -66,7 +66,16 @@ public class DailyReportTest {
 
     @Test
     public void testGetTotalNetChangeEqualsSumOfAllRestaurantTotals(){
+        final int DOUBLE = 2;
 
+        List<RestaurantReport> reports = List.of(
+                buildRestaurantReport("BBQ Shack"),
+                buildRestaurantReport("Pizza Place")
+        );
+        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        double expectedTotal = (REGULAR_REVENUE + HAPPY_REVENUE) * DOUBLE;
+        assertEquals(expectedTotal, dailyReport.getTotalNetChange(), THOUSANDTH_DECIMAL,
+                "getTotalNetChange() should equal the sum of all restaurant totals.");
     }
 
     @Test
