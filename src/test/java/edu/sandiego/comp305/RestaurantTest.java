@@ -68,5 +68,13 @@ public class RestaurantTest {
         assertTrue(restaurant.isHappyHour(12), "The new hour should now trigger happy hour");
     }
 
+    @Test
+    public void processOrder_ReturnFullPriceNormally() {
+        Order normalOrder = new Order(TEST_ITEM, 12, RestaurantType.BURGER);
+        double expectedPrice = TEST_ITEM.getBasePrice();
+        double actualRevenue = restaurant.processOrder(normalOrder);
+
+        assertEquals(expectedPrice, actualRevenue, "Normal order should return base price");
+    }
 
 }
