@@ -121,7 +121,17 @@ public class OwnerTest {
 
     @Test
     public void testHasLostReturnsTrueWhenNetWorthReachesZero(){
+        final int DAY_NUMBER = 1;
+        final double REGULAR_REVENUE = -1000.0;
+        final double HAPPY_HOUR_REVENUE = 0.0;
 
+        DailyReport wipeoutReport = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
+                        HAPPY_HOUR_REVENUE, PEAK_HOUR)
+        ));
+        testOwner.applyDailyReport(wipeoutReport);
+        assertTrue(testOwner.hasLost(),
+                "hasLost() should return true when net worth reaches zero.");
     }
 
     @Test
