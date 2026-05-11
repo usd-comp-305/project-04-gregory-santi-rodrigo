@@ -94,7 +94,8 @@ public class OwnerTest {
 
     @Test
     public void testHasWonReturnsFalseWhenBelowGoal(){
-
+        assertFalse(testOwner.hasWon(),
+                "hasWon() should return false when net worth is below goal.");
     }
 
     @Test
