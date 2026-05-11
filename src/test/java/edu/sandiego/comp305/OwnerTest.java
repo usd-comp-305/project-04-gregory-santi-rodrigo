@@ -88,4 +88,9 @@ public class OwnerTest {
     public void testUpgradeIncreasesRestaurantMaxOrders(){
 
     }
+
+    @Test
+    public void testUpgradeCanOnlyHappenOnce(){
+
+    }
 }
