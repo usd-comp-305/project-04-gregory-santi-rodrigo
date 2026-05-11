@@ -146,4 +146,9 @@ public class RestaurantTest {
 
         assertEquals(initialCapacity + 25, restaurant.getMaxOrdersPerDay(), "Calling upgrade twice should not increase more than once");
     }
+
+    @Test
+    public void isUpgraded_ReturnFalseBeforeUpgrade() {
+        assertFalse(restaurant.isUpgraded(), "Restaurant should not be upgraded initially");
+    }
 }
