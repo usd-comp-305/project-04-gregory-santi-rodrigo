@@ -55,7 +55,17 @@ public class OwnerTest {
 
     @Test
     public void testApplyDailyReportDecreasesNetWorthOnLoss(){
+        final int DAY_NUMBER = 1;
+        final double REGULAR_REVENUE = -200.0;
+        final double HAPPY_HOUR_REVENUE = 0.0;
+        final double TOTAL_REVENUE = 200.0;
 
+        DailyReport lossReport = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR)
+        ));
+        testOwner.applyDailyReport(lossReport);
+        assertEquals(STARTING_NET_WORTH - TOTAL_REVENUE, testOwner.getNetWorth(),
+                THOUSANDTH_DECIMAL, "Net worth should decrease after a losing day.");
     }
 
     @Test
