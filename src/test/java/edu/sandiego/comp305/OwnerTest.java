@@ -63,4 +63,9 @@ public class OwnerTest {
     public void testHasLostReturnsTrueWhenNetWorthReachesZero(){
 
     }
+
+    @Test
+    public void testHasLostReturnsTrueWhenNetWorthGoesNegative(){
+
+    }
 }
