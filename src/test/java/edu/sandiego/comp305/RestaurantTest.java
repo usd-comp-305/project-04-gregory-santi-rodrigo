@@ -21,4 +21,11 @@ public class RestaurantTest {
         assertTrue(restaurant.isOpen(15), "Should be open mid-day (15)");
         assertTrue(restaurant.isOpen(20), "Should be open one hour before closing (20)");
     }
+
+    @Test
+    public void isOpen_ReturnFalseOutsideOperatingHours() {
+        assertFalse(restaurant.isOpen(10), "Should be closed before opening hour");
+        assertFalse(restaurant.isOpen(21), "Should be closed at the exact closing hour (21)");
+        assertFalse(restaurant.isOpen(22), "Should be closed after closing hour");
+    }
 }
