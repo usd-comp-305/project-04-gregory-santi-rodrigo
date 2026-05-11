@@ -52,4 +52,10 @@ public class RestaurantTest {
     public void isHappyHour_ReturnTrueDuringDefaultHappyHour() {
         assertTrue(restaurant.isHappyHour(15), "Should be true during default happy hour (15)");
     }
+
+    @Test
+    public void isHappyHour_ReturnFalseOutsideHappyHour() {
+        assertFalse(restaurant.isHappyHour(14), "Should be false before happy hour");
+        assertFalse(restaurant.isHappyHour(16), "Should be false after happy hour");
+    }
 }
