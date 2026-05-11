@@ -68,4 +68,9 @@ public class OwnerTest {
     public void testHasLostReturnsTrueWhenNetWorthGoesNegative(){
 
     }
+
+    @Test
+    public void testShutdownRestaurantRemovesItFromList(){
+
+    }
 }
