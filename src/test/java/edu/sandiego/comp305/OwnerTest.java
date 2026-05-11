@@ -14,6 +14,8 @@ public class OwnerTest {
 
     private static final int PEAK_HOUR = 14;
 
+    private static final double THOUSANDTH_DECIMAL = 0.001;
+
     private Owner testOwner;
     private BBQRestaurant testRestaurant;
 
@@ -26,7 +28,8 @@ public class OwnerTest {
 
     @Test
     public void testGetGoalNetWorthReturnsCorrectValue(){
-
+        assertEquals(STARTING_NET_WORTH, testOwner.getNetWorth(), THOUSANDTH_DECIMAL,
+                "getNetWorth() should return the starting net worth.");
     }
 
     @Test
