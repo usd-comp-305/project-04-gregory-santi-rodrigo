@@ -38,4 +38,9 @@ public class OwnerTest {
     public void testApplyDailyReportDecreasesNetWorthOnLoss(){
 
     }
+
+    @Test
+    public void testApplyDailyReportAccumulatesAcrossMultipleDays(){
+
+    }
 }
