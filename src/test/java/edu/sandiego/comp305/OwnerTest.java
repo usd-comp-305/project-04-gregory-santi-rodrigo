@@ -43,4 +43,9 @@ public class OwnerTest {
     public void testApplyDailyReportAccumulatesAcrossMultipleDays(){
 
     }
+
+    @Test
+    public void testHasWonReturnsFalseWhenBelowGoal(){
+
+    }
 }
