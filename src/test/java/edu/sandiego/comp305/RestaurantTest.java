@@ -47,4 +47,9 @@ public class RestaurantTest {
         assertFalse(hotDogRestaurant.isOpen(11), "Should be closed at the exact closing hour (11)");
         assertFalse(hotDogRestaurant.isOpen(12), "Should be closed after closing");
     }
+
+    @Test
+    public void isHappyHour_ReturnTrueDuringDefaultHappyHour() {
+        assertTrue(restaurant.isHappyHour(15), "Should be true during default happy hour (15)");
+    }
 }
