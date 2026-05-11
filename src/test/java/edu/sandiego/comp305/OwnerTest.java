@@ -158,7 +158,12 @@ public class OwnerTest {
 
     @Test
     public void testShutdownRestaurantLeavesOthersIntact(){
-
+        BBQRestaurant secondRestaurant = new BBQRestaurant();
+        Owner ownerWithTwo = new Owner(STARTING_NET_WORTH, GOAL_NET_WORTH,
+                new ArrayList<>(List.of(testRestaurant, secondRestaurant)));
+        ownerWithTwo.shutdownRestaurant(testRestaurant);
+        assertTrue(ownerWithTwo.getRestaurants().contains(secondRestaurant),
+                "Shutting down one restaurant should not affect others.");
     }
 
     @Test
