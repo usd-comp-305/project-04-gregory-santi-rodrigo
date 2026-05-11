@@ -27,14 +27,30 @@ public class OwnerTest {
     }
 
     @Test
-    public void testGetGoalNetWorthReturnsCorrectValue(){
+    public void testGetNetWorthReturnsStartingValue(){
         assertEquals(STARTING_NET_WORTH, testOwner.getNetWorth(), THOUSANDTH_DECIMAL,
                 "getNetWorth() should return the starting net worth.");
     }
 
     @Test
-    public void testApplyDailyReportIncreasesNetWorthOnProfit(){
+    public void testGetGoalNetWorthReturnsCorrectValue(){
+        assertEquals(GOAL_NET_WORTH, testOwner.getGoalNetWorth(), THOUSANDTH_DECIMAL,
+                "getGoalNetWorth() should return the goal net worth.");
+    }
 
+    @Test
+    public void testApplyDailyReportIncreasesNetWorthOnProfit(){
+        final int DAY_NUMBER = 1;
+        final double REGULAR_REVENUE = 200.0;
+        final double HAPPY_HOUR_REVENUE = 50.0;
+        final double TOTAL_REVENUE = 250.0;
+
+        DailyReport profitReport = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR)
+        ));
+        testOwner.applyDailyReport(profitReport);
+        assertEquals(STARTING_NET_WORTH + TOTAL_REVENUE, testOwner.getNetWorth(),
+                THOUSANDTH_DECIMAL, "Net worth should increase after a profitable day.");
     }
 
     @Test
