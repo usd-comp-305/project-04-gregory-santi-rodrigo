@@ -151,7 +151,9 @@ public class OwnerTest {
 
     @Test
     public void testShutdownRestaurantRemovesItFromList(){
-
+        testOwner.shutdownRestaurant(testRestaurant);
+        assertFalse(testOwner.getRestaurants().contains(testRestaurant),
+                "Shutdown restaurant should be removed from the owner's list.");
     }
 
     @Test
