@@ -23,4 +23,9 @@ public class OwnerTest {
         testOwner = new Owner(STARTING_NET_WORTH, GOAL_NET_WORTH,
                 new ArrayList<>(List.of(testRestaurant)));
     }
+
+    @Test
+    public void testGetGoalNetWorthReturnsCorrectValue(){
+
+    }
 }
