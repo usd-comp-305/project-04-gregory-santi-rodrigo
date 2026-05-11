@@ -1,5 +1,7 @@
 package edu.sandiego.comp305;
 
+import java.util.List;
+
 public class TacoRestaurant extends AbstractRestaurant{
 
     private static final int OPEN_HOUR = 8;
@@ -12,7 +14,8 @@ public class TacoRestaurant extends AbstractRestaurant{
 
     public TacoRestaurant(){
         super("Taco Stand", RestaurantType.TACO,
-                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS);
+                OPEN_HOUR, CLOSE_HOUR, DEFAULT_HAPPY_HOUR, BASE_MAX_ORDERS,
+                List.of(TacoMenuItem.values()));
     }
 
     @Override

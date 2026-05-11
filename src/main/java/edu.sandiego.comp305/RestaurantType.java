@@ -1,6 +1,5 @@
 package edu.sandiego.comp305;
 
-// The enum which will enable the quick differentiation between the different restaurant types
 public enum RestaurantType {
     BURGER,
     PIZZA,

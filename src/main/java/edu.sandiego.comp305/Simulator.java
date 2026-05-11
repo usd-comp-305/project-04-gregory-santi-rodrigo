@@ -1,29 +1,72 @@
 package edu.sandiego.comp305;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Simulator {
+
     private final List<Restaurant> restaurants;
     private final OrderGenerator orderGenerator;
     private int currentDay;
+    private List<Order> lastGeneratedOrders;
 
     public Simulator(List<Restaurant> restaurants) {
         this.restaurants = restaurants;
         this.orderGenerator = new OrderGenerator();
         this.currentDay = 1;
+        this.lastGeneratedOrders = new ArrayList<>();
+    }
+
+    public Simulator(List<Restaurant> restaurants, OrderGenerator orderGenerator){
+        this.restaurants = restaurants;
+        this.orderGenerator = orderGenerator;
+        this.currentDay = 1;
+        this.lastGeneratedOrders = new ArrayList<>();
     }
 
     public DailyReport runDay() {
-        // TODO: for each restaurant, reset day, generate orders, process each order,
-        // track peak hour, then call generateReport()
+        List<RestaurantReport> reports = new ArrayList<>();
+
+        for (Restaurant restaurant : restaurants) {
+            restaurant.resetDay();
+
+            lastGeneratedOrders = orderGenerator.generateDailyOrders(restaurant);
+            List<Order> orders = orderGenerator.generateDailyOrders(restaurant);
+            int allowedOrders = Math.min(orders.size(), restaurant.getMaxOrdersPerDay());
+
+            for (int orderCount = 0; orderCount < allowedOrders; orderCount++) {
+                restaurant.processOrder(orders.get(orderCount));
+            }
+
+            int peakHour = computePeakHour(orders.subList(0, allowedOrders));
+            reports.add(restaurant.generateReport(peakHour));
+        }
+
+        DailyReport dailyReport = new DailyReport(currentDay, reports);
         currentDay++;
-        return null;
+        return dailyReport;
     }
 
-    private int computePeakHour(List<Order> orders) {
-        // TODO: find the hour with the most orders
-        return 0;
+    int computePeakHour(List<Order> orders) {
+        int[] hourCounts = new int[24];
+        for (Order order : orders) {
+            hourCounts[order.getHour()]++;
+        }
+
+        int peakHour = 0;
+        for (int hour = 1; hour < 24; hour++) {
+            if (hourCounts[hour] > hourCounts[peakHour]) {
+                peakHour = hour;
+            }
+        }
+
+        return peakHour;
+    }
+
+    List<Order> getLastGeneratedOrders(){
+        return lastGeneratedOrders;
     }
 
     public int getCurrentDay() { return currentDay; }
+    public List<Restaurant> getRestaurants() {return restaurants;}
 }
