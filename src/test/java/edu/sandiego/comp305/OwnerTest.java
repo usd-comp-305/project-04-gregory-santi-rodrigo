@@ -53,4 +53,9 @@ public class OwnerTest {
     public void testHasWonReturnsTrueWhenGoalIsReached(){
 
     }
+
+    @Test
+    public void testHasLostReturnsFalseWhenAboveZero(){
+
+    }
 }
