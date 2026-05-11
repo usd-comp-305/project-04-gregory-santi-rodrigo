@@ -70,7 +70,26 @@ public class OwnerTest {
 
     @Test
     public void testApplyDailyReportAccumulatesAcrossMultipleDays(){
+        final int DAY_NUMBER = 1;
+        final int SECOND_DAY_NUMBER = 2;
+        final double DAY_ONE_REGULAR_REVENUE = 200.0;
+        final double DAY_ONE_HAPPY_HOUR_REVENUE = 50.0;
+        final double DAY_TWO_REGULAR_REVENUE = 100.0;
+        final double DAY_TWO_HAPPY_HOUR_REVENUE = 25.0;
+        final double TOTAL_REVENUE = 375.0;
 
+        DailyReport dayOne = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", DAY_ONE_REGULAR_REVENUE,
+                        DAY_ONE_HAPPY_HOUR_REVENUE, PEAK_HOUR)
+        ));
+        DailyReport dayTwo = new DailyReport(SECOND_DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", DAY_TWO_REGULAR_REVENUE,
+                        DAY_TWO_HAPPY_HOUR_REVENUE, PEAK_HOUR)
+        ));
+        testOwner.applyDailyReport(dayOne);
+        testOwner.applyDailyReport(dayTwo);
+        assertEquals(STARTING_NET_WORTH + TOTAL_REVENUE, testOwner.getNetWorth(),
+                THOUSANDTH_DECIMAL, "Net worth should accumulate correctly across multiple days.");
     }
 
     @Test
