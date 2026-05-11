@@ -20,4 +20,9 @@ public class OrderTest {
     public void getItem_ReturnInitialItem() {
         assertEquals(TEST_ITEM, order.getItem(), "The returned item should match the input");
     }
+
+    @Test
+    public void getHour_ReturnInitialHour() {
+        assertEquals(TEST_HOUR, order.getHour(), "The returned hour should match the input");
+    }
 }
