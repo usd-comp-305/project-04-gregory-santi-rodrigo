@@ -115,7 +115,8 @@ public class OwnerTest {
 
     @Test
     public void testHasLostReturnsFalseWhenAboveZero(){
-
+        assertFalse(testOwner.hasLost(),
+                "hasLost() should return false when net worth is above zero.");
     }
 
     @Test
