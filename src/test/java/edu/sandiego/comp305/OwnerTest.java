@@ -33,4 +33,9 @@ public class OwnerTest {
     public void testApplyDailyReportIncreasesNetWorthOnProfit(){
 
     }
+
+    @Test
+    public void testApplyDailyReportDecreasesNetWorthOnLoss(){
+
+    }
 }
