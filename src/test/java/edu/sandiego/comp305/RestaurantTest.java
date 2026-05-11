@@ -86,4 +86,13 @@ public class RestaurantTest {
         assertEquals(expectedDiscountPrice, actualRevenue, "Happy hour order should be 20% off");
     }
 
+    @Test
+    public void processOrder_ReturnAccumulateDailyRevenueForNormalOrders() {
+        Order normalOrder = new Order(TEST_ITEM, 12, RestaurantType.BURGER);
+        restaurant.processOrder(normalOrder);
+
+        assertEquals(TEST_ITEM.getBasePrice(), restaurant.getDailyRevenue());
+        assertEquals(0.0, restaurant.getHappyHourRevenue());
+    }
+
 }
