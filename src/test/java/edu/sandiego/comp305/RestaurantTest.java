@@ -39,4 +39,12 @@ public class RestaurantTest {
         assertTrue(hotDogRestaurant.isOpen(10), "Should be open before closing");
 
     }
+
+    @Test
+    public void isOpen_HotDogRestaurant_ReturnFalseForClosedHours(){
+        Restaurant hotDogRestaurant = new HotDogRestaurant();
+
+        assertFalse(hotDogRestaurant.isOpen(11), "Should be closed at the exact closing hour (11)");
+        assertFalse(hotDogRestaurant.isOpen(12), "Should be closed after closing");
+    }
 }
