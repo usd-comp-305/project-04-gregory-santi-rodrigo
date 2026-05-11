@@ -168,7 +168,9 @@ public class OwnerTest {
 
     @Test
     public void testShutdownLastRestaurantLeavesEmptyList(){
-
+        testOwner.shutdownRestaurant(testRestaurant);
+        assertTrue(testOwner.getRestaurants().isEmpty(),
+                "Shutting down the last restaurant should leave an empty list.");
     }
 
     @Test
