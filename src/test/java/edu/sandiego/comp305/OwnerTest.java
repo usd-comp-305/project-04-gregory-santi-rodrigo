@@ -28,4 +28,9 @@ public class OwnerTest {
     public void testGetGoalNetWorthReturnsCorrectValue(){
 
     }
+
+    @Test
+    public void testApplyDailyReportIncreasesNetWorthOnProfit(){
+
+    }
 }
