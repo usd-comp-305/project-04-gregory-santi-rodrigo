@@ -78,4 +78,9 @@ public class OwnerTest {
     public void testShutdownRestaurantLeavesOthersIntact(){
 
     }
+
+    @Test
+    public void testShutdownLastRestaurantLeavesEmptyList(){
+
+    }
 }
