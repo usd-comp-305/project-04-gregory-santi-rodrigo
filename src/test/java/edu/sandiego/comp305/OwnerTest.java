@@ -192,7 +192,10 @@ public class OwnerTest {
 
     @Test
     public void testChangeHappyHourUpdatesCorrectRestaurant(){
-
+        final int NEW_HAPPY_HOUR = 16;
+        testOwner.changeHappyHour(testRestaurant, NEW_HAPPY_HOUR);
+        assertEquals(NEW_HAPPY_HOUR, testRestaurant.getHappyHourStart(),
+                "changeHappyHour() should update the restaurant's happy hour start.");
     }
 
     @Test
