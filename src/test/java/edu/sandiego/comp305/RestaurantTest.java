@@ -95,4 +95,13 @@ public class RestaurantTest {
         assertEquals(0.0, restaurant.getHappyHourRevenue());
     }
 
+    @Test
+    public void procesOrder_ReturnAccumulateHappyHourRevenueForHappyHourOrders() {
+        Order happyHourOrder = new Order(TEST_ITEM, 15, RestaurantType.BURGER);
+        double expectedRevenue = TEST_ITEM.getBasePrice() * 0.80;
+        restaurant.processOrder(happyHourOrder);
+
+        assertEquals(0.0, restaurant.getDailyRevenue());
+        assertEquals(expectedRevenue, restaurant.getHappyHourRevenue());
+    }
 }
