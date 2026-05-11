@@ -128,4 +128,13 @@ public class RestaurantTest {
         assertEquals(0, restaurant.getHappyHourRevenue());
         assertEquals(0, restaurant.getTotalRevenue());
     }
+
+    @Test
+    public void upgrade_ReturnIncreaseMaxOrders() {
+        int initialCapacity = restaurant.getMaxOrdersPerDay();
+        restaurant.upgrade();
+
+        assertEquals(initialCapacity + 25, restaurant.getMaxOrdersPerDay(), "Capacity should increase by 25");
+        assertTrue(restaurant.isUpgraded(), "isUpgraded should return true");
+    }
 }
