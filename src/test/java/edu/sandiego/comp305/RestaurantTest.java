@@ -58,4 +58,15 @@ public class RestaurantTest {
         assertFalse(restaurant.isHappyHour(14), "Should be false before happy hour");
         assertFalse(restaurant.isHappyHour(16), "Should be false after happy hour");
     }
+
+    @Test
+    public void setHappyHourStart_ReturnUpdateHappyHour() {
+        int newHappyHour = 12;
+        restaurant.setHappyHourStart(newHappyHour);
+
+        assertEquals(newHappyHour, restaurant.getHappyHourStart(), "The happy hour start should update");
+        assertTrue(restaurant.isHappyHour(12), "The new hour should now trigger happy hour");
+    }
+
+
 }
