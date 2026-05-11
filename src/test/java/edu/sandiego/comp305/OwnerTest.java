@@ -93,4 +93,9 @@ public class OwnerTest {
     public void testUpgradeCanOnlyHappenOnce(){
 
     }
+
+    @Test
+    public void testChangeHappyHourUpdatesCorrectRestaurant(){
+
+    }
 }
