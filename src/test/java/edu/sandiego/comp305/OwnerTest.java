@@ -175,12 +175,19 @@ public class OwnerTest {
 
     @Test
     public void testUpgradeIncreasesRestaurantMaxOrders(){
-
+        int beforeUpgrade = testRestaurant.getMaxOrdersPerDay();
+        testOwner.upgrade(testRestaurant);
+        assertTrue(testRestaurant.getMaxOrdersPerDay() > beforeUpgrade,
+                "Upgrading should increase the restaurant's max orders per day.");
     }
 
     @Test
     public void testUpgradeCanOnlyHappenOnce(){
-
+        testOwner.upgrade(testRestaurant);
+        int afterFirstUpgrade = testRestaurant.getMaxOrdersPerDay();
+        testOwner.upgrade(testRestaurant);
+        assertEquals(afterFirstUpgrade, testRestaurant.getMaxOrdersPerDay(),
+                "A restaurant should not be upgradeable more than once.");
     }
 
     @Test
