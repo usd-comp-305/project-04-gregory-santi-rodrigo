@@ -83,4 +83,9 @@ public class OwnerTest {
     public void testShutdownLastRestaurantLeavesEmptyList(){
 
     }
+
+    @Test
+    public void testUpgradeIncreasesRestaurantMaxOrders(){
+
+    }
 }
