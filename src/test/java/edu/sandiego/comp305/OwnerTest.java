@@ -200,6 +200,15 @@ public class OwnerTest {
 
     @Test
     public void testChangeHappyHourDoesNotAffectOtherRestaurants(){
+        final int NEW_HAPPY_HOUR = 16;
+        BBQRestaurant secondRestaurant = new BBQRestaurant();
+        int originalHappyHour = secondRestaurant.getHappyHourStart();
+        Owner ownerWithTwo = new Owner(STARTING_NET_WORTH, GOAL_NET_WORTH,
+                new ArrayList<>(List.of(testRestaurant, secondRestaurant)));
 
+        ownerWithTwo.changeHappyHour(testRestaurant, NEW_HAPPY_HOUR);
+
+        assertEquals(originalHappyHour, secondRestaurant.getHappyHourStart(),
+                "Changing happy hour on one restaurant should not affect others.");
     }
 }
