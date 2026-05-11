@@ -116,4 +116,16 @@ public class RestaurantTest {
 
         assertEquals(expectedTotal, restaurant.getTotalRevenue());
     }
+
+    @Test
+    public void resetDay_ReturnClearRevenueAccumulators() {
+        restaurant.processOrder(new Order(TEST_ITEM, 12, RestaurantType.BURGER));
+        restaurant.processOrder(new Order(TEST_ITEM, 15, RestaurantType.BURGER));
+
+        restaurant.resetDay();
+
+        assertEquals(0, restaurant.getDailyRevenue());
+        assertEquals(0, restaurant.getHappyHourRevenue());
+        assertEquals(0, restaurant.getTotalRevenue());
+    }
 }
