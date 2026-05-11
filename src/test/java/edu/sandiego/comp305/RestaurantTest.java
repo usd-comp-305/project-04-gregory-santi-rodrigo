@@ -137,4 +137,13 @@ public class RestaurantTest {
         assertEquals(initialCapacity + 25, restaurant.getMaxOrdersPerDay(), "Capacity should increase by 25");
         assertTrue(restaurant.isUpgraded(), "isUpgraded should return true");
     }
+
+    @Test
+    public void upgrade_ReturnOnlyIncreaseMaxOrdersOnce() {
+        int initialCapacity = restaurant.getMaxOrdersPerDay();
+        restaurant.upgrade();
+        restaurant.upgrade();
+
+        assertEquals(initialCapacity + 25, restaurant.getMaxOrdersPerDay(), "Calling upgrade twice should not increase more than once");
+    }
 }
