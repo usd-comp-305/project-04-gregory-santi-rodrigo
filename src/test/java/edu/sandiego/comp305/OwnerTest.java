@@ -98,4 +98,9 @@ public class OwnerTest {
     public void testChangeHappyHourUpdatesCorrectRestaurant(){
 
     }
+
+    @Test
+    public void testChangeHappyHourDoesNotAffectOtherRestaurants(){
+
+    }
 }
