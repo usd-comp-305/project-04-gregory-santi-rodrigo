@@ -91,8 +91,8 @@ public class RestaurantTest {
         Order normalOrder = new Order(TEST_ITEM, 12, RestaurantType.BURGER);
         restaurant.processOrder(normalOrder);
 
-        assertEquals(TEST_ITEM.getBasePrice(), restaurant.getDailyRevenue());
-        assertEquals(0.0, restaurant.getHappyHourRevenue());
+        assertEquals(TEST_ITEM.getBasePrice(), restaurant.getDailyRevenue(), "Normal order should accumulate into daily revenue");
+        assertEquals(0.0, restaurant.getHappyHourRevenue(), "Normal order should not accumulate into happy hour revenue");
     }
 
     @Test
@@ -101,8 +101,8 @@ public class RestaurantTest {
         double expectedRevenue = TEST_ITEM.getBasePrice() * 0.80;
         restaurant.processOrder(happyHourOrder);
 
-        assertEquals(0.0, restaurant.getDailyRevenue());
-        assertEquals(expectedRevenue, restaurant.getHappyHourRevenue());
+        assertEquals(0.0, restaurant.getDailyRevenue(), "Happy hour order should not accumulate into daily revenue");
+        assertEquals(expectedRevenue, restaurant.getHappyHourRevenue(), "Happy hour order should accumulate into happy hour revenue");
     }
 
     @Test
@@ -114,7 +114,7 @@ public class RestaurantTest {
 
         double expectedTotal = restaurant.getDailyRevenue() + restaurant.getHappyHourRevenue();
 
-        assertEquals(expectedTotal, restaurant.getTotalRevenue());
+        assertEquals(expectedTotal, restaurant.getTotalRevenue(), "Total revenue should equal daily revenue plus happy hour revenue");
     }
 
     @Test
@@ -124,9 +124,9 @@ public class RestaurantTest {
 
         restaurant.resetDay();
 
-        assertEquals(0, restaurant.getDailyRevenue());
-        assertEquals(0, restaurant.getHappyHourRevenue());
-        assertEquals(0, restaurant.getTotalRevenue());
+        assertEquals(0, restaurant.getDailyRevenue(), "Daily revenue should reset to 0");
+        assertEquals(0, restaurant.getHappyHourRevenue(), "Happy hour revenue should reset to 0");
+        assertEquals(0, restaurant.getTotalRevenue(), "Total revenue should reset to 0");
     }
 
     @Test
