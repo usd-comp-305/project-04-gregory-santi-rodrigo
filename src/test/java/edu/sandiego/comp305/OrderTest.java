@@ -25,4 +25,9 @@ public class OrderTest {
     public void getHour_ReturnInitialHour() {
         assertEquals(TEST_HOUR, order.getHour(), "The returned hour should match the input");
     }
+
+    @Test
+    public void getRestaurantType_ReturnInitialType() {
+        assertEquals(TEST_TYPE, order.getRestaurantType(), "The returned type should match the input");
+    }
 }
