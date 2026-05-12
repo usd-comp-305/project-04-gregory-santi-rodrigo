@@ -50,4 +50,17 @@ public class OrderGeneratorTest {
                     "Order placed at closed hour: " + order.getHour());
         }
     }
+
+    @Test
+    public void testGenerateDailyOrders_noOrdersInClosedHours() {
+        OrderGenerator generator = new OrderGenerator();
+        List<Order> orders = generator.generateDailyOrders(mockRestaurant);
+        List<Integer> closedHours = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 23);
+        for (Order order : orders) {
+            assertFalse(closedHours.contains(order.getHour()),
+                    "Order found at closed hour: " + order.getHour());
+        }
+    }
+
+
 }
