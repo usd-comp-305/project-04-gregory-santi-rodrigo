@@ -96,7 +96,7 @@ public class RestaurantTest {
     }
 
     @Test
-    public void procesOrder_ReturnAccumulateHappyHourRevenueForHappyHourOrders() {
+    public void processOrder_ReturnAccumulateHappyHourRevenueForHappyHourOrders() {
         Order happyHourOrder = new Order(TEST_ITEM, 15, RestaurantType.BURGER);
         double expectedRevenue = TEST_ITEM.getBasePrice() * 0.80;
         restaurant.processOrder(happyHourOrder);
@@ -124,9 +124,9 @@ public class RestaurantTest {
 
         restaurant.resetDay();
 
-        assertEquals(0, restaurant.getDailyRevenue(), "Daily revenue should reset to 0");
-        assertEquals(0, restaurant.getHappyHourRevenue(), "Happy hour revenue should reset to 0");
-        assertEquals(0, restaurant.getTotalRevenue(), "Total revenue should reset to 0");
+        assertEquals(0.0, restaurant.getDailyRevenue(), "Daily revenue should reset to 0");
+        assertEquals(0.0, restaurant.getHappyHourRevenue(), "Happy hour revenue should reset to 0");
+        assertEquals(0.0, restaurant.getTotalRevenue(), "Total revenue should reset to 0");
     }
 
     @Test
@@ -150,5 +150,13 @@ public class RestaurantTest {
     @Test
     public void isUpgraded_ReturnFalseBeforeUpgrade() {
         assertFalse(restaurant.isUpgraded(), "Restaurant should not be upgraded initially");
+    }
+
+    @Test
+    public void isHappyHour_ReturnFalseWhenRestaurantIsClosed() {
+        final int CLOSED_HOUR = 10;
+        restaurant.setHappyHourStart(CLOSED_HOUR);
+
+        assertFalse(restaurant.isHappyHour(CLOSED_HOUR), "Happy hour should not apply when the restaurant is closed");
     }
 }
