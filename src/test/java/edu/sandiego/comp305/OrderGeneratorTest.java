@@ -62,5 +62,30 @@ public class OrderGeneratorTest {
         }
     }
 
+    @Test
+    public void testGenerateDailyOrders_happyHourIsAboveAverageFrequency() {
+        OrderGenerator generator = new OrderGenerator();
+        int[] hourCounts = new int[24];
+        int totalOrders = 0;
+
+        for (int i = 0; i < 500; i++) {
+            List<Order> orders = generator.generateDailyOrders(mockRestaurant);
+            for (Order order : orders) {
+                hourCounts[order.getHour()]++;
+                totalOrders++;
+            }
+        }
+
+        long openHourCount = 0;
+        for (int h = 0; h < 24; h++) {
+            if (mockRestaurant.isOpen(h)) openHourCount++;
+        }
+
+        double average = (double) totalOrders / openHourCount;
+        assertTrue(hourCounts[18] > average * 1.5,
+                String.format("Happy hour count %d should exceed 1.5x average %.1f",
+                        hourCounts[18], average));
+    }
+
 
 }

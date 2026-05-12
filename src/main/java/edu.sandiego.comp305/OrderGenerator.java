@@ -107,6 +107,9 @@ public class OrderGenerator {
     */
     private static final int MIN_ORDERS = 50;
     private static final int MAX_ORDERS = 100;
+    private static final int BASE_WEIGHT = 5;
+    private static final int HAPPY_HOUR_BONUS = 8;
+
     private final Random random;
 
     public OrderGenerator() { this.random = new Random(); }
@@ -123,7 +126,30 @@ public class OrderGenerator {
 
     private int chooseHour(Restaurant restaurant) {
         List<Integer> openHours = getOpenHours(restaurant);
-        return openHours.get(random.nextInt(openHours.size()));
+        int[] weights = buildWeights(openHours, restaurant);
+        return weightedPick(openHours, weights);
+    }
+
+    private int weightedPick(List<Integer> hours, int[] weights) {
+        int total = 0;
+        for (int w : weights) total += w;
+        int roll = random.nextInt(total);
+        int cumulative = 0;
+        for (int i = 0; i < hours.size(); i++) {
+            cumulative += weights[i];
+            if (roll < cumulative) return hours.get(i);
+        }
+        return hours.get(hours.size() - 1);
+    }
+
+    private int[] buildWeights(List<Integer> openHours, Restaurant restaurant) {
+        int[] weights = new int[openHours.size()];
+        for (int i = 0; i < openHours.size(); i++) {
+            int hour = openHours.get(i);
+            weights[i] = BASE_WEIGHT;
+            if (restaurant.isHappyHour(hour)) weights[i] += HAPPY_HOUR_BONUS;
+        }
+        return weights;
     }
 
     private List<Integer> getOpenHours(Restaurant restaurant) {
@@ -133,6 +159,7 @@ public class OrderGenerator {
         }
         return openHours;
     }
+
 
 
 
