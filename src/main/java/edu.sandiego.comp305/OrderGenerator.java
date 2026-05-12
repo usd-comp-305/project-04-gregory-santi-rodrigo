@@ -109,6 +109,9 @@ public class OrderGenerator {
     private static final int MAX_ORDERS = 100;
     private static final int BASE_WEIGHT = 5;
     private static final int HAPPY_HOUR_BONUS = 8;
+    private static final int LUNCH_RUSH_HOUR = 12;
+    private static final int DINNER_RUSH_HOUR = 18;
+    private static final int RUSH_BONUS = 10;
 
     private final Random random;
 
@@ -147,6 +150,7 @@ public class OrderGenerator {
         for (int i = 0; i < openHours.size(); i++) {
             int hour = openHours.get(i);
             weights[i] = BASE_WEIGHT;
+            if (hour == LUNCH_RUSH_HOUR || hour == DINNER_RUSH_HOUR) weights[i] += RUSH_BONUS;
             if (restaurant.isHappyHour(hour)) weights[i] += HAPPY_HOUR_BONUS;
         }
         return weights;
