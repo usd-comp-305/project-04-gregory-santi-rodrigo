@@ -122,6 +122,7 @@ public class OrderGenerator {
         List<Order> orders = new ArrayList<>();
         for (int i = 0; i < totalOrders; i++) {
             int hour = chooseHour(restaurant);
+            MenuItem item = chooseItem(restaurant);
             orders.add(new Order(restaurant.getMenu().get(0), hour, restaurant.getType()));
         }
         return orders;
@@ -164,6 +165,11 @@ public class OrderGenerator {
         return openHours;
     }
 
+
+    private MenuItem chooseItem(Restaurant restaurant) {
+        List<MenuItem> menu = restaurant.getMenu();
+        return menu.get(random.nextInt(menu.size()));
+    }
 
 
 

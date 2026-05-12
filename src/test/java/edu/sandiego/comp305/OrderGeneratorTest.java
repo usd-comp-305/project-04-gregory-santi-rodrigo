@@ -121,5 +121,16 @@ public class OrderGeneratorTest {
                         hourCounts[18], average));
     }
 
+    @Test
+    public void testGenerateDailyOrders_allItemsAreFromRestaurantMenu() {
+        OrderGenerator generator = new OrderGenerator();
+        List<Order> orders = generator.generateDailyOrders(mockRestaurant);
+        List<MenuItem> menu = mockRestaurant.getMenu();
+        for (Order order : orders) {
+            assertTrue(menu.contains(order.getItem()),
+                    "Order contains item not on the restaurant's menu");
+        }
+    }
+
 
 }
