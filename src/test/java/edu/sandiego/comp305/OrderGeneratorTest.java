@@ -32,4 +32,12 @@ public class OrderGeneratorTest {
         assertTrue(orders.size() >= 50,
                 "Expected at least 50 orders but got: " + orders.size());
     }
+
+    @Test
+    public void testGenerateDailyOrders_countIsAtMost100() {
+        OrderGenerator generator = new OrderGenerator();
+        List<Order> orders = generator.generateDailyOrders(mockRestaurant);
+        assertTrue(orders.size() <= 100,
+                "Expected at most 100 orders but got: " + orders.size());
+    }
 }

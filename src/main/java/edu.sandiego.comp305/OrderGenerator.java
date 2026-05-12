@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public class OrderGenerator {
+    /*
     private static final int MIN_ORDERS = 50;
 
     private static final int MAX_ORDERS = 100;
@@ -30,7 +31,7 @@ public class OrderGenerator {
         this.random = random;
     }
 
-    /*
+
         public List<Order> generateDailyOrders(Restaurant restaurant) {
             int totalOrders = chooseTotalOrders();
             List<Order> orders = new ArrayList<>();
@@ -104,11 +105,20 @@ public class OrderGenerator {
         }
     }
     */
+    private static final int MIN_ORDERS = 50;
+    private static final int MAX_ORDERS = 100;
+    private final Random random;
+
+    public OrderGenerator() { this.random = new Random(); }
+
     public List<Order> generateDailyOrders(Restaurant restaurant) {
+        int totalOrders = MIN_ORDERS + random.nextInt(MAX_ORDERS - MIN_ORDERS + 1);
         List<Order> orders = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < totalOrders; i++) {
             orders.add(new Order(restaurant.getMenu().get(0), 9, restaurant.getType()));
         }
         return orders;
     }
+
+
 }
