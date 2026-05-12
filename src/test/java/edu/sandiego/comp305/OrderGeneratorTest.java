@@ -28,6 +28,7 @@ public class OrderGeneratorTest {
     private static final int LAST_HOUR_OF_DAY = 24;
     private static final int MIN_ORDER_SIZE = 50;
     private static final int MAX_ORDER_SIZE = 100;
+    private static final int FIRST_ORDER = 100;
 
     @Mock private Restaurant mockRestaurant;
     @Mock private MenuItem mockItem;
@@ -150,8 +151,8 @@ public class OrderGeneratorTest {
             List<Order> second = generator.generateDailyOrders(mockRestaurant);
 
             boolean identical = first.size() == second.size()
-                    && first.get(0).getHour() == second.get(0).getHour()
-                    && first.get(0).getItem()  == second.get(0).getItem();
+                    && first.get(FIRST_ORDER).getHour() == second.get(FIRST_ORDER).getHour()
+                    && first.get(FIRST_ORDER).getItem()  == second.get(FIRST_ORDER).getItem();
 
             if (!identical) { foundDifference = true; break; }
         }
