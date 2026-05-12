@@ -132,5 +132,25 @@ public class OrderGeneratorTest {
         }
     }
 
+    @Test
+    public void testGenerateDailyOrders_twiceProducesDifferentResults() {
+        OrderGenerator generator = new OrderGenerator();
+        boolean foundDifference = false;
+
+        for (int attempt = 0; attempt < 10; attempt++) {
+            List<Order> first  = generator.generateDailyOrders(mockRestaurant);
+            List<Order> second = generator.generateDailyOrders(mockRestaurant);
+
+            boolean identical = first.size() == second.size()
+                    && first.get(0).getHour() == second.get(0).getHour()
+                    && first.get(0).getItem()  == second.get(0).getItem();
+
+            if (!identical) { foundDifference = true; break; }
+        }
+
+        assertTrue(foundDifference,
+                "generateDailyOrders() appears deterministic — results were always identical");
+    }
+
 
 }
