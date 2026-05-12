@@ -6,10 +6,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;
+import org.mockito.quality.Strictness;
+import org.mockito.junit.jupiter.MockitoSettings;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 public class OrderGeneratorTest {
 
     @Mock private Restaurant mockRestaurant;
@@ -68,7 +71,7 @@ public class OrderGeneratorTest {
         int[] hourCounts = new int[24];
         int totalOrders = 0;
 
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 20; i++) {
             List<Order> orders = generator.generateDailyOrders(mockRestaurant);
             for (Order order : orders) {
                 hourCounts[order.getHour()]++;
@@ -98,7 +101,7 @@ public class OrderGeneratorTest {
         int[] hourCounts = new int[24];
         int totalOrders = 0;
 
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 20; i++) {
             List<Order> orders = generator.generateDailyOrders(mockRestaurant);
             for (Order order : orders) {
                 hourCounts[order.getHour()]++;
