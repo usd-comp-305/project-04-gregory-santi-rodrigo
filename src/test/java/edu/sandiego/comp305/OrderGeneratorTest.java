@@ -11,9 +11,23 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class OrderGeneratorTest {
+
+    private static final int HAPPY_HOUR = 18;
+    private static final int OPEN_HOUR = 9;
+    private static final int CLOSE_HOUR = 23;
+    private static final int NUM_STATISTICAL_RUNS = 20;
+    private static final double SKEW_THRESHOLD = 1.5;
+    private static final int NON_RUSH_HAPPY_HOUR = 10;
+    private static final int LUNCH_RUSH_HOUR = 12;
+    private static final int DINNER_RUSH_HOUR = 18;
+    private static final int FIRST_HOUR_OF_DAY = 0;
+    private static final int LAST_HOUR_OF_DAY = 24;
+    private static final int MIN_ORDER_SIZE = 50;
+    private static final int MAX_ORDER_SIZE = 100;
 
     @Mock private Restaurant mockRestaurant;
     @Mock private MenuItem mockItem;
@@ -22,9 +36,9 @@ public class OrderGeneratorTest {
     public void setUp() {
         when(mockRestaurant.getType()).thenReturn(RestaurantType.HOT_DOG);
         when(mockRestaurant.getMenu()).thenReturn(List.of(mockItem));
-        for (int h = 0; h < 24; h++) {
-            when(mockRestaurant.isOpen(h)).thenReturn(h >= 9 && h < 23);
-            when(mockRestaurant.isHappyHour(h)).thenReturn(h == 18);
+        for (int h = FIRST_HOUR_OF_DAY; h < LAST_HOUR_OF_DAY; h++) {
+            when(mockRestaurant.isOpen(h)).thenReturn(h >= OPEN_HOUR && h < CLOSE_HOUR);
+            when(mockRestaurant.isHappyHour(h)).thenReturn(h == HAPPY_HOUR);
         }
     }
 
@@ -32,7 +46,7 @@ public class OrderGeneratorTest {
     public void testGenerateDailyOrders_countIsAtLeast50() {
         OrderGenerator generator = new OrderGenerator();
         List<Order> orders = generator.generateDailyOrders(mockRestaurant);
-        assertTrue(orders.size() >= 50,
+        assertTrue(orders.size() >= MIN_ORDER_SIZE,
                 "Expected at least 50 orders but got: " + orders.size());
     }
 
@@ -40,19 +54,10 @@ public class OrderGeneratorTest {
     public void testGenerateDailyOrders_countIsAtMost100() {
         OrderGenerator generator = new OrderGenerator();
         List<Order> orders = generator.generateDailyOrders(mockRestaurant);
-        assertTrue(orders.size() <= 100,
+        assertTrue(orders.size() <= MAX_ORDER_SIZE,
                 "Expected at most 100 orders but got: " + orders.size());
     }
 
-    @Test
-    public void testGenerateDailyOrders_allOrdersAreInOpenHours() {
-        OrderGenerator generator = new OrderGenerator();
-        List<Order> orders = generator.generateDailyOrders(mockRestaurant);
-        for (Order order : orders) {
-            assertTrue(mockRestaurant.isOpen(order.getHour()),
-                    "Order placed at closed hour: " + order.getHour());
-        }
-    }
 
     @Test
     public void testGenerateDailyOrders_noOrdersInClosedHours() {
@@ -68,10 +73,10 @@ public class OrderGeneratorTest {
     @Test
     public void testGenerateDailyOrders_happyHourIsAboveAverageFrequency() {
         OrderGenerator generator = new OrderGenerator();
-        int[] hourCounts = new int[24];
+        int[] hourCounts = new int[LAST_HOUR_OF_DAY];
         int totalOrders = 0;
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < NUM_STATISTICAL_RUNS; i++) {
             List<Order> orders = generator.generateDailyOrders(mockRestaurant);
             for (Order order : orders) {
                 hourCounts[order.getHour()]++;
@@ -80,28 +85,28 @@ public class OrderGeneratorTest {
         }
 
         long openHourCount = 0;
-        for (int h = 0; h < 24; h++) {
+        for (int h = 0; h < LAST_HOUR_OF_DAY; h++) {
             if (mockRestaurant.isOpen(h)) openHourCount++;
         }
 
         double average = (double) totalOrders / openHourCount;
-        assertTrue(hourCounts[18] > average * 1.5,
+        assertTrue(hourCounts[HAPPY_HOUR] > average * SKEW_THRESHOLD,
                 String.format("Happy hour count %d should exceed 1.5x average %.1f",
-                        hourCounts[18], average));
+                        hourCounts[HAPPY_HOUR], average));
     }
 
     @Test
     public void testGenerateDailyOrders_rushHoursAreAboveAverageFrequency() {
         // Move happy hour away from rush hours so bonuses don't overlap
-        for (int h = 0; h < 24; h++) {
-            when(mockRestaurant.isHappyHour(h)).thenReturn(h == 10);
+        for (int h = 0; h < LAST_HOUR_OF_DAY; h++) {
+            when(mockRestaurant.isHappyHour(h)).thenReturn(h == NON_RUSH_HAPPY_HOUR);
         }
 
         OrderGenerator generator = new OrderGenerator();
-        int[] hourCounts = new int[24];
+        int[] hourCounts = new int[LAST_HOUR_OF_DAY];
         int totalOrders = 0;
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < NUM_STATISTICAL_RUNS; i++) {
             List<Order> orders = generator.generateDailyOrders(mockRestaurant);
             for (Order order : orders) {
                 hourCounts[order.getHour()]++;
@@ -110,18 +115,18 @@ public class OrderGeneratorTest {
         }
 
         long openHourCount = 0;
-        for (int h = 0; h < 24; h++) {
+        for (int h = 0; h < LAST_HOUR_OF_DAY; h++) {
             if (mockRestaurant.isOpen(h)) openHourCount++;
         }
 
         double average = (double) totalOrders / openHourCount;
 
-        assertTrue(hourCounts[12] > average * 1.5,
+        assertTrue(hourCounts[LUNCH_RUSH_HOUR] > average * SKEW_THRESHOLD,
                 String.format("Lunch rush count %d should exceed 1.5x average %.1f",
-                        hourCounts[12], average));
-        assertTrue(hourCounts[18] > average * 1.5,
+                        hourCounts[LUNCH_RUSH_HOUR], average));
+        assertTrue(hourCounts[DINNER_RUSH_HOUR] > average * SKEW_THRESHOLD,
                 String.format("Dinner rush count %d should exceed 1.5x average %.1f",
-                        hourCounts[18], average));
+                        hourCounts[DINNER_RUSH_HOUR], average));
     }
 
     @Test
@@ -140,7 +145,7 @@ public class OrderGeneratorTest {
         OrderGenerator generator = new OrderGenerator();
         boolean foundDifference = false;
 
-        for (int attempt = 0; attempt < 10; attempt++) {
+        for (int attempt = 0; attempt < NUM_STATISTICAL_RUNS; attempt++) {
             List<Order> first  = generator.generateDailyOrders(mockRestaurant);
             List<Order> second = generator.generateDailyOrders(mockRestaurant);
 
