@@ -115,10 +115,25 @@ public class OrderGenerator {
         int totalOrders = MIN_ORDERS + random.nextInt(MAX_ORDERS - MIN_ORDERS + 1);
         List<Order> orders = new ArrayList<>();
         for (int i = 0; i < totalOrders; i++) {
-            orders.add(new Order(restaurant.getMenu().get(0), 9, restaurant.getType()));
+            int hour = chooseHour(restaurant);
+            orders.add(new Order(restaurant.getMenu().get(0), hour, restaurant.getType()));
         }
         return orders;
     }
+
+    private int chooseHour(Restaurant restaurant) {
+        List<Integer> openHours = getOpenHours(restaurant);
+        return openHours.get(random.nextInt(openHours.size()));
+    }
+
+    private List<Integer> getOpenHours(Restaurant restaurant) {
+        List<Integer> openHours = new ArrayList<>();
+        for (int hour = 0; hour < 24; hour++) {
+            if (restaurant.isOpen(hour)) openHours.add(hour);
+        }
+        return openHours;
+    }
+
 
 
 }

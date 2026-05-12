@@ -40,4 +40,14 @@ public class OrderGeneratorTest {
         assertTrue(orders.size() <= 100,
                 "Expected at most 100 orders but got: " + orders.size());
     }
+
+    @Test
+    public void testGenerateDailyOrders_allOrdersAreInOpenHours() {
+        OrderGenerator generator = new OrderGenerator();
+        List<Order> orders = generator.generateDailyOrders(mockRestaurant);
+        for (Order order : orders) {
+            assertTrue(mockRestaurant.isOpen(order.getHour()),
+                    "Order placed at closed hour: " + order.getHour());
+        }
+    }
 }
