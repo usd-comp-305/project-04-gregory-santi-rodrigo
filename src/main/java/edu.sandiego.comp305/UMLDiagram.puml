@@ -1,0 +1,333 @@
+@startuml restaurant_simulator
+
+skinparam classAttributeIconSize 0
+skinparam classFontSize 12
+skinparam defaultFontSize 11
+skinparam linetype ortho
+
+' =========================================================================
+' Enums
+' =========================================================================
+
+enum RestaurantType {
+    BURGER
+    PIZZA
+    TACO
+    SUSHI
+    HOT_DOG
+    FINE_DINING
+    CAFE
+    ICE_CREAM_SHOP
+    JUICE_BAR
+    BBQ
+}
+
+' =========================================================================
+' MenuItem interface and implementations
+' =========================================================================
+
+interface MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum HotDogMenuItem implements MenuItem {
+    PLAIN_HOT_DOG
+    CHILI_DOG
+    CONDIMENT_HOT_DOG
+    getName() : String
+    getBasePrice() : double
+}
+
+enum BurgerMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum PizzaMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum TacoMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum SushiMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum BBQMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum FineDiningMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum CafeMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum IceCreamMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+enum JuiceBarMenuItem implements MenuItem {
+    getName() : String
+    getBasePrice() : double
+}
+
+' =========================================================================
+' PricingStrategy
+' =========================================================================
+
+interface PricingStrategy {
+    calculatePrice(order : Order) : double
+}
+
+class RegularPricingStrategy implements PricingStrategy {
+    calculatePrice(order : Order) : double
+}
+
+class DiscountPricingStrategy implements PricingStrategy {
+    DISCOUNT_RATE : double
+    calculatePrice(order : Order) : double
+}
+
+' =========================================================================
+' Order
+' =========================================================================
+
+class Order {
+    item : MenuItem
+    hour : int
+    restaurantType : RestaurantType
+    Order(item : MenuItem, hour : int, restaurantType : RestaurantType)
+    getItem() : MenuItem
+    getHour() : int
+    getRestaurantType() : RestaurantType
+}
+
+Order --> MenuItem
+Order --> RestaurantType
+
+' =========================================================================
+' Restaurant interface
+' =========================================================================
+
+interface Restaurant {
+    getName() : String
+    getType() : RestaurantType
+    isOpen(hour : int) : boolean
+    getOpenHour() : int
+    getCloseHour() : int
+    getMenu() : List<MenuItem>
+    processOrder(order : Order) : double
+    isHappyHour(hour : int) : boolean
+    getHappyHourStart() : int
+    setHappyHourStart(hour : int) : void
+    getMaxOrdersPerDay() : int
+    upgrade() : void
+    isUpgraded() : boolean
+    resetDay() : void
+    getDailyRevenue() : double
+    getHappyHourRevenue() : double
+    getTotalRevenue() : double
+    generateReport(peakHour : int) : RestaurantReport
+}
+
+' =========================================================================
+' AbstractRestaurant
+' =========================================================================
+
+abstract class AbstractRestaurant implements Restaurant {
+    name : String
+    type : RestaurantType
+    openHour : int
+    closeHour : int
+    menu : List<MenuItem>
+    happyHourStart : int
+    maxOrdersPerDay : int
+    upgraded : boolean
+    dailyRevenue : double
+    happyHourRevenue : double
+    regularStrategy : PricingStrategy
+    discountStrategy : PricingStrategy
+    getName() : String
+    getType() : RestaurantType
+    getOpenHour() : int
+    getCloseHour() : int
+    getMenu() : List<MenuItem>
+    getHappyHourStart() : int
+    getMaxOrdersPerDay() : int
+    isUpgraded() : boolean
+    getDailyRevenue() : double
+    getHappyHourRevenue() : double
+    getTotalRevenue() : double
+    isOpen(hour : int) : boolean
+    isHappyHour(hour : int) : boolean
+    setHappyHourStart(hour : int) : void
+    upgrade() : void
+    resetDay() : void
+    processOrder(order : Order) : double
+    generateReport(peakHour : int) : RestaurantReport
+    recordRevenue(amount : double, duringHappyHour : boolean) : void
+}
+
+AbstractRestaurant --> PricingStrategy
+
+' =========================================================================
+' Concrete Restaurants
+' =========================================================================
+
+class HotDogRestaurant extends AbstractRestaurant {
+}
+
+class BurgerRestaurant extends AbstractRestaurant {
+}
+
+class PizzaRestaurant extends AbstractRestaurant {
+}
+
+class TacoRestaurant extends AbstractRestaurant {
+}
+
+class SushiRestaurant extends AbstractRestaurant {
+}
+
+class BBQRestaurant extends AbstractRestaurant {
+}
+
+class FineDiningRestaurant extends AbstractRestaurant {
+}
+
+class CafeRestaurant extends AbstractRestaurant {
+}
+
+class IceCreamRestaurant extends AbstractRestaurant {
+}
+
+class JuiceRestaurant extends AbstractRestaurant {
+}
+
+' =========================================================================
+' Reports
+' =========================================================================
+
+class RestaurantReport {
+    restaurantName : String
+    regularRevenue : double
+    happyHourRevenue : double
+    peakHour : int
+    upgraded : boolean
+    regularProfit : double
+    happyHourProfit : double
+    totalProfit : double
+    RestaurantReport(restaurantName : String, regularRevenue : double, happyHourRevenue : double, peakHour : int, upgraded : boolean, regularProfit : double, happyHourProfit : double, totalProfit : double)
+    getRestaurantName() : String
+    getRegularRevenue() : double
+    getHappyHourRevenue() : double
+    getTotalRevenue() : double
+    getPeakHour() : int
+    isUpgraded() : boolean
+    getRegularProfit() : double
+    getHappyHourProfit() : double
+    getTotalProfit() : double
+    toString() : String
+}
+
+class DailyReport {
+    dayNumber : int
+    restaurantReports : List<RestaurantReport>
+    DailyReport(dayNumber : int, restaurantReports : List<RestaurantReport>)
+    getDayNumber() : int
+    getRestaurantReports() : List<RestaurantReport>
+    getTotalNetChange() : double
+}
+
+DailyReport "1" *-- "many" RestaurantReport
+
+' =========================================================================
+' OrderGenerator
+' =========================================================================
+
+class OrderGenerator {
+    MIN_ORDERS : int
+    MAX_ORDERS : int
+    BASE_WEIGHT : int
+    HAPPY_HOUR_BONUS : int
+    LUNCH_RUSH_HOUR : int
+    DINNER_RUSH_HOUR : int
+    RUSH_BONUS : int
+    random : Random
+    OrderGenerator()
+    OrderGenerator(random : Random)
+    generateDailyOrders(restaurant : Restaurant) : List<Order>
+}
+
+OrderGenerator --> Restaurant
+OrderGenerator --> Order
+
+' =========================================================================
+' Owner
+' =========================================================================
+
+class Owner {
+    netWorth : double
+    goalNetWorth : double
+    UPGRADE_COST : double
+    RAW_MATERIAL_RATE : double
+    HAPPY_HOUR_DISCOUNT : double
+    DAILY_EXPENSE : double
+    UPGRADED_DAILY_EXPENSE : double
+    Owner(startingNetWorth : double, goalNetWorth : double, restaurants : List<Restaurant>)
+    getNetWorth() : double
+    getGoalNetWorth() : double
+    getRestaurants() : List<Restaurant>
+    applyDailyReport(report : DailyReport) : DailyReport
+    upgrade(restaurant : Restaurant) : void
+    shutdownRestaurant(restaurant : Restaurant) : void
+    changeHappyHour(restaurant : Restaurant, newHour : int) : void
+    hasWon() : boolean
+    hasLost() : boolean
+}
+
+Owner "1" o-- "many" Restaurant
+Owner --> DailyReport
+
+' =========================================================================
+' Simulator
+' =========================================================================
+
+class Simulator {
+    STARTING_NET_WORTH : double
+    GOAL_NET_WORTH : double
+    STARTUP_COST_PER_RESTAURANT : double
+    DAILY_EXPENSE_PER_RESTAURANT : double
+    MIN_RESTAURANTS : int
+    MAX_RESTAURANTS : int
+    DAYS_IN_WEEK : int
+    restaurants : List<Restaurant>
+    orderGenerator : OrderGenerator
+    currentDay : int
+    lastGeneratedOrders : List<Order>
+    Simulator(restaurants : List<Restaurant>, orderGenerator : OrderGenerator)
+    runDay() : DailyReport
+    getCurrentDay() : int
+    getLastGeneratedOrders() : List<Order>
+    computePeakHour(orders : List<Order>) : int
+    main(args : String[]) : void
+}
+
+Simulator --> OrderGenerator
+Simulator --> DailyReport
+Simulator --> Owner
+
+@enduml
