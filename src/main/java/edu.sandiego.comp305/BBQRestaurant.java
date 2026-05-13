@@ -10,7 +10,7 @@ public class BBQRestaurant extends AbstractRestaurant{
 
     private static final int DEFAULT_HAPPY_HOUR = 17;
 
-    private static final int BASE_MAX_ORDERS = 250;
+    private static final int BASE_MAX_ORDERS = 150;
 
     public BBQRestaurant(){
         super("BBQ Shack", RestaurantType.BBQ,

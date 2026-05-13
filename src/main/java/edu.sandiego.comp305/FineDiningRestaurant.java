@@ -10,7 +10,7 @@ public class FineDiningRestaurant extends AbstractRestaurant{
 
     private static final int DEFAULT_HAPPY_HOUR = 17;
 
-    private static final int BASE_MAX_ORDERS = 240;
+    private static final int BASE_MAX_ORDERS = 140;
 
     public FineDiningRestaurant(){
         super("Fine Dining", RestaurantType.FINE_DINING,

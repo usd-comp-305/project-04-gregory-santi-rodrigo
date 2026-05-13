@@ -10,7 +10,7 @@ public class TacoRestaurant extends AbstractRestaurant{
 
     private static final int DEFAULT_HAPPY_HOUR = 16;
 
-    private static final int BASE_MAX_ORDERS = 280;
+    private static final int BASE_MAX_ORDERS = 180;
 
     public TacoRestaurant(){
         super("Taco Stand", RestaurantType.TACO,
