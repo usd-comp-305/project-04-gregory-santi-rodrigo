@@ -29,7 +29,7 @@ public class OrderGenerator {
         for (int i = 0; i < totalOrders; i++) {
             int hour = chooseHour(restaurant);
             MenuItem item = chooseItem(restaurant);
-            orders.add(new Order(restaurant.getMenu().get(0), hour, restaurant.getType()));
+            orders.add(new Order(item, hour, restaurant.getType()));
         }
         return orders;
     }

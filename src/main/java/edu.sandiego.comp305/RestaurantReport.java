@@ -22,7 +22,7 @@ public class RestaurantReport {
 
     @Override
     public String toString() {
-        // TODO: format into the display string the UI will show per restaurant
-        return "";
+        return String.format("  %-20s | Regular: $%6.2f | Happy Hour: $%6.2f | Total: $%6.2f | Peak Hour: %2d:00",
+                restaurantName, regularRevenue, happyHourRevenue, getTotalRevenue(), peakHour);
     }
 }

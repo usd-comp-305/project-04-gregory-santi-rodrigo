@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class AbstractRestaurant implements Restaurant{
     private static final double HAPPY_HOUR_DISCOUNT_RATE = 0.20;
-    private static final int UPGRADE_ORDER_INCREASE = 25;
+    private static final double UPGRADE_ORDER_INCREASE = 0.50;
 
     private final String name;
     private final RestaurantType type;
@@ -69,10 +69,8 @@ public abstract class AbstractRestaurant implements Restaurant{
 
     @Override
     public void upgrade() {
-        if (!upgraded) {
-            maxOrdersPerDay += UPGRADE_ORDER_INCREASE;
-            upgraded = true;
-        }
+        maxOrdersPerDay += (int)(maxOrdersPerDay * UPGRADE_ORDER_INCREASE);
+        upgraded = true;
     }
 
     @Override

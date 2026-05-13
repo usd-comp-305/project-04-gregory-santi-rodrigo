@@ -6,7 +6,8 @@ import java.util.List;
 public class Owner {
     private double netWorth;
     private final List<Restaurant> restaurants;
-    private final double goalNetWorth;     // game ends in victory if reached
+    private final double goalNetWorth;
+    private static final double UPGRADE_COST = 1000;
 
     public Owner(double startingNetWorth, double goalNetWorth, List<Restaurant> restaurants) {
         this.netWorth = startingNetWorth;
@@ -23,8 +24,19 @@ public class Owner {
     }
 
     public void upgrade(Restaurant restaurant) {
-        // TODO: check if owner can afford the upgrade cost, deduct it, then call upgrade()
-        restaurant.upgrade();
+        if (restaurant.isUpgraded()) {
+            System.out.println(restaurant.getName() + " has already been upgraded.");
+        } else if (netWorth < UPGRADE_COST) {
+            System.out.println("You can't afford the upgrade. It costs $" + (int) UPGRADE_COST + ".");
+        } else {
+            netWorth -= UPGRADE_COST;
+            restaurant.upgrade();
+            System.out.println(restaurant.getName() + " has been upgraded! Max orders increased by 50%.");
+        }
+    }
+
+    public void applyProfit(double profit) {
+        netWorth += profit;
     }
 
     public void shutdownRestaurant(Restaurant restaurant) {
