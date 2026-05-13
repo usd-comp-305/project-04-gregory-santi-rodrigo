@@ -132,14 +132,13 @@ public class Simulator {
             System.out.println("DAY " + day);
             System.out.println("========================================");
 
-            DailyReport report = simulator.runDay();
-
             // Calculate and apply profit
-            owner.applyDailyReport(report);
+            DailyReport report = simulator.runDay();
+            DailyReport profitReport = owner.applyDailyReport(report);
 
             // Print report
             System.out.println("\nDAILY REPORT:");
-            for (RestaurantReport rr : report.getRestaurantReports()) {
+            for (RestaurantReport rr : profitReport.getRestaurantReports()) {
                 System.out.println(rr);
             }
             System.out.printf("%nCurrent net worth: $%.2f / $%.2f%n", owner.getNetWorth(), GOAL_NET_WORTH);

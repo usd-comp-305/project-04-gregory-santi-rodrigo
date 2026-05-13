@@ -20,7 +20,7 @@ public class RestaurantReportTest {
     private static final double THOUSANDTH_DECIMAL = 0.001;
 
     private RestaurantReport buildReport(){
-        return new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false);
+        return new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false,0,0,0);
     }
 
     @Test
@@ -49,28 +49,28 @@ public class RestaurantReportTest {
 
     @Test
     public void testGetTotalRevenueWithZeroHappyHour(){
-        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, ZERO_REVENUE, PEAK_HOUR, false);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, ZERO_REVENUE, PEAK_HOUR, false,0,0,0);
         assertEquals(REGULAR_REVENUE, report.getTotalRevenue(), THOUSANDTH_DECIMAL,
                 "getTotalRevenue() should equal regular revenue when happy hour is zero.");
     }
 
     @Test
     public void testGetTotalRevenueWithZeroRegular(){
-        RestaurantReport report = new RestaurantReport(TEST_NAME, ZERO_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, ZERO_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false,0,0,0);
         assertEquals(HAPPY_REVENUE, report.getTotalRevenue(), THOUSANDTH_DECIMAL,
                 "getTotalRevenue() should equal happy hour revenue when regular is zero.");
     }
 
     @Test
     public void testGetTotalRevenueWithBothZero(){
-        RestaurantReport report = new RestaurantReport(TEST_NAME, ZERO_REVENUE, ZERO_REVENUE, PEAK_HOUR, false);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, ZERO_REVENUE, ZERO_REVENUE, PEAK_HOUR, false,0,0,0);
         assertEquals(ZERO_REVENUE, report.getTotalRevenue(), THOUSANDTH_DECIMAL,
                 "getTotalRevenue() should be zero when both revenues are zero.");
     }
 
     @Test
     public void testGetTotalRevenueIsNegativeWhenRevenueIsNegative(){
-        RestaurantReport report = new RestaurantReport(TEST_NAME, NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR, false);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR, false,0,0,0);
         assertTrue(report.getTotalRevenue() < 0,
                 "getTotalRevenue() should be negative when the restaurant lost money.");
     }
@@ -89,28 +89,28 @@ public class RestaurantReportTest {
 
     @Test
     public void testIsUpgradedReturnsFalseWhenNotUpgraded() {
-        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false,0,0,0);
         assertFalse(report.isUpgraded(),
                 "isUpgraded() should return false when constructed with upgraded=false.");
     }
 
     @Test
     public void testIsUpgradedReturnsTrueWhenUpgraded() {
-        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, true);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, true,0,0,0);
         assertTrue(report.isUpgraded(),
                 "isUpgraded() should return true when constructed with upgraded=true.");
     }
 
     @Test
     public void testToStringContainsUpgradedLabelWhenUpgraded() {
-        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, true);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, true,0,0,0);
         assertTrue(report.toString().contains("[UPGRADED]"),
                 "toString() should contain '[UPGRADED]' when the restaurant is upgraded.");
     }
 
     @Test
     public void testToStringDoesNotContainUpgradedLabelWhenNotUpgraded() {
-        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false);
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false,0,0,0);
         assertFalse(report.toString().contains("[UPGRADED]"),
                 "toString() should not contain '[UPGRADED]' when the restaurant is not upgraded.");
     }

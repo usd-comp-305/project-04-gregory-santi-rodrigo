@@ -23,7 +23,8 @@ public class Owner {
     public double getGoalNetWorth()           { return goalNetWorth; }
     public List<Restaurant> getRestaurants()  { return restaurants; }
 
-    public void applyDailyReport(DailyReport report) {
+    public DailyReport applyDailyReport(DailyReport report) {
+        List<RestaurantReport> updatedReports = new ArrayList<>();
         for (RestaurantReport rr : report.getRestaurantReports()) {
             double regularRevenue = rr.getRegularRevenue();
             double happyHourRevenue = rr.getHappyHourRevenue();
@@ -31,9 +32,16 @@ public class Owner {
             double originalHHPrice = happyHourRevenue / (1 - HAPPY_HOUR_DISCOUNT);
             double happyHourProfit = happyHourRevenue - (originalHHPrice * RAW_MATERIAL_RATE);
             double expense = rr.isUpgraded() ? UPGRADED_DAILY_EXPENSE : DAILY_EXPENSE;
-            double dailyProfit = regularProfit + happyHourProfit - expense;
-            netWorth += dailyProfit;
+            double totalProfit = regularProfit + happyHourProfit - expense;
+
+            netWorth += totalProfit;
+
+            updatedReports.add(new RestaurantReport(
+                    rr.getRestaurantName(), regularRevenue, happyHourRevenue,
+                    rr.getPeakHour(), rr.isUpgraded(), regularProfit, happyHourProfit, totalProfit
+            ));
         }
+        return new DailyReport(report.getDayNumber(), updatedReports);
     }
 
     public void upgrade(Restaurant restaurant) {
