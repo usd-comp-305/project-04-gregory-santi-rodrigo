@@ -10,7 +10,7 @@ public class JuiceRestaurant extends AbstractRestaurant{
 
     private static final int DEFAULT_HAPPY_HOUR = 8;
 
-    private static final int BASE_MAX_ORDERS = 60;
+    private static final int BASE_MAX_ORDERS = 160;
 
     public JuiceRestaurant(){
         super("Juice Bar", RestaurantType.JUICE_BAR,
@@ -18,8 +18,4 @@ public class JuiceRestaurant extends AbstractRestaurant{
                 List.of(JuiceBarMenuItem.values()));
     }
 
-    @Override
-    public double processOrder(Order order){
-        return processOrderBase(order);
-    }
 }

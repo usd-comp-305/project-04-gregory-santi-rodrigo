@@ -5,7 +5,9 @@ import java.util.List;
 
 public abstract class AbstractRestaurant implements Restaurant{
     private static final double HAPPY_HOUR_DISCOUNT_RATE = 0.20;
-    private static final int UPGRADE_ORDER_INCREASE = 25;
+    private static final double UPGRADE_ORDER_INCREASE = 0.50;
+    private final PricingStrategy regularStrategy = new RegularPricingStrategy();
+    private final PricingStrategy discountStrategy = new DiscountPricingStrategy();
 
     private final String name;
     private final RestaurantType type;
@@ -69,10 +71,8 @@ public abstract class AbstractRestaurant implements Restaurant{
 
     @Override
     public void upgrade() {
-        if (!upgraded) {
-            maxOrdersPerDay += UPGRADE_ORDER_INCREASE;
-            upgraded = true;
-        }
+        maxOrdersPerDay += (int)(maxOrdersPerDay * UPGRADE_ORDER_INCREASE);
+        upgraded = true;
     }
 
     @Override
@@ -81,15 +81,6 @@ public abstract class AbstractRestaurant implements Restaurant{
         happyHourRevenue = 0;
     }
 
-    protected double processOrderBase(Order order) {
-        MenuItem item = order.getItem();
-        boolean duringHappyHour = isHappyHour(order.getHour());
-        double revenue = duringHappyHour
-                ? item.getBasePrice() * (1 - HAPPY_HOUR_DISCOUNT_RATE)
-                : item.getBasePrice();
-        recordRevenue(revenue, duringHappyHour);
-        return revenue;
-    }
 
     private void recordRevenue(double amount, boolean duringHappyHour) {
         if (duringHappyHour) {
@@ -101,10 +92,16 @@ public abstract class AbstractRestaurant implements Restaurant{
 
     @Override
     public RestaurantReport generateReport(int peakHour) {
-        return new RestaurantReport(name, dailyRevenue, happyHourRevenue, peakHour);
+        return new RestaurantReport(name, dailyRevenue, happyHourRevenue, peakHour, upgraded, 0,0, 0);
     }
 
     @Override
-    public abstract double processOrder(Order order);
+    public double processOrder(Order order) {
+        boolean duringHappyHour = isHappyHour(order.getHour());
+        PricingStrategy strategy = duringHappyHour ? discountStrategy : regularStrategy;
+        double revenue = strategy.calculatePrice(order);
+        recordRevenue(revenue, duringHappyHour);
+        return revenue;
+    }
 
 }

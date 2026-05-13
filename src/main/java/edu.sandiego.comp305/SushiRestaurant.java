@@ -10,7 +10,7 @@ public class SushiRestaurant extends AbstractRestaurant{
 
     private static final int DEFAULT_HAPPY_HOUR = 17;
 
-    private static final int BASE_MAX_ORDERS = 60;
+    private static final int BASE_MAX_ORDERS = 160;
 
     public SushiRestaurant(){
         super("Sushi Bar", RestaurantType.SUSHI,
@@ -18,8 +18,4 @@ public class SushiRestaurant extends AbstractRestaurant{
                 List.of(SushiMenuItem.values()));
     }
 
-    @Override
-    public double processOrder(Order order){
-        return processOrderBase(order);
-    }
 }

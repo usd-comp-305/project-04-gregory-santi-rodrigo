@@ -10,7 +10,7 @@ public class HotDogRestaurant extends AbstractRestaurant{
 
     private static final int DEFAULT_HAPPY_HOUR = 22;
 
-    private static final int BASE_MAX_ORDERS = 90;
+    private static final int BASE_MAX_ORDERS = 150;
 
     public HotDogRestaurant(){
         super("Hot Dog Stand", RestaurantType.HOT_DOG,
@@ -18,8 +18,4 @@ public class HotDogRestaurant extends AbstractRestaurant{
                 List.of(HotDogMenuItem.values()));
     }
 
-    @Override
-    public double processOrder(Order order){
-        return processOrderBase(order);
-    }
 }

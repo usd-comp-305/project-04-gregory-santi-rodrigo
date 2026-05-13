@@ -10,7 +10,7 @@ public class BurgerRestaurant extends AbstractRestaurant{
 
     private static final int DEFAULT_HAPPY_HOUR = 15;
 
-    private static final int BASE_MAX_ORDERS = 80;
+    private static final int BASE_MAX_ORDERS = 180;
 
     public BurgerRestaurant(){
         super("Burger Joint", RestaurantType.BURGER,
@@ -18,8 +18,4 @@ public class BurgerRestaurant extends AbstractRestaurant{
                 List.of(BurgerMenuItem.values()));
     }
 
-    @Override
-    public double processOrder(Order order){
-        return processOrderBase(order);
-    }
 }

@@ -18,4 +18,15 @@ public class DailyReport {
     public int getDayNumber()                           { return dayNumber; }
     public List<RestaurantReport> getRestaurantReports() { return restaurantReports; }
     public double getTotalNetChange()                   { return totalNetChange; }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("=== Day %d ===\n", dayNumber));
+        for (RestaurantReport report : restaurantReports) {
+            sb.append(report).append("\n");
+        }
+        sb.append(String.format("  Total Revenue: $%.2f", totalNetChange));
+        return sb.toString();
+    }
 }

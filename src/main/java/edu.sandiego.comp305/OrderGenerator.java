@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class OrderGenerator {
 
-    private static final int MIN_ORDERS = 50;
-    private static final int MAX_ORDERS = 100;
+    private static final int MIN_ORDERS = 1000;
+    private static final int MAX_ORDERS = 2000;
     private static final int BASE_WEIGHT = 5;
     private static final int HAPPY_HOUR_BONUS = 8;
     private static final int LUNCH_RUSH_HOUR = 12;
@@ -29,7 +29,7 @@ public class OrderGenerator {
         for (int i = 0; i < totalOrders; i++) {
             int hour = chooseHour(restaurant);
             MenuItem item = chooseItem(restaurant);
-            orders.add(new Order(restaurant.getMenu().get(0), hour, restaurant.getType()));
+            orders.add(new Order(item, hour, restaurant.getType()));
         }
         return orders;
     }
