@@ -8,6 +8,8 @@ public class Owner {
     private final List<Restaurant> restaurants;
     private final double goalNetWorth;     // game ends in victory if reached
 
+    private final double UPGRADE_COST = 2000.00;
+
     public Owner(double startingNetWorth, double goalNetWorth, List<Restaurant> restaurants) {
         this.netWorth = startingNetWorth;
         this.goalNetWorth = goalNetWorth;
@@ -22,9 +24,16 @@ public class Owner {
         netWorth += report.getTotalNetChange();
     }
 
-    public void upgrade(Restaurant restaurant) {
-        // TODO: check if owner can afford the upgrade cost, deduct it, then call upgrade()
+    public boolean upgrade(Restaurant restaurant) {
+        if (netWorth < UPGRADE_COST) {
+            return false;
+        }
+        if (restaurant.isUpgraded()) {
+            return false;
+        }
+        netWorth -= UPGRADE_COST;
         restaurant.upgrade();
+        return true;
     }
 
     public void shutdownRestaurant(Restaurant restaurant) {
