@@ -114,4 +114,41 @@ public class RestaurantReportTest {
         assertFalse(report.toString().contains("[UPGRADED]"),
                 "toString() should not contain '[UPGRADED]' when the restaurant is not upgraded.");
     }
+
+    @Test
+    public void testGetRegularProfitReturnsCorrectValue() {
+        final double REGULAR_PROFIT = 70.0;
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE,
+                PEAK_HOUR, false, REGULAR_PROFIT, 0, 0);
+        assertEquals(REGULAR_PROFIT, report.getRegularProfit(), THOUSANDTH_DECIMAL,
+                "getRegularProfit() should return the regular profit passed to the constructor.");
+    }
+
+    @Test
+    public void testGetHappyHourProfitReturnsCorrectValue() {
+        final double HAPPY_HOUR_PROFIT = 31.25;
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE,
+                PEAK_HOUR, false, 0, HAPPY_HOUR_PROFIT, 0);
+        assertEquals(HAPPY_HOUR_PROFIT, report.getHappyHourProfit(), THOUSANDTH_DECIMAL,
+                "getHappyHourProfit() should return the happy hour profit passed to the constructor.");
+    }
+
+    @Test
+    public void testGetTotalProfitEqualsRegularPlusHappyHourProfit() {
+        final double REGULAR_PROFIT    = 70.0;
+        final double HAPPY_HOUR_PROFIT = 31.25;
+        final double TOTAL_PROFIT      = REGULAR_PROFIT + HAPPY_HOUR_PROFIT;
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE,
+                PEAK_HOUR, false, REGULAR_PROFIT, HAPPY_HOUR_PROFIT, TOTAL_PROFIT);
+        assertEquals(TOTAL_PROFIT, report.getTotalProfit(), THOUSANDTH_DECIMAL,
+                "getTotalProfit() should equal regular profit + happy hour profit.");
+    }
+
+    @Test
+    public void testGetTotalProfitIsZeroWhenBothProfitsAreZero() {
+        RestaurantReport report = new RestaurantReport(TEST_NAME, REGULAR_REVENUE, HAPPY_REVENUE,
+                PEAK_HOUR, false, 0, 0, 0);
+        assertEquals(0, report.getTotalProfit(), THOUSANDTH_DECIMAL,
+                "getTotalProfit() should be zero when both profits are zero.");
+    }
 }
