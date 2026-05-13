@@ -4,26 +4,44 @@ import java.awt.*;
 import java.util.List;
 
 public abstract class AbstractRestaurant implements Restaurant{
+
     private static final double HAPPY_HOUR_DISCOUNT_RATE = 0.20;
+
     private static final double UPGRADE_ORDER_INCREASE = 0.50;
-    private final PricingStrategy regularStrategy = new RegularPricingStrategy();
-    private final PricingStrategy discountStrategy = new DiscountPricingStrategy();
+
+    private final PricingStrategy regularStrategy =
+            new RegularPricingStrategy();
+
+    private final PricingStrategy discountStrategy =
+            new DiscountPricingStrategy();
 
     private final String name;
+
     private final RestaurantType type;
+
     private final int openHour;
+
     private final int closeHour;
+
     private final List<MenuItem> menu;
+
     private int happyHourStart;
+
     private int maxOrdersPerDay;
+
     private boolean upgraded;
+
     private double dailyRevenue;
+
     private double happyHourRevenue;
 
-    public AbstractRestaurant(String name, RestaurantType type,
-                              int openHour, int closeHour,
-                              int defaultHappyHourStart, int baseMaxOrders,
-                              List<MenuItem> menu) {
+    public AbstractRestaurant(final String name,
+                              final RestaurantType type,
+                              final int openHour,
+                              final int closeHour,
+                              final int defaultHappyHourStart,
+                              final int baseMaxOrders,
+                              final List<MenuItem> menu) {
         this.name = name;
         this.type = type;
         this.openHour = openHour;
@@ -37,21 +55,53 @@ public abstract class AbstractRestaurant implements Restaurant{
 
     }
 
-    // general methods which all subclasses of AbstractRestaurant will inherit and need
-    @Override public String getName()             { return name; }
-    @Override public RestaurantType getType()     { return type; }
-    @Override public int getOpenHour()            { return openHour; }
-    @Override public int getCloseHour()           { return closeHour; }
-    @Override public List<MenuItem> getMenu()     { return menu;}
-    @Override public int getHappyHourStart()      { return happyHourStart; }
-    @Override public int getMaxOrdersPerDay()     { return maxOrdersPerDay; }
-    @Override public boolean isUpgraded()         { return upgraded; }
-    @Override public double getDailyRevenue()     { return dailyRevenue; }
-    @Override public double getHappyHourRevenue() { return happyHourRevenue; }
-    @Override public double getTotalRevenue()     { return dailyRevenue + happyHourRevenue; }
+    // General methods inherited by all restaurant subclasses.
+    @Override public String getName() {
+        return name;
+    }
+
+    @Override public RestaurantType getType() {
+        return type;
+    }
+
+    @Override public int getOpenHour() {
+        return openHour;
+    }
+
+    @Override public int getCloseHour() {
+        return closeHour;
+    }
+
+    @Override public List<MenuItem> getMenu() {
+        return menu;
+    }
+
+    @Override public int getHappyHourStart() {
+        return happyHourStart;
+    }
+
+    @Override public int getMaxOrdersPerDay() {
+        return maxOrdersPerDay;
+    }
+
+    @Override public boolean isUpgraded() {
+        return upgraded;
+    }
+
+    @Override public double getDailyRevenue() {
+        return dailyRevenue;
+    }
+
+    @Override public double getHappyHourRevenue() {
+        return happyHourRevenue;
+    }
+
+    @Override public double getTotalRevenue() {
+        return dailyRevenue + happyHourRevenue;
+    }
 
     @Override
-    public boolean isOpen(int hour) {
+    public boolean isOpen(final int hour) {
         if (openHour < closeHour) {
             return hour >= openHour && hour < closeHour;
         } else {
@@ -60,12 +110,12 @@ public abstract class AbstractRestaurant implements Restaurant{
     }
 
     @Override
-    public boolean isHappyHour(int hour) {
+    public boolean isHappyHour(final int hour) {
         return hour == happyHourStart && isOpen(hour);
     }
 
     @Override
-    public void setHappyHourStart(int hour) {
+    public void setHappyHourStart(final int hour) {
         this.happyHourStart = hour;
     }
 
@@ -82,7 +132,8 @@ public abstract class AbstractRestaurant implements Restaurant{
     }
 
 
-    private void recordRevenue(double amount, boolean duringHappyHour) {
+    private void recordRevenue(final double amount,
+                               final boolean duringHappyHour) {
         if (duringHappyHour) {
             happyHourRevenue += amount;
         } else {
@@ -91,15 +142,26 @@ public abstract class AbstractRestaurant implements Restaurant{
     }
 
     @Override
-    public RestaurantReport generateReport(int peakHour) {
-        return new RestaurantReport(name, dailyRevenue, happyHourRevenue, peakHour, upgraded, 0,0, 0);
+    public RestaurantReport generateReport(final int peakHour) {
+        return new RestaurantReport(name,
+                dailyRevenue,
+                happyHourRevenue,
+                peakHour,
+                upgraded,
+                0,0, 0);
     }
 
     @Override
-    public double processOrder(Order order) {
-        boolean duringHappyHour = isHappyHour(order.getHour());
-        PricingStrategy strategy = duringHappyHour ? discountStrategy : regularStrategy;
-        double revenue = strategy.calculatePrice(order);
+    public double processOrder(final Order order) {
+        final boolean duringHappyHour = isHappyHour(order.getHour());
+        final PricingStrategy strategy;
+
+        if (duringHappyHour) {
+            strategy = discountStrategy;
+        } else {
+            strategy = regularStrategy;
+        }
+        final double revenue = strategy.calculatePrice(order);
         recordRevenue(revenue, duringHappyHour);
         return revenue;
     }
