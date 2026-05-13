@@ -46,7 +46,7 @@ public class OwnerTest {
         final double TOTAL_REVENUE = 250.0;
 
         DailyReport profitReport = new DailyReport(DAY_NUMBER, List.of(
-                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR)
+                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR, false)
         ));
         testOwner.applyDailyReport(profitReport);
         assertEquals(STARTING_NET_WORTH + TOTAL_REVENUE, testOwner.getNetWorth(),
@@ -61,7 +61,7 @@ public class OwnerTest {
         final double TOTAL_REVENUE = 200.0;
 
         DailyReport lossReport = new DailyReport(DAY_NUMBER, List.of(
-                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR)
+                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR, false)
         ));
         testOwner.applyDailyReport(lossReport);
         assertEquals(STARTING_NET_WORTH - TOTAL_REVENUE, testOwner.getNetWorth(),
@@ -80,11 +80,11 @@ public class OwnerTest {
 
         DailyReport dayOne = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", DAY_ONE_REGULAR_REVENUE,
-                        DAY_ONE_HAPPY_HOUR_REVENUE, PEAK_HOUR)
+                        DAY_ONE_HAPPY_HOUR_REVENUE, PEAK_HOUR, false)
         ));
         DailyReport dayTwo = new DailyReport(SECOND_DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", DAY_TWO_REGULAR_REVENUE,
-                        DAY_TWO_HAPPY_HOUR_REVENUE, PEAK_HOUR)
+                        DAY_TWO_HAPPY_HOUR_REVENUE, PEAK_HOUR, false)
         ));
         testOwner.applyDailyReport(dayOne);
         testOwner.applyDailyReport(dayTwo);
@@ -106,7 +106,7 @@ public class OwnerTest {
 
         DailyReport bigReport = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
-                        HAPPY_HOUR_REVENUE, PEAK_HOUR)
+                        HAPPY_HOUR_REVENUE, PEAK_HOUR, false)
         ));
         testOwner.applyDailyReport(bigReport);
         assertTrue(testOwner.hasWon(),
@@ -127,7 +127,7 @@ public class OwnerTest {
 
         DailyReport wipeoutReport = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
-                        HAPPY_HOUR_REVENUE, PEAK_HOUR)
+                        HAPPY_HOUR_REVENUE, PEAK_HOUR, false)
         ));
         testOwner.applyDailyReport(wipeoutReport);
         assertTrue(testOwner.hasLost(),
@@ -142,7 +142,7 @@ public class OwnerTest {
 
         DailyReport wipeoutReport = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
-                        HAPPY_HOUR_REVENUE, PEAK_HOUR)
+                        HAPPY_HOUR_REVENUE, PEAK_HOUR, false)
         ));
         testOwner.applyDailyReport(wipeoutReport);
         assertTrue(testOwner.hasLost(),

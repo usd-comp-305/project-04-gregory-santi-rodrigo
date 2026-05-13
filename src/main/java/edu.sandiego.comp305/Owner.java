@@ -8,6 +8,10 @@ public class Owner {
     private final List<Restaurant> restaurants;
     private final double goalNetWorth;
     private static final double UPGRADE_COST = 1000;
+    private static final double RAW_MATERIAL_RATE = 0.30;
+    private static final double HAPPY_HOUR_DISCOUNT = 0.20;
+    private static final double DAILY_EXPENSE = 500;
+    private static final double UPGRADED_DAILY_EXPENSE = 1000;
 
     public Owner(double startingNetWorth, double goalNetWorth, List<Restaurant> restaurants) {
         this.netWorth = startingNetWorth;
@@ -20,7 +24,16 @@ public class Owner {
     public List<Restaurant> getRestaurants()  { return restaurants; }
 
     public void applyDailyReport(DailyReport report) {
-        netWorth += report.getTotalNetChange();
+        for (RestaurantReport rr : report.getRestaurantReports()) {
+            double regularRevenue = rr.getRegularRevenue();
+            double happyHourRevenue = rr.getHappyHourRevenue();
+            double regularProfit = regularRevenue * (1 - RAW_MATERIAL_RATE);
+            double originalHHPrice = happyHourRevenue / (1 - HAPPY_HOUR_DISCOUNT);
+            double happyHourProfit = happyHourRevenue - (originalHHPrice * RAW_MATERIAL_RATE);
+            double expense = rr.isUpgraded() ? UPGRADED_DAILY_EXPENSE : DAILY_EXPENSE;
+            double dailyProfit = regularProfit + happyHourProfit - expense;
+            netWorth += dailyProfit;
+        }
     }
 
     public void upgrade(Restaurant restaurant) {
@@ -33,10 +46,6 @@ public class Owner {
             restaurant.upgrade();
             System.out.println(restaurant.getName() + " has been upgraded! Max orders increased by 50%.");
         }
-    }
-
-    public void applyProfit(double profit) {
-        netWorth += profit;
     }
 
     public void shutdownRestaurant(Restaurant restaurant) {

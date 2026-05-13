@@ -19,7 +19,7 @@ public class DailyReportTest {
     private static final int PEAK_HOUR = 14;
 
     private RestaurantReport buildRestaurantReport(String name) {
-        return new RestaurantReport(name, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR);
+        return new RestaurantReport(name, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false);
     }
 
     @Test
@@ -91,8 +91,8 @@ public class DailyReportTest {
         final int GREATER_THAN_ZERO = 0;
 
         List<RestaurantReport> reports = List.of(
-                new RestaurantReport("BBQ Shack", NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR),
-                new RestaurantReport("Pizza Place", SECOND_NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR)
+                new RestaurantReport("BBQ Shack", NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR, false),
+                new RestaurantReport("Pizza Place", SECOND_NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR, false)
         );
         DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
         assertTrue(dailyReport.getTotalNetChange() < GREATER_THAN_ZERO,
@@ -105,8 +105,8 @@ public class DailyReportTest {
         final double NEG_REVENUE = -200.0;
         final double PROFIT = 300.0;
         List<RestaurantReport> reports = List.of(
-                new RestaurantReport("BBQ Shack",    POS_REVENUE, ZERO_REVENUE, PEAK_HOUR),
-                new RestaurantReport("Pizza Place", NEG_REVENUE, ZERO_REVENUE, PEAK_HOUR)
+                new RestaurantReport("BBQ Shack",    POS_REVENUE, ZERO_REVENUE, PEAK_HOUR, false),
+                new RestaurantReport("Pizza Place", NEG_REVENUE, ZERO_REVENUE, PEAK_HOUR, false)
         );
         DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
         assertEquals(PROFIT, dailyReport.getTotalNetChange(), THOUSANDTH_DECIMAL,

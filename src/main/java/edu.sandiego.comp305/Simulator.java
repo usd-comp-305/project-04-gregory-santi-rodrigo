@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class Simulator {
 
@@ -11,9 +12,6 @@ public class Simulator {
     private static final double STARTING_NET_WORTH = 25000;
     private static final double GOAL_NET_WORTH = 50000;
     private static final double STARTUP_COST_PER_RESTAURANT = 1000;
-    private static final double DAILY_EXPENSE_PER_RESTAURANT = 500;
-    private static final double RAW_MATERIAL_RATE = 0.30;
-    private static final double HAPPY_HOUR_DISCOUNT = 0.20;
     private static final int MIN_RESTAURANTS = 5;
     private static final int MAX_RESTAURANTS = 10;
     private static final int DAYS_IN_WEEK = 7;
@@ -112,8 +110,8 @@ public class Simulator {
         }
 
         // Randomly select n restaurants
-        java.util.Collections.shuffle(allRestaurants, random);
-        List<Restaurant> selectedRestaurants = new ArrayList<>(allRestaurants.subList(0, numRestaurants));
+        Collections.shuffle(allRestaurants, random);
+        List<Restaurant> selectedRestaurants = allRestaurants.subList(0, numRestaurants);
 
         // Deduct startup costs
         double startupCosts = numRestaurants * STARTUP_COST_PER_RESTAURANT;
@@ -137,15 +135,7 @@ public class Simulator {
             DailyReport report = simulator.runDay();
 
             // Calculate and apply profit
-            for (RestaurantReport rr : report.getRestaurantReports()) {
-                double regularRevenue = rr.getRegularRevenue();
-                double happyHourRevenue = rr.getHappyHourRevenue();
-                double regularProfit = regularRevenue * (1 - RAW_MATERIAL_RATE);
-                double originalHHPrice = happyHourRevenue / (1 - HAPPY_HOUR_DISCOUNT);
-                double happyHourProfit = happyHourRevenue - (originalHHPrice * RAW_MATERIAL_RATE);
-                double dailyProfit = regularProfit + happyHourProfit - DAILY_EXPENSE_PER_RESTAURANT;
-                owner.applyProfit(dailyProfit);
-            }
+            owner.applyDailyReport(report);
 
             // Print report
             System.out.println("\nDAILY REPORT:");

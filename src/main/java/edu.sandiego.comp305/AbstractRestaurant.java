@@ -99,7 +99,7 @@ public abstract class AbstractRestaurant implements Restaurant{
 
     @Override
     public RestaurantReport generateReport(int peakHour) {
-        return new RestaurantReport(name, dailyRevenue, happyHourRevenue, peakHour);
+        return new RestaurantReport(name, dailyRevenue, happyHourRevenue, peakHour, upgraded);
     }
 
     @Override
