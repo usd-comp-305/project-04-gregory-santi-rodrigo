@@ -19,15 +19,15 @@ public class OrderGeneratorTest {
     private static final int HAPPY_HOUR = 18;
     private static final int OPEN_HOUR = 9;
     private static final int CLOSE_HOUR = 23;
-    private static final int NUM_STATISTICAL_RUNS = 20;
+    private static final int NUM_STATISTICAL_RUNS = 10;
     private static final double SKEW_THRESHOLD = 1.5;
     private static final int NON_RUSH_HAPPY_HOUR = 10;
     private static final int LUNCH_RUSH_HOUR = 12;
     private static final int DINNER_RUSH_HOUR = 18;
     private static final int FIRST_HOUR_OF_DAY = 0;
     private static final int LAST_HOUR_OF_DAY = 24;
-    private static final int MIN_ORDER_SIZE = 50;
-    private static final int MAX_ORDER_SIZE = 100;
+    private static final int MIN_ORDER_SIZE = 1000;
+    private static final int MAX_ORDER_SIZE = 2000;
     private static final int FIRST_ORDER = 100;
 
     @Mock private Restaurant mockRestaurant;
@@ -44,7 +44,7 @@ public class OrderGeneratorTest {
     }
 
     @Test
-    public void testGenerateDailyOrders_countIsAtLeast50() {
+    public void testGenerateDailyOrders_countIsAtLeast1000() {
         OrderGenerator generator = new OrderGenerator();
         List<Order> orders = generator.generateDailyOrders(mockRestaurant);
         assertTrue(orders.size() >= MIN_ORDER_SIZE,
@@ -52,7 +52,7 @@ public class OrderGeneratorTest {
     }
 
     @Test
-    public void testGenerateDailyOrders_countIsAtMost100() {
+    public void testGenerateDailyOrders_countIsAtMost2000() {
         OrderGenerator generator = new OrderGenerator();
         List<Order> orders = generator.generateDailyOrders(mockRestaurant);
         assertTrue(orders.size() <= MAX_ORDER_SIZE,

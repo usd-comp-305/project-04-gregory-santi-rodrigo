@@ -53,7 +53,12 @@ public class Owner {
     }
 
     public void changeHappyHour(Restaurant restaurant, int newHour) {
+        if (!restaurant.isOpen(newHour)) {
+            System.out.println("Invalid hour — " + restaurant.getName() + " is not open at " + newHour + ":00.");
+            return;
+        }
         restaurant.setHappyHourStart(newHour);
+        System.out.println("Happy hour updated to " + newHour + ":00.");
     }
 
     public boolean hasWon()  { return netWorth >= goalNetWorth; }

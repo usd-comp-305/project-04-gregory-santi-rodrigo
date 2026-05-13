@@ -225,7 +225,6 @@ public class Simulator {
                                 int newHour = Integer.parseInt(scanner.nextLine().trim());
                                 if (newHour >= 0 && newHour <= 23) {
                                     owner.changeHappyHour(active.get(choice), newHour);
-                                    System.out.println("Happy hour updated to " + newHour + ":00.");
                                 } else {
                                     System.out.println("Invalid hour, no change made.");
                                 }
