@@ -10,7 +10,7 @@ public class Simulator {
 
     //  Game constants
     private static final double STARTING_NET_WORTH = 25000;
-    private static final double GOAL_NET_WORTH = 50000;
+    private static final double GOAL_NET_WORTH = 80000;
     private static final double STARTUP_COST_PER_RESTAURANT = 1000;
     private static final int MIN_RESTAURANTS = 5;
     private static final int MAX_RESTAURANTS = 10;
