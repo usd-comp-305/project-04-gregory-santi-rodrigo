@@ -6,17 +6,21 @@ public enum FineDiningMenuItem implements MenuItem {
     CAVIAR("Caviar", 89.99);
 
     private final String name;
+
     private final double basePrice;
 
-    FineDiningMenuItem(String name, double basePrice) {
+    FineDiningMenuItem(final String name, final double basePrice) {
         this.name = name;
         this.basePrice = basePrice;
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return name;
     }
-    @Override public double getBasePrice() {
+
+    @Override
+    public double getBasePrice() {
         return basePrice;
     }
 }

@@ -201,4 +201,35 @@ public class SimulatorTest {
         assertEquals(DAY_TWO, dayTwoReport.getDayNumber(),
                 "Second report should be labeled day 2.");
     }
+
+    @Test
+    public void testCreateAllRestaurantsReturnsCorrectCount() {
+        final int EXPECTED_RESTAURANTS = 10;
+
+        List<Restaurant> restaurants = Simulator.createAllRestaurants();
+
+        assertEquals(EXPECTED_RESTAURANTS, restaurants.size(),
+                "createAllRestaurants() should create exactly 10 restaurants.");
+    }
+
+    @Test
+    public void testCreateAllRestaurantsContainsBurgerRestaurant() {
+        List<Restaurant> restaurants = Simulator.createAllRestaurants();
+
+        boolean containsBurgerRestaurant = restaurants.stream()
+                .anyMatch(restaurant ->
+                        restaurant instanceof BurgerRestaurant);
+
+        assertTrue(containsBurgerRestaurant,
+                "Restaurant list should contain a BurgerRestaurant.");
+    }
+
+
+    @Test
+    public void testRunDayGeneratesOrders() {
+        testSim.runDay();
+
+        assertFalse(testSim.getLastGeneratedOrders().isEmpty(),
+                "runDay() should generate at least one order.");
+    }
 }

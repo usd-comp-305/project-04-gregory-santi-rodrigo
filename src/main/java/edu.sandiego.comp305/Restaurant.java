@@ -3,29 +3,41 @@ package edu.sandiego.comp305;
 import java.util.List;
 
 public interface Restaurant {
-    String getName();
-    RestaurantType getType();
 
-    boolean isOpen(int hour);
-    int getOpenHour();
-    int getCloseHour();
+    public abstract String getName();
 
-    List<MenuItem> getMenu();
+    public abstract RestaurantType getType();
 
-    double processOrder(Order order);
-    boolean isHappyHour(int hour);
-    int getHappyHourStart();
-    void setHappyHourStart(int hour);
+    public abstract  boolean isOpen(int hour);
 
-    int getMaxOrdersPerDay();
-    void upgrade();
-    boolean isUpgraded();
+    public abstract int getOpenHour();
 
-    void resetDay();
-    double getDailyRevenue();
-    double getHappyHourRevenue();
-    double getTotalRevenue();
+    public abstract int getCloseHour();
 
-    RestaurantReport generateReport(int peakHour);
+    public abstract List<MenuItem> getMenu();
+
+    public abstract double processOrder(Order order);
+
+    public abstract boolean isHappyHour(int hour);
+
+    public abstract int getHappyHourStart();
+
+    public abstract void setHappyHourStart(int hour);
+
+    public abstract int getMaxOrdersPerDay();
+
+    public abstract void upgrade();
+
+    public abstract boolean isUpgraded();
+
+    public abstract void resetDay();
+
+    public abstract double getDailyRevenue();
+
+    public abstract double getHappyHourRevenue();
+
+    public abstract double getTotalRevenue();
+
+    public abstract RestaurantReport generateReport(int peakHour);
 
 }

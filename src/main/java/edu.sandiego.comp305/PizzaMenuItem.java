@@ -9,17 +9,21 @@ public enum PizzaMenuItem implements MenuItem {
     CHEESE_WHOLE("Cheese Whole", 14.99);
 
     private final String name;
+
     private final double basePrice;
 
-    PizzaMenuItem(String name, double basePrice) {
+    PizzaMenuItem(final String name, final double basePrice) {
         this.name = name;
         this.basePrice = basePrice;
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return name;
     }
-    @Override public double getBasePrice() {
+
+    @Override
+    public double getBasePrice() {
         return basePrice;
     }
 }

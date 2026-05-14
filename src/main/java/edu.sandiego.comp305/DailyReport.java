@@ -3,11 +3,15 @@ package edu.sandiego.comp305;
 import java.util.List;
 
 public class DailyReport {
+
     private final int dayNumber;
+
     private final List<RestaurantReport> restaurantReports;
+
     private final double totalNetChange;
 
-    public DailyReport(int dayNumber, List<RestaurantReport> restaurantReports) {
+    public DailyReport(final int dayNumber,
+                       final List<RestaurantReport> restaurantReports) {
         this.dayNumber = dayNumber;
         this.restaurantReports = restaurantReports;
         this.totalNetChange = restaurantReports.stream()
@@ -15,13 +19,21 @@ public class DailyReport {
                 .sum();
     }
 
-    public int getDayNumber()                           { return dayNumber; }
-    public List<RestaurantReport> getRestaurantReports() { return restaurantReports; }
-    public double getTotalNetChange()                   { return totalNetChange; }
+    public int getDayNumber() {
+        return dayNumber;
+    }
+
+    public List<RestaurantReport> getRestaurantReports() {
+        return restaurantReports;
+    }
+
+    public double getTotalNetChange() {
+        return totalNetChange;
+    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         sb.append(String.format("=== Day %d ===\n", dayNumber));
         for (RestaurantReport report : restaurantReports) {
             sb.append(report).append("\n");

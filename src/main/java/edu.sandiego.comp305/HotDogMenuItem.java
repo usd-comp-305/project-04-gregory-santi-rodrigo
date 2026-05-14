@@ -6,17 +6,21 @@ public enum HotDogMenuItem implements MenuItem {
     CONDIMENT_HOT_DOG("Condiment Hot Dog", 4.99);
 
     private final String name;
+
     private final double basePrice;
 
-    HotDogMenuItem(String name, double basePrice) {
+    HotDogMenuItem(final String name, final double basePrice) {
         this.name = name;
         this.basePrice = basePrice;
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return name;
     }
-    @Override public double getBasePrice() {
+
+    @Override
+    public double getBasePrice() {
         return basePrice;
     }
 }

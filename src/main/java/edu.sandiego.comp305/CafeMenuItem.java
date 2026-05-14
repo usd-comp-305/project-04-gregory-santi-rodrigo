@@ -6,17 +6,21 @@ public enum CafeMenuItem implements MenuItem {
     PASTRY("Pastry", 4.49);
 
     private final String name;
+
     private final double basePrice;
 
-    CafeMenuItem(String name, double basePrice) {
+    CafeMenuItem(final String name, final double basePrice) {
         this.name = name;
         this.basePrice = basePrice;
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return name;
     }
-    @Override public double getBasePrice() {
+
+    @Override
+    public double getBasePrice() {
         return basePrice;
     }
 }

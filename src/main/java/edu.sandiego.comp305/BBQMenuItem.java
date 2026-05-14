@@ -6,17 +6,21 @@ public enum BBQMenuItem implements MenuItem {
     PULLED_PORK("Pulled Pork", 16.99);
 
     private final String name;
+
     private final double basePrice;
 
-    BBQMenuItem(String name, double basePrice) {
+    BBQMenuItem(final String name, final double basePrice) {
         this.name = name;
         this.basePrice = basePrice;
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return name;
     }
-    @Override public double getBasePrice() {
+
+    @Override
+    public double getBasePrice() {
         return basePrice;
     }
 }

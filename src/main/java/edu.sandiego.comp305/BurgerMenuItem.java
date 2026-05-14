@@ -6,17 +6,21 @@ public enum BurgerMenuItem implements MenuItem {
     TRIPLE_CHEESEBURGER("Triple Cheeseburger", 14.99);
 
     private final String name;
+
     private final double basePrice;
 
-    BurgerMenuItem(String name, double basePrice) {
+    BurgerMenuItem(final String name, final double basePrice) {
         this.name = name;
         this.basePrice = basePrice;
     }
 
-    @Override public String getName() {
+    @Override
+    public String getName() {
         return name;
     }
-    @Override public double getBasePrice() {
+
+    @Override
+    public double getBasePrice() {
         return basePrice;
     }
 }
