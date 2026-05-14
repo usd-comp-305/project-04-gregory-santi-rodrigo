@@ -171,7 +171,7 @@ public class OwnerTest {
     public void testApplyDailyReportCalculatesRegularProfitCorrectly() {
         final int DAY_NUMBER = 1;
         final double REGULAR_REVENUE = 200.0;
-        final double EXPECTED_REGULAR_PROFIT = REGULAR_REVENUE * 0.70; // 140.0
+        final double EXPECTED_REGULAR_PROFIT = REGULAR_REVENUE * 0.70;
 
         final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
@@ -189,9 +189,9 @@ public class OwnerTest {
         final int DAY_NUMBER = 1;
         final double HAPPY_HOUR_REVENUE = 80.0;
         final double ORIGINAL_PRICE = HAPPY_HOUR_REVENUE
-                / 0.80;         // 100.0
+                / 0.80;
         final double EXPECTED_HH_PROFIT = HAPPY_HOUR_REVENUE -
-                (ORIGINAL_PRICE * 0.30); // 80 - 30 = 50.0
+                (ORIGINAL_PRICE * 0.30);
 
         final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", 0,
@@ -294,7 +294,7 @@ public class OwnerTest {
 
     @Test
     public void testChangeHappyHourRejectsClosedHour() {
-        final int CLOSED_HOUR = 3; // BBQRestaurant is not open at 3am
+        final int CLOSED_HOUR = 3;
         final int originalHappyHour = testRestaurant.getHappyHourStart();
         testOwner.changeHappyHour(testRestaurant, CLOSED_HOUR);
         assertEquals(originalHappyHour, testRestaurant.getHappyHourStart(),
@@ -304,7 +304,7 @@ public class OwnerTest {
 
     @Test
     public void testChangeHappyHourAcceptsOpenHour() {
-        final int OPEN_HOUR = 14; // BBQRestaurant is open at 2pm
+        final int OPEN_HOUR = 14;
         testOwner.changeHappyHour(testRestaurant, OPEN_HOUR);
         assertEquals(OPEN_HOUR, testRestaurant.getHappyHourStart(),
                 "changeHappyHour() should update when the " +

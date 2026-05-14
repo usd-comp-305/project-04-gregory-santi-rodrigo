@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 
 public class Simulator {
 
-    //  Game constants
     private static final double STARTING_NET_WORTH = 25000;
 
     private static final double GOAL_NET_WORTH = 80000;
@@ -22,7 +21,7 @@ public class Simulator {
 
     private static final int DAYS_IN_WEEK = 7;
 
-    // Instance fields
+
     private final List<Restaurant> restaurants;
 
     private final OrderGenerator orderGenerator;
