@@ -38,7 +38,7 @@ public class Owner {
     }
 
     public List<Restaurant> getRestaurants()  {
-        return restaurants;
+        return List.copyOf(restaurants);
     }
 
     public DailyReport applyDailyReport(final DailyReport report) {

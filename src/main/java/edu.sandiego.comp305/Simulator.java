@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Collections;
+import java.nio.charset.StandardCharsets;
 
 public class Simulator {
 
@@ -33,7 +34,7 @@ public class Simulator {
 
     public Simulator(final List<Restaurant> restaurants,
                      final OrderGenerator orderGenerator){
-        this.restaurants = restaurants;
+        this.restaurants = new ArrayList<>(restaurants);
         this.orderGenerator = orderGenerator;
         this.currentDay = 1;
         this.lastGeneratedOrders = new ArrayList<>();
@@ -252,7 +253,9 @@ public class Simulator {
 
     // game entry point
     public static void main(final String[] args) {
-        final Scanner scanner = new Scanner(System.in);
+        final Scanner scanner = new Scanner(
+                System.in,
+                StandardCharsets.UTF_8);
         // Single Random instance shared across the entire program
         final Random random = new Random();
 

@@ -13,7 +13,7 @@ public class DailyReport {
     public DailyReport(final int dayNumber,
                        final List<RestaurantReport> restaurantReports) {
         this.dayNumber = dayNumber;
-        this.restaurantReports = restaurantReports;
+        this.restaurantReports = List.copyOf(restaurantReports);
         this.totalNetChange = restaurantReports.stream()
                 .mapToDouble(RestaurantReport::getTotalRevenue)
                 .sum();
@@ -24,7 +24,7 @@ public class DailyReport {
     }
 
     public List<RestaurantReport> getRestaurantReports() {
-        return restaurantReports;
+        return List.copyOf(restaurantReports);
     }
 
     public double getTotalNetChange() {
@@ -34,7 +34,7 @@ public class DailyReport {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(String.format("=== Day %d ===\n", dayNumber));
+        sb.append(String.format("=== Day %d ===%n", dayNumber));
         for (RestaurantReport report : restaurantReports) {
             sb.append(report).append("\n");
         }

@@ -17,6 +17,7 @@ public class OwnerTest {
     private static final double THOUSANDTH_DECIMAL = 0.001;
 
     private Owner testOwner;
+
     private BBQRestaurant testRestaurant;
 
     @BeforeEach
@@ -28,13 +29,15 @@ public class OwnerTest {
 
     @Test
     public void testGetNetWorthReturnsStartingValue(){
-        assertEquals(STARTING_NET_WORTH, testOwner.getNetWorth(), THOUSANDTH_DECIMAL,
+        assertEquals(STARTING_NET_WORTH, testOwner.getNetWorth(),
+                THOUSANDTH_DECIMAL,
                 "getNetWorth() should return the starting net worth.");
     }
 
     @Test
     public void testGetGoalNetWorthReturnsCorrectValue(){
-        assertEquals(GOAL_NET_WORTH, testOwner.getGoalNetWorth(), THOUSANDTH_DECIMAL,
+        assertEquals(GOAL_NET_WORTH, testOwner.getGoalNetWorth(),
+                THOUSANDTH_DECIMAL,
                 "getGoalNetWorth() should return the goal net worth.");
     }
 
@@ -47,16 +50,17 @@ public class OwnerTest {
     @Test
     public void testHasWonReturnsTrueWhenGoalIsReached(){
         final int DAY_NUMBER = 1;
-        final double REGULAR_REVENUE = 4000.0;
+        final double REGULAR_REVENUE = 50000.0;
         final double HAPPY_HOUR_REVENUE = 0.0;
 
-        DailyReport bigReport = new DailyReport(DAY_NUMBER, List.of(
+        final DailyReport bigReport = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
                         HAPPY_HOUR_REVENUE, PEAK_HOUR, false,0,0,0)
         ));
         testOwner.applyDailyReport(bigReport);
         assertTrue(testOwner.hasWon(),
-                "hasWon() should return true when net worth reaches or exceeds goal.");
+                "hasWon() should return true when net worth " +
+                        "reaches or exceeds goal.");
     }
 
     @Test
@@ -68,10 +72,10 @@ public class OwnerTest {
     @Test
     public void testHasLostReturnsTrueWhenNetWorthReachesZero(){
         final int DAY_NUMBER = 1;
-        final double REGULAR_REVENUE = -1000.0;
+        final double REGULAR_REVENUE = -50000.0;
         final double HAPPY_HOUR_REVENUE = 0.0;
 
-        DailyReport wipeoutReport = new DailyReport(DAY_NUMBER, List.of(
+        final DailyReport wipeoutReport = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
                         HAPPY_HOUR_REVENUE, PEAK_HOUR, false,0,0,0)
         ));
@@ -83,16 +87,17 @@ public class OwnerTest {
     @Test
     public void testHasLostReturnsTrueWhenNetWorthGoesNegative(){
         final int DAY_NUMBER = 1;
-        final double REGULAR_REVENUE = -2000.0;
+        final double REGULAR_REVENUE = -60000.0;
         final double HAPPY_HOUR_REVENUE = 0.0;
 
-        DailyReport wipeoutReport = new DailyReport(DAY_NUMBER, List.of(
+        final DailyReport wipeoutReport = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
                         HAPPY_HOUR_REVENUE, PEAK_HOUR, false,0,0,0)
         ));
         testOwner.applyDailyReport(wipeoutReport);
         assertTrue(testOwner.hasLost(),
-                "hasLost() should return true when net worth drops below zero.");
+                "hasLost() should return true when net worth drops below " +
+                        "zero.");
     }
 
     @Test
@@ -104,8 +109,8 @@ public class OwnerTest {
 
     @Test
     public void testShutdownRestaurantLeavesOthersIntact(){
-        BBQRestaurant secondRestaurant = new BBQRestaurant();
-        Owner ownerWithTwo = new Owner(STARTING_NET_WORTH, GOAL_NET_WORTH,
+        final BBQRestaurant secondRestaurant = new BBQRestaurant();
+        final Owner ownerWithTwo = new Owner(STARTING_NET_WORTH, GOAL_NET_WORTH,
                 new ArrayList<>(List.of(testRestaurant, secondRestaurant)));
         ownerWithTwo.shutdownRestaurant(testRestaurant);
         assertTrue(ownerWithTwo.getRestaurants().contains(secondRestaurant),
@@ -116,21 +121,23 @@ public class OwnerTest {
     public void testShutdownLastRestaurantLeavesEmptyList(){
         testOwner.shutdownRestaurant(testRestaurant);
         assertTrue(testOwner.getRestaurants().isEmpty(),
-                "Shutting down the last restaurant should leave an empty list.");
+                "Shutting down the last restaurant " +
+                        "should leave an empty list.");
     }
 
     @Test
     public void testUpgradeIncreasesRestaurantMaxOrders(){
-        int beforeUpgrade = testRestaurant.getMaxOrdersPerDay();
+        final int beforeUpgrade = testRestaurant.getMaxOrdersPerDay();
         testOwner.upgrade(testRestaurant);
         assertTrue(testRestaurant.getMaxOrdersPerDay() > beforeUpgrade,
-                "Upgrading should increase the restaurant's max orders per day.");
+                "Upgrading should increase the restaurant's max orders " +
+                        "per day.");
     }
 
     @Test
     public void testUpgradeCanOnlyHappenOnce(){
         testOwner.upgrade(testRestaurant);
-        int afterFirstUpgrade = testRestaurant.getMaxOrdersPerDay();
+        final int afterFirstUpgrade = testRestaurant.getMaxOrdersPerDay();
         testOwner.upgrade(testRestaurant);
         assertEquals(afterFirstUpgrade, testRestaurant.getMaxOrdersPerDay(),
                 "A restaurant should not be upgradeable more than once.");
@@ -141,21 +148,23 @@ public class OwnerTest {
         final int NEW_HAPPY_HOUR = 16;
         testOwner.changeHappyHour(testRestaurant, NEW_HAPPY_HOUR);
         assertEquals(NEW_HAPPY_HOUR, testRestaurant.getHappyHourStart(),
-                "changeHappyHour() should update the restaurant's happy hour start.");
+                "changeHappyHour() should update the " +
+                        "restaurant's happy hour start.");
     }
 
     @Test
     public void testChangeHappyHourDoesNotAffectOtherRestaurants(){
         final int NEW_HAPPY_HOUR = 16;
-        BBQRestaurant secondRestaurant = new BBQRestaurant();
-        int originalHappyHour = secondRestaurant.getHappyHourStart();
-        Owner ownerWithTwo = new Owner(STARTING_NET_WORTH, GOAL_NET_WORTH,
+        final BBQRestaurant secondRestaurant = new BBQRestaurant();
+        final int originalHappyHour = secondRestaurant.getHappyHourStart();
+        final Owner ownerWithTwo = new Owner(STARTING_NET_WORTH, GOAL_NET_WORTH,
                 new ArrayList<>(List.of(testRestaurant, secondRestaurant)));
 
         ownerWithTwo.changeHappyHour(testRestaurant, NEW_HAPPY_HOUR);
 
         assertEquals(originalHappyHour, secondRestaurant.getHappyHourStart(),
-                "Changing happy hour on one restaurant should not affect others.");
+                "Changing happy hour on one restaurant should not " +
+                        "affect others.");
     }
 
     @Test
@@ -164,10 +173,11 @@ public class OwnerTest {
         final double REGULAR_REVENUE = 200.0;
         final double EXPECTED_REGULAR_PROFIT = REGULAR_REVENUE * 0.70; // 140.0
 
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of(
-                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, 0, PEAK_HOUR, false, 0, 0, 0)
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
+                        0, PEAK_HOUR, false, 0, 0, 0)
         ));
-        DailyReport profitReport = testOwner.applyDailyReport(report);
+        final DailyReport profitReport = testOwner.applyDailyReport(report);
         assertEquals(EXPECTED_REGULAR_PROFIT,
                 profitReport.getRestaurantReports().get(0).getRegularProfit(),
                 THOUSANDTH_DECIMAL,
@@ -178,21 +188,26 @@ public class OwnerTest {
     public void testApplyDailyReportCalculatesHappyHourProfitCorrectly() {
         final int DAY_NUMBER = 1;
         final double HAPPY_HOUR_REVENUE = 80.0;
-        final double ORIGINAL_PRICE = HAPPY_HOUR_REVENUE / 0.80;         // 100.0
-        final double EXPECTED_HH_PROFIT = HAPPY_HOUR_REVENUE - (ORIGINAL_PRICE * 0.30); // 80 - 30 = 50.0
+        final double ORIGINAL_PRICE = HAPPY_HOUR_REVENUE
+                / 0.80;         // 100.0
+        final double EXPECTED_HH_PROFIT = HAPPY_HOUR_REVENUE -
+                (ORIGINAL_PRICE * 0.30); // 80 - 30 = 50.0
 
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of(
-                new RestaurantReport("BBQ Shack", 0, HAPPY_HOUR_REVENUE, PEAK_HOUR, false, 0, 0, 0)
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", 0,
+                        HAPPY_HOUR_REVENUE, PEAK_HOUR, false, 0, 0, 0)
         ));
-        DailyReport profitReport = testOwner.applyDailyReport(report);
+        final DailyReport profitReport = testOwner.applyDailyReport(report);
         assertEquals(EXPECTED_HH_PROFIT,
                 profitReport.getRestaurantReports().get(0).getHappyHourProfit(),
                 THOUSANDTH_DECIMAL,
-                "Happy hour profit should be revenue minus 30% of original pre-discount price.");
+                "Happy hour profit should be revenue minus 30% of " +
+                        "original pre-discount price.");
     }
 
     @Test
-    public void testApplyDailyReportDeductsCorrectExpenseForNonUpgradedRestaurant() {
+    public void
+        testApplyDailyReportDeductsCorrectExpenseForNonUpgradedRestaurant() {
         final int DAY_NUMBER = 1;
         final double REGULAR_REVENUE = 1000.0;
         final double EXPECTED_EXPENSE = 500.0;
@@ -200,16 +215,20 @@ public class OwnerTest {
                 + (REGULAR_REVENUE * 0.70)
                 - EXPECTED_EXPENSE;
 
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of(
-                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, 0, PEAK_HOUR, false, 0, 0, 0)
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack", REGULAR_REVENUE,
+                        0, PEAK_HOUR, false, 0, 0, 0)
         ));
         testOwner.applyDailyReport(report);
-        assertEquals(EXPECTED_NET_WORTH, testOwner.getNetWorth(), THOUSANDTH_DECIMAL,
-                "Non-upgraded restaurant should have $500 daily expense deducted.");
+        assertEquals(EXPECTED_NET_WORTH, testOwner.getNetWorth(),
+                THOUSANDTH_DECIMAL,
+                "Non-upgraded restaurant should have $500 daily expense " +
+                        "deducted.");
     }
 
     @Test
-    public void testApplyDailyReportDeductsCorrectExpenseForUpgradedRestaurant() {
+    public void
+        testApplyDailyReportDeductsCorrectExpenseForUpgradedRestaurant() {
         final int DAY_NUMBER = 1;
         final double REGULAR_REVENUE = 1000.0;
         final double UPGRADE_COST = 1000.0;
@@ -221,13 +240,15 @@ public class OwnerTest {
 
         testOwner.upgrade(testRestaurant);
 
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of(
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
                 new RestaurantReport("BBQ Shack", REGULAR_REVENUE, 0, PEAK_HOUR,
                         testRestaurant.isUpgraded(), 0, 0, 0)
         ));
         testOwner.applyDailyReport(report);
-        assertEquals(EXPECTED_NET_WORTH, testOwner.getNetWorth(), THOUSANDTH_DECIMAL,
-                "Upgraded restaurant should have $1000 daily expense deducted.");
+        assertEquals(EXPECTED_NET_WORTH, testOwner.getNetWorth(),
+                THOUSANDTH_DECIMAL,
+                "Upgraded restaurant should have $1000 daily expense " +
+                        "deducted.");
     }
 
     @Test
@@ -236,13 +257,17 @@ public class OwnerTest {
         final double REGULAR_REVENUE = 200.0;
         final double HAPPY_HOUR_REVENUE = 80.0;
 
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of(
-                new RestaurantReport("BBQ Shack", REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR, false, 0, 0, 0)
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
+                new RestaurantReport("BBQ Shack",
+                        REGULAR_REVENUE, HAPPY_HOUR_REVENUE, PEAK_HOUR,
+                        false, 0, 0, 0)
         ));
-        DailyReport profitReport = testOwner.applyDailyReport(report);
-        assertNotEquals(0, profitReport.getRestaurantReports().get(0).getRegularProfit(),
+        final DailyReport profitReport = testOwner.applyDailyReport(report);
+        assertNotEquals(0, profitReport.getRestaurantReports()
+                        .get(0).getRegularProfit(),
                 "Returned report should have non-zero regular profit.");
-        assertNotEquals(0, profitReport.getRestaurantReports().get(0).getHappyHourProfit(),
+        assertNotEquals(0, profitReport.getRestaurantReports()
+                        .get(0).getHappyHourProfit(),
                 "Returned report should have non-zero happy hour profit.");
     }
 
@@ -251,13 +276,14 @@ public class OwnerTest {
     public void testUpgradeDeductsFromNetWorth() {
         final double UPGRADE_COST = 1000.0;
         testOwner.upgrade(testRestaurant);
-        assertEquals(STARTING_NET_WORTH - UPGRADE_COST, testOwner.getNetWorth(), THOUSANDTH_DECIMAL,
+        assertEquals(STARTING_NET_WORTH - UPGRADE_COST, testOwner
+                        .getNetWorth(), THOUSANDTH_DECIMAL,
                 "Upgrading should deduct $1000 from net worth.");
     }
 
     @Test
     public void testUpgradeDoesNothingWhenCannotAfford() {
-        Owner poorOwner = new Owner(500.0, GOAL_NET_WORTH,
+        final Owner poorOwner = new Owner(500.0, GOAL_NET_WORTH,
                 new ArrayList<>(List.of(testRestaurant)));
         poorOwner.upgrade(testRestaurant);
         assertFalse(testRestaurant.isUpgraded(),
@@ -269,10 +295,11 @@ public class OwnerTest {
     @Test
     public void testChangeHappyHourRejectsClosedHour() {
         final int CLOSED_HOUR = 3; // BBQRestaurant is not open at 3am
-        int originalHappyHour = testRestaurant.getHappyHourStart();
+        final int originalHappyHour = testRestaurant.getHappyHourStart();
         testOwner.changeHappyHour(testRestaurant, CLOSED_HOUR);
         assertEquals(originalHappyHour, testRestaurant.getHappyHourStart(),
-                "changeHappyHour() should not update if the restaurant is closed at that hour.");
+                "changeHappyHour() should not update if the " +
+                        "restaurant is closed at that hour.");
     }
 
     @Test
@@ -280,6 +307,7 @@ public class OwnerTest {
         final int OPEN_HOUR = 14; // BBQRestaurant is open at 2pm
         testOwner.changeHappyHour(testRestaurant, OPEN_HOUR);
         assertEquals(OPEN_HOUR, testRestaurant.getHappyHourStart(),
-                "changeHappyHour() should update when the restaurant is open at that hour.");
+                "changeHappyHour() should update when the " +
+                        "restaurant is open at that hour.");
     }
 }
