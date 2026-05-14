@@ -1,6 +1,6 @@
 # Restaurant Simulator
 
-A multi-restaurant management simulation game built in Java. You play as a business owner managing a portfolio of restaurants over a 7-day week, making strategic decisions to grow your net worth from **$25,000** to **$50,000**.
+A multi-restaurant management simulation game built in Java. You play as a business owner managing a portfolio of restaurants over a 7-day week, making strategic decisions to grow your net worth from **$25,000** to **$80,000**.
 
 ---
 
@@ -8,7 +8,7 @@ A multi-restaurant management simulation game built in Java. You play as a busin
 
 The simulator supports 10 restaurant types: Burger, Pizza, Taco, Sushi, Hot Dog, Fine Dining, Cafe, Ice Cream, Juice Bar, and BBQ. Each restaurant has its own menu, operating hours, happy hour slot, and maximum daily order capacity. Some restaurants operate overnight, requiring special wraparound scheduling logic.
 
-Each day, an order generator simulates customer demand using a weighted random system that skews orders toward rush hours (lunch and dinner) and each restaurant's happy hour, producing between 50 and 100 orders per day per restaurant. Between days, the player can upgrade restaurants, shut down underperformers, or shift happy hour timing to maximize revenue. The game ends in victory when net worth reaches the goal, or in defeat if it hits zero.
+Each day, an order generator simulates customer demand using a weighted random system that skews orders toward rush hours (lunch and dinner) and each restaurant's happy hour, producing between 1000 and 2000 orders per day per restaurant. Between days, the player can upgrade restaurants, shut down underperformers, or shift happy hour timing to maximize revenue. The game ends in victory when net worth reaches the goal, or in defeat if it hits zero.
 
 This project applies object-oriented design principles including abstraction, encapsulation, inheritance, and polymorphism, as well as the Strategy design pattern for pricing and test-driven development with JUnit 5 and Mockito.
 
