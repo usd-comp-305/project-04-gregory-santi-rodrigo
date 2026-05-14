@@ -18,68 +18,81 @@ public class DailyReportTest {
 
     private static final int PEAK_HOUR = 14;
 
-    private RestaurantReport buildRestaurantReport(String name) {
-        return new RestaurantReport(name, REGULAR_REVENUE, HAPPY_REVENUE, PEAK_HOUR, false, 0, 0, 0);
+    private RestaurantReport buildRestaurantReport(final String name) {
+        return new RestaurantReport(name, REGULAR_REVENUE, HAPPY_REVENUE,
+                PEAK_HOUR, false, 0, 0, 0);
     }
 
     @Test
     public void testGetDayNumberReturnsCorrectDay(){
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of(buildRestaurantReport("BBQ Shack")));
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of(
+                buildRestaurantReport("BBQ Shack")));
         assertEquals(DAY_NUMBER, report.getDayNumber(),
-                "getDayNumber() should return the day number passed to the constructor.");
+                "getDayNumber() should return the day number " +
+                        "passed to the constructor.");
     }
 
     @Test
     public void testGetRestaurantReportsReturnsCorrectSize(){
         final int RESTAURANT_COUNT = 2;
 
-        List<RestaurantReport> reports = List.of(
+        final List<RestaurantReport> reports = List.of(
                 buildRestaurantReport("BBQ Shack"),
                 buildRestaurantReport("Pizza Place")
         );
-        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
-        assertEquals(RESTAURANT_COUNT, dailyReport.getRestaurantReports().size(),
-                "getRestaurantReports() should return all restaurant reports.");
+        final  DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        assertEquals(RESTAURANT_COUNT, dailyReport.getRestaurantReports()
+                .size(), "getRestaurantReports() should return all " +
+                "restaurant reports.");
     }
 
     @Test
     public void testGetRestaurantReportsIsEmptyWithNoRestaurants(){
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of());
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of());
         assertTrue(report.getRestaurantReports().isEmpty(),
-                "getRestaurantReports() should be empty when no restaurants are passed in.");
+                "getRestaurantReports() should be empty when no " +
+                        "restaurants are passed in.");
     }
 
     @Test
     public void testGetRestaurantReportsContainsCorrectNames(){
 
-        List<RestaurantReport> reports = List.of(
+        final int FIRST_RESTAURANT = 0;
+
+        final int SECOND_RESTAURANT = 1;
+
+        final List<RestaurantReport> reports = List.of(
                 buildRestaurantReport("BBQ Shack"),
                 buildRestaurantReport("Pizza Place")
         );
-        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
-        assertEquals("BBQ Shack", dailyReport.getRestaurantReports().getFirst().getRestaurantName());
-        assertEquals("Pizza Place", dailyReport.getRestaurantReports().getFirst().getRestaurantName());
+        final DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        assertEquals("BBQ Shack", dailyReport.getRestaurantReports()
+                .get(FIRST_RESTAURANT).getRestaurantName());
+        assertEquals("Pizza Place", dailyReport.getRestaurantReports()
+                .get(SECOND_RESTAURANT).getRestaurantName());
     }
 
     @Test
     public void testGetTotalNetChangeEqualsSumOfAllRestaurantTotals(){
         final int DOUBLE = 2;
 
-        List<RestaurantReport> reports = List.of(
+        final List<RestaurantReport> reports = List.of(
                 buildRestaurantReport("BBQ Shack"),
                 buildRestaurantReport("Pizza Place")
         );
-        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
-        double expectedTotal = (REGULAR_REVENUE + HAPPY_REVENUE) * DOUBLE;
-        assertEquals(expectedTotal, dailyReport.getTotalNetChange(), THOUSANDTH_DECIMAL,
-                "getTotalNetChange() should equal the sum of all restaurant totals.");
+        final DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        final double expectedTotal = (REGULAR_REVENUE + HAPPY_REVENUE) * DOUBLE;
+        assertEquals(expectedTotal, dailyReport.getTotalNetChange(),
+                THOUSANDTH_DECIMAL, "getTotalNetChange() should " +
+                        "equal the sum of all restaurant totals.");
     }
 
     @Test
     public void testGetTotalNetChangeIsZeroWithNoRestaurants(){
-        DailyReport report = new DailyReport(DAY_NUMBER, List.of());
-        assertEquals(ZERO_REVENUE, report.getTotalNetChange(), THOUSANDTH_DECIMAL,
-                "getTotalNetChange() should be zero when there are no restaurants.");
+        final DailyReport report = new DailyReport(DAY_NUMBER, List.of());
+        assertEquals(ZERO_REVENUE, report.getTotalNetChange(),
+                THOUSANDTH_DECIMAL, "getTotalNetChange() should be" +
+                        " zero when there are no restaurants.");
     }
 
     @Test
@@ -88,13 +101,17 @@ public class DailyReportTest {
         final double SECOND_NEGATIVE_REVENUE = -150.0;
         final int GREATER_THAN_ZERO = 0;
 
-        List<RestaurantReport> reports = List.of(
-                new RestaurantReport("BBQ Shack", NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR, false, 0, 0, 0),
-                new RestaurantReport("Pizza Place", SECOND_NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR, false, 0, 0, 0)
+        final List<RestaurantReport> reports = List.of(
+                new RestaurantReport("BBQ Shack", NEGATIVE_REVENUE,
+                        ZERO_REVENUE, PEAK_HOUR, false, 0, 0, 0),
+                new RestaurantReport("Pizza Place",
+                        SECOND_NEGATIVE_REVENUE, ZERO_REVENUE, PEAK_HOUR,
+                        false, 0, 0, 0)
         );
-        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        final DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
         assertTrue(dailyReport.getTotalNetChange() < GREATER_THAN_ZERO,
-                "getTotalNetChange() should be negative when all restaurants lost money.");
+                "getTotalNetChange() should be negative when all " +
+                        "restaurants lost money.");
     }
 
     @Test
@@ -102,12 +119,17 @@ public class DailyReportTest {
         final double POS_REVENUE = 500.0;
         final double NEG_REVENUE = -200.0;
         final double PROFIT = 300.0;
-        List<RestaurantReport> reports = List.of(
-                new RestaurantReport("BBQ Shack",    POS_REVENUE, ZERO_REVENUE, PEAK_HOUR, false, 0, 0, 0),
-                new RestaurantReport("Pizza Place", NEG_REVENUE, ZERO_REVENUE, PEAK_HOUR, false, 0, 0, 0)
+        final List<RestaurantReport> reports = List.of(
+                new RestaurantReport("BBQ Shack",
+                        POS_REVENUE, ZERO_REVENUE, PEAK_HOUR, false,
+                        0, 0, 0),
+                new RestaurantReport("Pizza Place", NEG_REVENUE,
+                        ZERO_REVENUE, PEAK_HOUR, false, 0,
+                        0, 0)
         );
-        DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
-        assertEquals(PROFIT, dailyReport.getTotalNetChange(), THOUSANDTH_DECIMAL,
-                "getTotalNetChange() should correctly net a profit and a loss.");
+        final DailyReport dailyReport = new DailyReport(DAY_NUMBER, reports);
+        assertEquals(PROFIT, dailyReport.getTotalNetChange(),
+                THOUSANDTH_DECIMAL, "getTotalNetChange() should " +
+                        "correctly net a profit and a loss.");
     }
 }

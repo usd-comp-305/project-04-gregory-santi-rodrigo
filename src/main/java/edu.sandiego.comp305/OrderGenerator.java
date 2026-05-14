@@ -27,7 +27,7 @@ public class OrderGenerator {
     }
 
     public OrderGenerator(final Random random) {
-        this.random = random;
+        this.random = new Random(random.nextLong());
     }
 
     public List<Order> generateDailyOrders(final Restaurant restaurant) {

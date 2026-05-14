@@ -48,7 +48,7 @@ public abstract class AbstractRestaurant implements Restaurant{
         this.closeHour = closeHour;
         this.happyHourStart = defaultHappyHourStart;
         this.maxOrdersPerDay = baseMaxOrders;
-        this.menu = menu;
+        this.menu = List.copyOf(menu);
         this.upgraded = false;
         this.dailyRevenue = 0;
         this.happyHourRevenue = 0;
@@ -121,8 +121,10 @@ public abstract class AbstractRestaurant implements Restaurant{
 
     @Override
     public void upgrade() {
-        maxOrdersPerDay += (int)(maxOrdersPerDay * UPGRADE_ORDER_INCREASE);
-        upgraded = true;
+        if (!upgraded) {
+            maxOrdersPerDay += (int)(maxOrdersPerDay * UPGRADE_ORDER_INCREASE);
+            upgraded = true;
+        }
     }
 
     @Override
