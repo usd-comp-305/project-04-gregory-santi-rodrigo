@@ -120,7 +120,7 @@ public class OrderGeneratorTest {
 
     @Test
     public void testGenerateDailyOrders_rushHoursAreAboveAverageFrequency() {
-        // Move happy hour away from rush hours so bonuses don't overlap
+
         stubHappyHour(NON_RUSH_HAPPY_HOUR);
 
         final OrderGenerator generator = new OrderGenerator();

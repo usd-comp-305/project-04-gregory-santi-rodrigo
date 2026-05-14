@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RestaurantTest {
 
-    // Operating hours
     private static final int OPEN_HOUR = 11;
 
     private static final int MIDDAY = 15;
@@ -20,7 +19,6 @@ public class RestaurantTest {
 
     private static final int AFTER_CLOSED = 22;
 
-    // HotDogRestaurant hours
     private static final int HOTDOG_OPEN_LATE = 22;
 
     private static final int HOTDOG_MIDNIGHT = 0;
@@ -33,7 +31,6 @@ public class RestaurantTest {
 
     private static final int HOTDOG_AFTER_CLOSE = 12;
 
-    // Happy hour
     private static final int HAPPY_HOUR_START = 15;
 
     private static final int NEW_HAPPY_HOUR = 12;
@@ -42,12 +39,10 @@ public class RestaurantTest {
 
     private static final int AFTER_HAPPY_HOUR = HAPPY_HOUR_START + 1;
 
-    // Order hours
     private static final int NORMAL_ORDER_HOUR = 12;
 
     private static final int HAPPY_ORDER_HOUR = 15;
 
-    // Pricing
     private static final double DISCOUNT_RATE = 0.80;
 
     private BurgerRestaurant restaurant;

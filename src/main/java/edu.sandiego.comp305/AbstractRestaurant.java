@@ -55,7 +55,6 @@ public abstract class AbstractRestaurant implements Restaurant{
 
     }
 
-    // General methods inherited by all restaurant subclasses.
     @Override public String getName() {
         return name;
     }
